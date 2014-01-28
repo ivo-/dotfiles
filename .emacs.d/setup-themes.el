@@ -1,0 +1,31 @@
+(load-theme 'zenburn t)
+
+(defun zb ()
+  (interactive)
+  (disable-theme 'adwaita)
+  (disable-theme 'twilight)
+  (disable-theme 'deeper-blue)
+  (load-theme 'zenburn t))
+
+(defun tw ()
+  (interactive)
+  (disable-theme 'adwaita)
+  (disable-theme 'zenburn)
+  (disable-theme 'deeper-blue)
+  (load-theme 'twilight t))
+
+(defun aw ()
+  (interactive)
+  (disable-theme 'zenburn)
+  (disable-theme 'twilight)
+  (disable-theme 'deeper-blue)
+  (load-theme 'adwaita t))
+
+(defun db ()
+  (interactive)
+  (disable-theme 'adwaita)
+  (disable-theme 'zenburn)
+  (disable-theme 'twilight)
+  (load-theme 'deeper-blue t))
+
+(provide 'setup-themes)

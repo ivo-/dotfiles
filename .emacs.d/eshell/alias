@@ -1,0 +1,32 @@
+alias aspell aspell $*
+alias be bundle exec $*
+alias r be rails $*
+alias rs r server $*
+alias rg r generate $*
+alias rc r console $*
+alias rk be rake $*
+alias rgmd rg model $*
+alias rgmg rg migration $*
+alias rgs rg scaffold $*
+alias rgc rg controller $*
+alias rkm rk db:migrate $*
+
+alias glp g log --graph --decorate --pretty=oneline --abbrev-commit --all        $*
+alias gca g commit -am     $*
+alias gc g commit -m      $*
+alias gphm gp heroku master $*
+alias gpom gp origin master $*
+alias gp g push           $*
+alias gb g branch         $*
+alias gs g status         $*
+alias ga g add            $*
+alias g git              $*
+
+alias la ls -a
+alias ll ls -l
+alias ff find-file        $1
+alias c clear
+alias .... cd ../../..
+alias ... cd ../..
+
+alias tf tail -f $*
