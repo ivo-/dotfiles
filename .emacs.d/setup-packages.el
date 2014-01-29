@@ -99,7 +99,13 @@
       (add-hook 'text-mode-hook 'turn-on-flyspell))))
 
 (use-package ido
-  :init (ido-mode t)
+  :init
+  (progn
+    (add-hook 'ido-setup-hook
+              '(lambda ()
+                 (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+                 (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
+    (ido-mode t))
   :config
   (progn
     (use-package ido-ubiquitous
