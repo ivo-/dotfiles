@@ -3,64 +3,74 @@
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
 (package-initialize)
 
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(
-                      dash
-                      smex
-                      use-package
-                      ido-ubiquitous
-
-                      projectile
-                      ack-and-a-half
-
-                      god-mode
-                      ace-jump-mode
-                      expand-region
-                      multiple-cursors
-
-                      git-gutter
-                      golden-ratio
-                      dired-details
-                      idle-highlight-mode
-                      volatile-highlights
-
-                      zenburn-theme
-                      twilight-theme
-
-                      gist
-                      magit
-                      prodigy
-                      quickrun
-                      restclient
-                      google-translate
-
-                      rvm
-                      yari
-                      rubocop
-
-                      lua-mode
-                      php-mode
-                      web-mode
-                      yaml-mode
-                      haml-mode
-                      scss-mode
-                      coffee-mode
-                      markdown-mode
-
-                      cider
-                      paredit
-                      clojure-mode
-                      clojure-cheatsheet
-
-                      know-your-http-well))
-
-(dolist (p my-packages)
+(defun packages-install (my-packages)
+  (dolist (p my-packages)
   (when (not (package-installed-p p))
-    (package-install p)))
+    (package-install p))))
+
+(defun init-install-packages ()
+  (packages-install
+   '(
+     dash
+     smex
+     use-package
+     ido-ubiquitous
+
+     projectile
+     ack-and-a-half
+
+     god-mode
+     ace-jump-mode
+     expand-region
+     multiple-cursors
+
+     git-gutter
+     golden-ratio
+     dired-details
+     idle-highlight-mode
+     volatile-highlights
+
+     zenburn-theme
+     twilight-theme
+
+     gist
+     magit
+     prodigy
+     quickrun
+     restclient
+     google-translate
+
+     rvm
+     yari
+     rubocop
+
+     lua-mode
+     php-mode
+     web-mode
+     yaml-mode
+     haml-mode
+     scss-mode
+     coffee-mode
+     markdown-mode
+
+     cider
+     paredit
+     clojure-mode
+     clojure-cheatsheet
+
+     know-your-http-well)))
+
+(condition-case nil
+    (init-install-packages)
+  (error
+   (package-refresh-contents)
+   (init-install-packages)))
 
 (require 'use-package)
 
