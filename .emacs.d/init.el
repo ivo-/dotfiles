@@ -27,13 +27,13 @@
 (require 'setup-themes)
 (require 'setup-defuns)
 
-;;; Always keep init.el buffer.
+;; Always keep init.el buffer.
 (find-file "~/.emacs.d/init.el")
 
-;;; Don't need the *scratch* buffer.
+;; Don't need the *scratch* buffer.
 (kill-buffer "*scratch*")
 
-;;; Start server.
+;; Start server.
 (require 'server)
 (unless (server-running-p)
   (server-start))
