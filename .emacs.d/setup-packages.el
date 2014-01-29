@@ -294,7 +294,7 @@
   (add-hook 'coffee-mode-hook
             '(lambda ()
                ;; CoffeeScript uses two spaces.
-               (set (make-local-variable 'tab-width) 2)
+               (custom-set-variables '(coffee-tab-width 2))
 
                ;; *Messages* spam
                (setq coffee-debug-mode t))))
