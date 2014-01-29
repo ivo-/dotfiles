@@ -26,6 +26,7 @@
      ack-and-a-half
 
      god-mode
+     iy-go-to-char
      ace-jump-mode
      expand-region
      multiple-cursors
@@ -231,6 +232,11 @@
 (use-package ace-jump-mode
   :bind (("M-j j"   . ace-jump-mode)
          ("M-j M-j" . ace-jump-char-mode)))
+
+(use-package iy-go-to-char
+  :bind (("M-Z" . iy-go-to-char)
+         ("M-F" . iy-go-to-char-continue)
+         ("M-B" . iy-go-to-char-continue-backward)))
 
 (use-package magit
   :bind ("C-x g" . magit-status))
