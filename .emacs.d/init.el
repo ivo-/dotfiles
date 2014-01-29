@@ -8,11 +8,6 @@
 ;;;   - [ ] http://bzg.fr/emacs-strip-tease.html
 ;;;   - [ ] https://github.com/m2ym/popwin-el
 ;;;
-;;; Teach me master:
-;;;
-;;;   - [ ]  https://github.com/magnars/.emacs.d
-;;;   - [ ]  https://github.com/cjohansen/.emacs.d
-;;;
 
 ;; Set up load path.
 (add-to-list 'load-path user-emacs-directory)
