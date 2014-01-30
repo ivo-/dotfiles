@@ -1,12 +1,12 @@
 ;;; TODO:
 ;;;
-;;;   - [ ] Dotfiles repository.
 ;;;   - [ ] Review docs file.
 ;;;   - [ ] Setup erc.
 ;;;   - [ ] Setup zsh + multi-term(instead of eshell).
 ;;;   - [ ] Setup smartparens-strict for all prog modes.
 ;;;   - [ ] http://bzg.fr/emacs-strip-tease.html
 ;;;   - [ ] https://github.com/m2ym/popwin-el
+;;;   - [ ] https://github.com/alexander-yakushev/compliment
 ;;;
 
 ;; Set up load path.
