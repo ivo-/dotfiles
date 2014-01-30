@@ -46,7 +46,7 @@ end
 beautiful.init("/home/ivo-/.config/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm" -- TODO: lxterminal
+terminal = "xterm" -- TODO: terminator
 editor = os.getenv("EDITOR") or "emacsclient -c"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -245,12 +245,6 @@ globalkeys = awful.util.table.join(
    awful.key({}, "XF86KbdBrightnessDown", function () awful.util.spawn_with_shell("backlight-down") end),
    awful.key({}, "XF86MonBrightnessUp", function () awful.util.spawn_with_shell("show-mon-brightness") end),
    awful.key({}, "XF86MonBrightnessDown", function () awful.util.spawn_with_shell("show-mon-brightness") end),
-
-   -- awful.key({}, "XF86Mail", function () awful.util.spawn("thunderbird") end),
-   -- awful.key({}, "XF86HomePage", function () awful.util.spawn("nautilus /home/joni") end),
-   -- awful.key({}, "XF86Messenger", function () awful.util.spawn("skype") end),
-   -- awful.key({}, "XF86Document", function () awful.util.spawn("libreoffice") end),
-   -- awful.key({}, "XF86Favorites", function () awful.util.spawn("firefox") end),
 
    awful.key({}, "#248", function () awful.util.spawn_with_shell("trackpad-toggle") end),
    awful.key({}, "XF86TouchpadToggle", function () awful.util.spawn_with_shell("trackpad-toggle") end),
