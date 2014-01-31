@@ -1,0 +1,18 @@
+#+TITLE: LightTable
+#+STARTUP: showall
+
+* TODO
+  - [ ] Setup web inspector
+  - [ ] Fix emacs plugin
+
+* Read
+  - [ ] LT readme
+  - [ ] LT wiki in github
+  - [ ] https://github.com/mdhaney/lt-plugin-template
+  - [ ] http://scattered-thoughts.net/blog/2014/01/27/were-not-even-trying/
+
+* Plugins
+   - user.todo
+   - init.cljs
+   - display annotations(TODO, FIXME, OPTIMIZE)
+   - show/clear trailing whitespaces

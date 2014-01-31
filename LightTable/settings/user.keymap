@@ -10,16 +10,6 @@
 ;; of all the commands you can execute, start typing a word related to the thing you
 ;; want to do in between the square brackets (e.g. type "editor").
 
-;; TODO: http://scattered-thoughts.net/blog/2014/01/27/were-not-even-trying/
-;; TODO: ~/.config/LightTable/settings/
-;; TODO: plugin to higlit TODO:
-;; TODO: Selcetion
-;; TODO: clear whitespaces
-;; TODO: try emacs again
-;; TODO: make plugin like emacs init.el file
-;; TODO: visible whitespace
-;; TOOD: web inspector
-
 {:+ {:app {
            "ctrl-x ctrl-f" [:navigate-workspace-transient]
            "ctrl-x ctrl-s" [:save]
