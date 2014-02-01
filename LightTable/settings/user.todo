@@ -7,6 +7,11 @@
   - [ ] Add all paredit commands
   - [ ] Automate cache clear
 
+* Install
+  - [ ] https://github.com/rschroll/reflow
+  - [ ] https://github.com/liquidz/trailing-whitespace
+  - [ ] https://github.com/eldargab/LT-Opener
+
 * Read
   - [ ] LT readme
   - [ ] LT wiki in github
@@ -16,6 +21,7 @@
 * Plugins
    - user.todo
    - init.cljs
+   - kill ring
    - display annotations(TODO, FIXME, OPTIMIZE)
    - show/clear trailing whitespaces
    - google translate

@@ -14,54 +14,69 @@
 ;;
 ;;  "key" [(:editor.codemirror.command "cmd")]
 ;;
+;;(defn unsaved-prompt [on-yes]
+;; (popup/popup! {:header "You will lose changes."
+;;                :body "If you close now, you'll lose any unsaved changes. Are you sure you want to do that?"
+;;                :buttons [{:label "Discard changes"
+;;                           :action on-yes}
+;;                          popup/cancel-button]}))
+;;
 ;;
 
 ;; TODO:
 ;;
 ;;   - [ ] paredit keys
-;;   - [ ] wathers
+;;   - [ ] watchers
+;;   - [ ] tabs and tabsets keys
 ;;
 {:+ {:app {
-           "ctrl-c d"      [:workspace.add-folder]
-           "ctrl-c i"      [:dev-inspector]
-           "ctrl-c c"      [:toggle-console]
-           "ctrl-c ctrl-c" [:clear-console]
-           "ctrl-x d"      [:workspace.show]
-           "ctrl-c ctrl-r" [:behaviors.reload
-                            :keymaps.reload]
+           "alt-j s i"     [:dev-inspector]
+           "alt-j alt-s i" [:dev-inspector]
+           "alt-j s c"     [:show-connect]
+           "alt-j alt-s c" [:show-connect]
+
+           "alt-j w s"     [:workspace.show]
+           "alt-j alt-w s" [:workspace.show]
+           "alt-j w f"     [:workspace.add-folder]
+           "alt-j alt-w f" [:workspace.add-folder]
+
+           "alt-j c s"     [:toggle-console]
+           "alt-j alt-c s" [:toggle-console]
+           "alt-j c c"     [:clear-console]
+           "alt-j alt-c c" [:clear-console]
+
+           "ctrl-c ctrl-r" [:behaviors.reload :keymaps.reload]
            }
+     :editor.keys.hinting.active { "enter" [:auto-complete] }
      :editor.keys.normal {
-                          "ctrl-g" [:clear-inline-results
+                          "ctrl-g" [:find.hide
+                                    :find.clear
+                                    :clear-inline-results
                                     :editor.selection.clear]
                           }
      :editor {
-;;               "alt-w" [:editor.watch.watch-selection]
-;;               "alt-shift-w" [:editor.watch.unwatch]
+              ;; Watchers
+              ;; "alt-w" [:editor.watch.watch-selection]
+              ;; "alt-shift-w" [:editor.watch.unwatch]
 
               ;; Build-in
-              "alt-shift-k" [:editor.delete-line]
+              "ctrl-."         [:editor.jump-to-definition-at-cursor]
+              "ctrl-,"         [:editor.unjump]
+              "ctrl-h"         [:editor.doc.toggle]
+              "ctrl-x ctrlf-e" [:eval-editor-form]
+              "ctrl-x enter"   [:eval-editor]
 
               ;; Powerpack
               "ctrl-l"      [:lt.plugins.lt-powerpack/center-line]
+              "ctrl-i"      [(:lt.plugins.lt-powerpack/insert-text "  ")]
+              "alt-shift-k" [:lt.plugins.lt-powerpack/remove-line]
+              "alt-shift-l" [:lt.plugins.lt-powerpack/duplicate-line]
               "alt-shift-p" [:lt.plugins.lt-powerpack/move-lines-up]
               "alt-shift-n" [:lt.plugins.lt-powerpack/move-lines-down]
 
               ;; Custom
-              "ctrl-i"      [(:lt.plugins.lt-powerpack/insert-text "  ")]
+              "alt-j b"     [:add-browser-tab]
+              "alt-j v"     [:editor.paste]
               "alt-j space" [(:emacs.keymap-cmd "Alt-Space")]
-     }}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+     }
+ }}
