@@ -60,10 +60,12 @@
            }
      :editor.keys.hinting.active { "enter" [:auto-complete] }
      :editor.keys.normal {
-                          "ctrl-g" [:find.hide
-                                    :find.clear
-                                    :clear-inline-results
-                                    :editor.selection.clear]
+                          "ctrl-g" [:clear-inline-results
+                                    :editor.selection.clear
+                                    (:emacs.keymap-cmd "Ctrl-G")]
+
+                          ;; It is here to override emacs plugin's bindings
+                          "alt-space" [:paredit.select.parent]
                           }
 
      :editor {
@@ -77,6 +79,13 @@
               "ctrl-h"         [:editor.doc.toggle]
               "ctrl-x ctrlf-e" [:eval-editor-form]
               "ctrl-x enter"   [:eval-editor]
+
+              ;; Paredit
+              "alt-s"        [:paredit.unwrap.parent]
+              "ctrl-shift-0" [:paredit.grow.right]
+              "ctrl-shift-9" [:paredit.grow.left]
+              "ctrl-left"    [:paredit.shrink.right]
+              "ctrl-right"   [:paredit.shrink.left]
 
               ;; Powerpack
               "ctrl-l"      [:lt.plugins.lt-powerpack/center-line]
