@@ -9,11 +9,16 @@
 ;; allowing you the flexibility to execute multiple operations together. To see a list
 ;; of all the commands you can execute, start typing a word related to the thing you
 ;; want to do in between the square brackets (e.g. type "editor").
+;;
+;; Execute editor command:
+;;
+;;  "key" [(:editor.codemirror.command "cmd")]
+;;
+;;
 
 ;; TODO:
 ;;
 ;;   - [ ] paredit keys
-;;   - [ ] insert tab
 ;;   - [ ] wathers
 ;;
 {:+ {:app {
@@ -33,12 +38,16 @@
 ;;               "alt-w" [:editor.watch.watch-selection]
 ;;               "alt-shift-w" [:editor.watch.unwatch]
 
+              ;; Build-in
               "alt-shift-k" [:editor.delete-line]
 
+              ;; Powerpack
               "ctrl-l"      [:lt.plugins.lt-powerpack/center-line]
               "alt-shift-p" [:lt.plugins.lt-powerpack/move-lines-up]
               "alt-shift-n" [:lt.plugins.lt-powerpack/move-lines-down]
 
+              ;; Custom
+              "ctrl-i"      [(:lt.plugins.lt-powerpack/insert-text "  ")]
               "alt-j space" [(:emacs.keymap-cmd "Alt-Space")]
      }}}
 
