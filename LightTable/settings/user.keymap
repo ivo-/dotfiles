@@ -16,15 +16,23 @@
 ;;
 ;;
 
+;; TODO(emacs):
+;;
+;;  - upgrade to new version(exec-command from commit)
+;;  - copy/paste issues in plugin itself
+;;  - add copy commands in addition to kill ring commands
+
 ;; TODO:
 ;;
 ;;   - [ ] paredit keys
 ;;
+
 {:+ {:app {
            "alt-j i"       [:instarepl]
            "alt-j alt-i"   [:instarepl]
 
            "alt-j s c"     [:show-connect]
+           "alt-j s p"     [:show-commandbar-transient]
            "alt-j s i"     [:dev-inspector]
            "alt-j alt-s c" [:show-connect]
            "alt-j alt-s i" [:dev-inspector]
