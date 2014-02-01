@@ -4,6 +4,8 @@
 * TODO
   - [ ] Setup web inspector
   - [ ] Fix emacs plugin
+  - [ ] Add all paredit commands
+  - [ ] Automate cache clear
 
 * Read
   - [ ] LT readme
@@ -16,3 +18,7 @@
    - init.cljs
    - display annotations(TODO, FIXME, OPTIMIZE)
    - show/clear trailing whitespaces
+   - google translate
+   - spellcheck (aspell)
+   - lt-powerpack(move-lines, zip-to-char, ...)
+     + https://github.com/marijnh/CodeMirror/blob/master/keymap/extra.js

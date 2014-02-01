@@ -1,6 +1,10 @@
 cookies
 cookies-journal
+SingletonCookie
+SingletonLock
+SingletonSocket
 /Cache
 /Local Storage
 /logs
 /ltcache
+/plugins
