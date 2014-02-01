@@ -14,13 +14,6 @@
 ;;
 ;;  "key" [(:editor.codemirror.command "cmd")]
 ;;
-;;(defn unsaved-prompt [on-yes]
-;; (popup/popup! {:header "You will lose changes."
-;;                :body "If you close now, you'll lose any unsaved changes. Are you sure you want to do that?"
-;;                :buttons [{:label "Discard changes"
-;;                           :action on-yes}
-;;                          popup/cancel-button]}))
-;;
 ;;
 
 ;; TODO:
@@ -44,6 +37,11 @@
            "alt-j alt-c s" [:toggle-console]
            "alt-j c c"     [:clear-console]
            "alt-j alt-c c" [:clear-console]
+
+           "ctrl-x t t" [:tabset.new]
+           "ctrl-x t c" [:tabset.close]
+           "ctrl-x t n" [:tabs.move-next-tabset]
+           "ctrl-x t p" [:tabs.move-prev-tabset]
 
            "ctrl-c ctrl-r" [:behaviors.reload :keymaps.reload]
            }
