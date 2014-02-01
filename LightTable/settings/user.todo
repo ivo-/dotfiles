@@ -2,7 +2,6 @@
 #+STARTUP: showall
 
 * TODO
-  - [ ] Setup web inspector
   - [ ] Fix emacs plugin
   - [ ] Add all paredit commands
   - [ ] Automate cache clear
@@ -15,6 +14,7 @@
 * Read
   - [ ] LT readme
   - [ ] LT wiki in github
+  - [ ] http://blog.jakubarnold.cz/light-table-plugin-tutorial
   - [ ] https://github.com/mdhaney/lt-plugin-template
   - [ ] http://scattered-thoughts.net/blog/2014/01/27/were-not-even-trying/
 

@@ -16,11 +16,11 @@
      :editor.file-backed [:lt.objs.editor.file/remove-trailing-whitespace]
      ;; The editor tag is applied to all editors
      :editor [
-              :lt.plugins.emacs/activate-emacs
               :lt.objs.editor/no-wrap
+              :lt.objs.editor/line-numbers
+              :lt.plugins.emacs/activate-emacs
               (:lt.objs.style/set-theme "twilight")
               (:lt.objs.style/font-settings "" "15")
-              :lt.objs.editor/line-numbers
               ]
 
      ;; Here we can add behaviors to just clojure editors
@@ -28,4 +28,9 @@
 
  ;; You can use the subtract key to remove behavior that may get added by
  ;; another diff
- :- {:app []}}
+ :- {
+     :app [:lt.objs.intro/show-intro
+           :lt.objs.menu/create-menu
+           :lt.objs.menu/set-menu]
+     :window [:lt.objs.menu/set-menu]
+     }}

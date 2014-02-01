@@ -19,29 +19,34 @@
 ;; TODO:
 ;;
 ;;   - [ ] paredit keys
-;;   - [ ] watchers
-;;   - [ ] tabs and tabsets keys
 ;;
 {:+ {:app {
-           "alt-j s i"     [:dev-inspector]
-           "alt-j alt-s i" [:dev-inspector]
+           "alt-j i"       [:instarepl]
+           "alt-j alt-i"   [:instarepl]
+
            "alt-j s c"     [:show-connect]
+           "alt-j s i"     [:dev-inspector]
            "alt-j alt-s c" [:show-connect]
+           "alt-j alt-s i" [:dev-inspector]
 
            "alt-j w s"     [:workspace.show]
-           "alt-j alt-w s" [:workspace.show]
            "alt-j w f"     [:workspace.add-folder]
+           "alt-j alt-w s" [:workspace.show]
            "alt-j alt-w f" [:workspace.add-folder]
 
-           "alt-j c s"     [:toggle-console]
-           "alt-j alt-c s" [:toggle-console]
+           "alt-j c t"     [:console-tab]
            "alt-j c c"     [:clear-console]
+           "alt-j c s"     [:toggle-console]
+           "alt-j alt-c t" [:console-tab]
            "alt-j alt-c c" [:clear-console]
+           "alt-j alt-c s" [:toggle-console]
 
-           "ctrl-x t t" [:tabset.new]
-           "ctrl-x t c" [:tabset.close]
-           "ctrl-x t n" [:tabs.move-next-tabset]
-           "ctrl-x t p" [:tabs.move-prev-tabset]
+           "alt-j t t" [:tabset.new]
+           "alt-j t c" [:tabset.close]
+           "alt-j t n" [:tabs.move-next-tabset]
+           "alt-j t p" [:tabs.move-prev-tabset]
+
+           "alt-j f n" [:new-file]
 
            "ctrl-c ctrl-r" [:behaviors.reload :keymaps.reload]
            }
@@ -52,10 +57,11 @@
                                     :clear-inline-results
                                     :editor.selection.clear]
                           }
+
      :editor {
               ;; Watchers
-              ;; "alt-w" [:editor.watch.watch-selection]
-              ;; "alt-shift-w" [:editor.watch.unwatch]
+              "alt-j alt-w" [:editor.watch.watch-selection]
+              "alt-j alt-shift-w" [:editor.watch.unwatch]
 
               ;; Build-in
               "ctrl-."         [:editor.jump-to-definition-at-cursor]
