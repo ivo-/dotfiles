@@ -22,11 +22,6 @@
 ;;  - copy/paste issues in plugin itself
 ;;  - add copy commands in addition to kill ring commands
 
-;; TODO:
-;;
-;;   - [ ] paredit keys
-;;
-
 {:+ {:app {
            "alt-j i"       [:instarepl]
            "alt-j alt-i"   [:instarepl]
