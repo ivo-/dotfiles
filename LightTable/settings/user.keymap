@@ -16,12 +16,6 @@
 ;;
 ;;
 
-;; TODO(emacs):
-;;
-;;  - upgrade to new version(exec-command from commit)
-;;  - copy/paste issues in plugin itself
-;;  - add copy commands in addition to kill ring commands
-
 {:+ {:app {
            "alt-j i"       [:instarepl]
            "alt-j alt-i"   [:instarepl]
