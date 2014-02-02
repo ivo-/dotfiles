@@ -2,9 +2,9 @@
 #+STARTUP: showall
 
 * TODO
-  - [ ] Fix emacs plugin
+  - [X] Fix emacs plugin
+  - [X] Automate cache clear
   - [ ] Add all paredit commands
-  - [ ] Automate cache clear
 
 * Install
   - [ ] https://github.com/rschroll/reflow
@@ -13,18 +13,15 @@
 
 * Read
   - [ ] LT readme
-  - [ ] LT wiki in github
-  - [ ] http://blog.jakubarnold.cz/light-table-plugin-tutorial
   - [ ] https://github.com/mdhaney/lt-plugin-template
+  - [ ] http://blog.jakubarnold.cz/light-table-plugin-tutorial
   - [ ] http://scattered-thoughts.net/blog/2014/01/27/were-not-even-trying/
 
 * Plugins
-   - user.todo
-   - init.cljs
-   - kill ring
-   - display annotations(TODO, FIXME, OPTIMIZE)
-   - show/clear trailing whitespaces
-   - google translate
-   - spellcheck (aspell)
-   - lt-powerpack(move-lines, zip-to-char, ...)
-     + https://github.com/marijnh/CodeMirror/blob/master/keymap/extra.js
+   - [ ] init.cljs
+   - [ ] user.todo
+   - [ ] kill ring
+   - [ ] display annotations(TODO, FIXME, OPTIMIZE)
+   - [ ] show/clear trailing whitespaces
+   - [ ] google translate
+   - [ ] spellcheck (aspell)
