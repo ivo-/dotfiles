@@ -67,6 +67,7 @@
               "ctrl-."         [:editor.jump-to-definition-at-cursor]
               "ctrl-,"         [:editor.unjump]
               "ctrl-h"         [:editor.doc.toggle]
+              "ctrl-x h"       [:editor.select-all]
               "ctrl-x ctrl-e"  [:eval-editor-form]
               "ctrl-x enter"   [:eval-editor]
 
