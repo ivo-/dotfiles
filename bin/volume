@@ -1,0 +1,65 @@
+#!/bin/sh
+
+# ==============================================================================
+# Volume control
+# ==============================================================================
+
+volume ()
+{
+    amixer get Master |tail -n1|sed -r 's/.*\[(.*)%\].*/\1/'
+}
+
+volumestatus ()
+{
+    amixer get Master |tail -n1|sed -r 's/.*\[(on|off)\]$/\1/'
+}
+
+volumeinfo ()
+{
+    value=`volume`
+    status=`volumestatus`
+    echo "$value ($status)"
+}
+volumeup ()
+{
+    amixer set Master 10%+
+    v=`volumeinfo`
+    notify-send "Volume" "$v"
+}
+
+volumedown ()
+{
+    amixer set Master 10%-
+    v=`volumeinfo`
+    notify-send "Volume" "$v"
+}
+
+volumetoggle ()
+{
+    amixer set Master toggle
+    notify-send "Volume" `volumestatus`
+}
+
+case "$1" in
+    up)
+        volumeup
+        ;;
+
+    down)
+        volumedown
+        ;;
+
+    info)
+        volumeinfo
+        ;;
+
+    toggle)
+        volumetoggle
+        ;;
+
+    *)
+        echo $"Usage: volume {up|down|toggle|info}"
+        exit 1
+esac
+
+exit 0
