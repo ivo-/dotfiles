@@ -21,7 +21,10 @@
    - [ ] init.cljs
    - [ ] user.todo
    - [ ] kill ring
-   - [ ] display annotations(TODO, FIXME, OPTIMIZE)
-   - [ ] show/clear trailing whitespaces
+   - [ ] prodigy mode
+   - [ ] expand region
    - [ ] google translate
    - [ ] spellcheck (aspell)
+   - [ ] idle-highlight-mode
+   - [ ] display annotations(TODO, FIXME, OPTIMIZE)
+   - [ ] show/clear trailing whitespaces
