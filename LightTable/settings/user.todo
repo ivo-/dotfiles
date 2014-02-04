@@ -29,3 +29,5 @@
    - [ ] idle-highlight-mode
    - [ ] display annotations(TODO, FIXME, OPTIMIZE)
    - [ ] show/clear trailing whitespaces
+   - [ ] https://github.com/jcubic/jquery.terminal + shelljs
+   - [ ] pdfjs
