@@ -5,6 +5,7 @@
   - [X] Fix emacs plugin
   - [X] Automate cache clear
   - [ ] Add all paredit commands
+  - [ ] Close all tabsets but active
 
 * Install
   - [ ] https://github.com/rschroll/reflow
@@ -17,6 +18,8 @@
   - [ ] https://github.com/mdhaney/lt-plugin-template
   - [ ] http://blog.jakubarnold.cz/light-table-plugin-tutorial
   - [ ] http://scattered-thoughts.net/blog/2014/01/27/were-not-even-trying/
+  - [ ] https://github.com/swannodette/lt-cljs-tutorial
+  - [ ] https://github.com/swannodette/hello-cljsc
 
 * Plugins
    - [ ] init.cljs

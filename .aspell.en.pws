@@ -1,16 +1,20 @@
-personal_ws-1.1 en 24
+personal_ws-1.1 en 27 
 skype
 Clojure
+eval
+Evented
 uncomment
 middlewares
 EDN
 websockets
 websocket
+customizable
 fileds
 emacs
 aspell
 workflow
 runtime
+Runtime
 workspace
 ClojureScript
 reducibles
@@ -19,7 +23,6 @@ middleware
 deserialized
 github
 readme
-README
 AUR
 Login
 whitespaces

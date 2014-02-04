@@ -39,13 +39,14 @@
            "alt-j alt-c c" [:clear-console]
            "alt-j alt-c s" [:toggle-console]
 
-           "alt-j t t" [:tabset.new]
+           "ctrl-x o"  [:tabset.next]
+           "alt-j t n" [:tabset.new]
+           "alt-j t f" [:tabset]
            "alt-j t c" [:tabset.close]
-           "alt-j t n" [:tabs.move-next-tabset]
-           "alt-j t p" [:tabs.move-prev-tabset]
+           "ctrl-shift-p" [:tabs.move-prev-tabset]
+           "ctrl-shift-n" [:tabs.move-next-tabset]
 
            "alt-j f n" [:new-file]
-
            "ctrl-c ctrl-r" [:behaviors.reload :keymaps.reload]
            }
      :editor.keys.hinting.active { "enter" [:auto-complete] }
@@ -72,11 +73,11 @@
               "ctrl-x enter"   [:eval-editor]
 
               ;; Paredit
-              "alt-s"        [:paredit.unwrap.parent]
-              "ctrl-shift-0" [:paredit.grow.right]
-              "ctrl-shift-9" [:paredit.grow.left]
-              "ctrl-left"    [:paredit.shrink.right]
-              "ctrl-right"   [:paredit.shrink.left]
+              "alt-s"            [:paredit.unwrap.parent]
+              "ctrl-right"       [:paredit.grow.right]
+              "ctrl-left"        [:paredit.grow.left]
+              "ctrl-shift-left"  [:paredit.shrink.right]
+              "ctrl-shift-right" [:paredit.shrink.left]
 
               ;; Powerpack
               "ctrl-l"      [:lt.plugins.lt-powerpack/center-line]
