@@ -14,8 +14,6 @@
 ;;
 ;;  "key" [(:editor.codemirror.command "cmd")]
 ;;
-;;
-;; TODO: Smart C-a
 
 {:+ {:app {
            "alt-j i"       [:instarepl]
@@ -47,15 +45,19 @@
            "ctrl-shift-n" [:tabs.move-next-tabset]
 
            "alt-j f n" [:new-file]
+
            "ctrl-c ctrl-r" [:behaviors.reload :keymaps.reload]
            }
-     :editor.keys.hinting.active { "enter" [:auto-complete] }
+     :editor.keys.hinting.active {
+                                  "enter" [:auto-complete]
+                                  }
      :editor.keys.normal {
                           "ctrl-g" [:clear-inline-results
                                     :editor.selection.clear
                                     (:emacs.keymap-cmd "Ctrl-G")]
 
-                          ;; It is here to override emacs plugin's bindings
+                          ;; Override emacs plugin's bindings
+                          "ctrl-a"    [:editor.line-start-smart]
                           "alt-space" [:paredit.select.parent]
                           }
 
@@ -67,6 +69,7 @@
               ;; Build-in
               "ctrl-."         [:editor.jump-to-definition-at-cursor]
               "ctrl-,"         [:editor.unjump]
+              "ctrl-shift-d"   [:docs.search.show]
               "ctrl-h"         [:editor.doc.toggle]
               "ctrl-x h"       [:editor.select-all]
               "ctrl-x ctrl-e"  [:eval-editor-form]
