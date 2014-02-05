@@ -18,7 +18,6 @@
 {:+ {:app {
            "alt-j i"       [:instarepl]
            "alt-j alt-i"   [:instarepl]
-
            "alt-j s c"     [:show-connect]
            "alt-j s p"     [:show-commandbar-transient]
            "alt-j s i"     [:dev-inspector]
@@ -37,7 +36,7 @@
            "alt-j alt-c c" [:clear-console]
            "alt-j alt-c s" [:toggle-console]
 
-           "ctrl-x o"  [:tabset.next]
+           "ctrl-x o"  [:tabset.next] ;; TODO: -> emacs
            "alt-j t n" [:tabset.new]
            "alt-j t f" [:tabset]
            "alt-j t c" [:tabset.close]
@@ -71,10 +70,11 @@
               "ctrl-."         [:editor.jump-to-definition-at-cursor]
               "ctrl-,"         [:editor.unjump]
               "ctrl-shift-d"   [:docs.search.show]
-              "ctrl-h"         [:editor.doc.toggle]
-              "ctrl-x h"       [:editor.select-all]
-              "ctrl-x ctrl-e"  [:eval-editor-form]
+              "ctrl-h"         [:editor.doc.toggle]       ;; TODO: -> emacs
+              "ctrl-x h"       [:editor.select-all]       ;; TODO: -> emacs
+              "ctrl-x ctrl-e"  [:eval-editor-form]        ;; TODO: -> emacs
               "ctrl-x enter"   [:eval-editor]
+              "ctrl-backspace" [:editor.delete-word-left] ;; TODO: -> emacs
 
               ;; Paredit
               "alt-s"            [:paredit.unwrap.parent]
