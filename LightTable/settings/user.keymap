@@ -44,6 +44,7 @@
            "ctrl-shift-p" [:tabs.move-prev-tabset]
            "ctrl-shift-n" [:tabs.move-next-tabset]
 
+           "alt-j b"   [:add-browser-tab]
            "alt-j f n" [:new-file]
 
            "ctrl-c ctrl-r" [:behaviors.reload :keymaps.reload]
@@ -83,16 +84,18 @@
               "ctrl-shift-right" [:paredit.shrink.left]
 
               ;; Powerpack
+              "alt-j g"     [:lt.plugins.lt-powerpack/google]
+              "alt-z"       [:lt.plugins.lt-powerpack/zip-to-char]
+              "alt-shift-z" [:lt.plugins.lt-powerpack/jump-to-char]
               "ctrl-l"      [:lt.plugins.lt-powerpack/center-line]
               "ctrl-i"      [(:lt.plugins.lt-powerpack/insert-text "  ")]
+              "alt-j alt-j" [:lt.plugins.lt-powerpack/join-lines]
               "alt-shift-k" [:lt.plugins.lt-powerpack/remove-line]
               "alt-shift-l" [:lt.plugins.lt-powerpack/duplicate-line]
               "alt-shift-p" [:lt.plugins.lt-powerpack/move-lines-up]
               "alt-shift-n" [:lt.plugins.lt-powerpack/move-lines-down]
 
               ;; Custom
-              "alt-j b"     [:add-browser-tab]
-              "alt-j v"     [:editor.paste]
               "alt-j space" [(:emacs.keymap-cmd "Alt-Space")]
      }
  }}
