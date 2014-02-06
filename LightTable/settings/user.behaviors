@@ -23,6 +23,7 @@
               (:lt.objs.style/font-settings "" "15")
               ]
 
+     :editor.javascript [(:lt.objs.editor/tab-settings false 4 4)]
      ;; Here we can add behaviors to just clojure editors
      :editor.clojure [(:lt.objs.langs.clj/print-length 1000)]}
 
