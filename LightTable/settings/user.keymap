@@ -89,8 +89,12 @@
               "ctrl-shift-right" [:paredit.shrink.left]
 
               ;; Powerpack
+              "alt-left"    [:lt.plugins.lt-powerpack/smart-backward]
+              "alt-right"   [:lt.plugins.lt-powerpack/smart-forward]
               "alt-j g"     [:lt.plugins.lt-powerpack/google]
               "alt-z"       [:lt.plugins.lt-powerpack/zip-to-char]
+              "alt-q"       [:lt.plugins.lt-powerpack/shell-command]
+              "alt-t"       [:lt.plugins.lt-powerpack/transpose-words]
               "alt-shift-z" [:lt.plugins.lt-powerpack/jump-to-char]
               "ctrl-l"      [:lt.plugins.lt-powerpack/center-line]
               "ctrl-i"      [(:lt.plugins.lt-powerpack/insert-text "  ")]
