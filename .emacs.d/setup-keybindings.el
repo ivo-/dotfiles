@@ -37,6 +37,9 @@
 
 (global-set-key (kbd "M-j SPC") 'just-one-space)
 
+(global-set-key (kbd "M-j r") 'replace-string)
+(global-set-key (kbd "M-j M-r") 'replace-string)
+
 (global-set-key (kbd "M-j s") 'ispell-word)
 (global-set-key (kbd "M-j M-s") 'ispell-word)
 
