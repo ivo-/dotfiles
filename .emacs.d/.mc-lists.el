@@ -23,6 +23,8 @@
         indent-for-tab-command
         isearch-forward-regexp
         isearch-printing-char
+        iy-go-to-char
+        iy-go-to-char--command
         kill-region
         kill-visual-line
         markdown-exdent-or-delete

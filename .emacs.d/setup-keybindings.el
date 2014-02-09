@@ -6,8 +6,6 @@
 (global-set-key (kbd "C-x C-i") 'imenu)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(global-set-key (kbd "C-x r v") 'view-register)
-
 ;; Regexp search by default.
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
