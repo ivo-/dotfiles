@@ -347,6 +347,9 @@
     (define-key clojure-mode-map (kbd "C-c C-h") 'clojure-cheatsheet)))
 
 (use-package prolog-mode
+  :mode ("\\.pl$" . prolog-mode)
+  :bind (("C-c M-j" . run-prolog)
+         ("C-c C-k" . prolog-consult-file))
   :config
   (progn
     (define-key prolog-mode-map (kbd "C-c M-j") 'run-prolog)
