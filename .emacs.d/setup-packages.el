@@ -359,6 +359,7 @@
 (use-package prolog
   :mode ("\\.pl$" . prolog-mode)
   :bind (("C-c M-j" . run-prolog)
+         ("C-c C-z" . run-prolog)
          ("C-c C-k" . prolog-consult-file))
   :config (setq prolog-system 'swi))
 
