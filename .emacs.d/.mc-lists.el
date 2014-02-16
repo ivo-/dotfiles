@@ -41,6 +41,7 @@
         org-self-insert-command
         org-yank
         orgtbl-self-insert-command
+        paredit-backslash
         paredit-close-round
         paredit-close-square
         paredit-doublequote
