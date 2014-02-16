@@ -346,15 +346,21 @@
     (setq clojure-defun-style-default-indent t)
     (define-key clojure-mode-map (kbd "C-c C-h") 'clojure-cheatsheet)))
 
-(use-package prolog-mode
+(use-package prolog
+  :config
+  (progn
+    (setq prolog-system 'swi)
+    (add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
+
+    (evil-define-key 'normal prolog-mode-map
+                     ";r" 'run-prolog
+                     ";c" 'prolog-compile-buffer)))
+
+(use-package prolog
   :mode ("\\.pl$" . prolog-mode)
   :bind (("C-c M-j" . run-prolog)
          ("C-c C-k" . prolog-consult-file))
-  :config
-  (progn
-    (define-key prolog-mode-map (kbd "C-c M-j") 'run-prolog)
-    (define-key prolog-mode-map (kbd "C-c C-k") 'prolog-consult-file)))
-
+  :config (setq prolog-system 'swi))
 
 ;; =============================================================================
 ;; Hooks
