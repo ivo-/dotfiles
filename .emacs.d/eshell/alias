@@ -39,8 +39,8 @@ alias gphm gp heroku master $*
 
 alias glp g log --graph --decorate --pretty=oneline --abbrev-commit --all $*
 
-alias .db cd ~/Dropbox          ; ll
-alias .dw cd ~/Downloads        ; ll
-alias .sb cd ~/Dropbox/sandbox  ; ll
-alias .pj cd ~/Dropbox/projects ; ll
-alias .mt cd /mnt               ; ll
+alias .db cd ~/Dropbox
+alias .dw cd ~/Downloads
+alias .sb cd ~/Dropbox/sandbox
+alias .pj cd ~/Dropbox/projects
+alias .mt cd /mnt
