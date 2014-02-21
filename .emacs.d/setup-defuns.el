@@ -100,8 +100,7 @@
                   (newline-and-indent)
                   (insert region)
                   (setq end (point))))
-      (goto-char (+ origin (* (length region) arg) arg))))
-  (indent-for-tab-command))
+      (goto-char (+ origin (* (length region) arg) arg)))))
 
 (defun copy-file-name-to-clipboard ()
   "Copy the current buffer file name to the clipboard."

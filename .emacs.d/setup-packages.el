@@ -348,10 +348,12 @@
 
 (use-package prolog
   :mode ("\\.pl$" . prolog-mode)
-  :bind (("C-c M-j" . run-prolog)
-         ("C-c C-z" . run-prolog)
-         ("C-c C-k" . prolog-consult-file))
-  :config (setq prolog-system 'swi))
+  :config
+  (progn
+    (setq prolog-system 'swi)
+    (define-key prolog-mode-map (kbd "C-c M-j") 'run-prolog)
+    (define-key prolog-mode-map (kbd "C-c M-z") 'run-prolog)
+    (define-key prolog-mode-map (kbd "C-c M-z") 'prolog-consult-file)))
 
 ;; =============================================================================
 ;; Hooks
