@@ -97,6 +97,7 @@
               "alt-t"       [:lt.plugins.lt-powerpack/transpose-words]
               "alt-shift-z" [:lt.plugins.lt-powerpack/jump-to-char]
               "ctrl-l"      [:lt.plugins.lt-powerpack/center-line]
+              "alt-i"       [(:lt.plugins.lt-powerpack/insert-text "  ")]
               "ctrl-i"      [(:lt.plugins.lt-powerpack/insert-text "  ")]
               "alt-j alt-j" [:lt.plugins.lt-powerpack/join-lines]
               "alt-shift-k" [:lt.plugins.lt-powerpack/remove-line]
