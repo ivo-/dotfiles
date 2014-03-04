@@ -6,7 +6,7 @@ alias .... cd ../../..
 alias c clear
 alias la ls -a              $*
 alias ll ls -la             $*
-alias ff find-file          $1
+alias ff find-file          $*
 
 alias be bundle exec        $*
 
@@ -26,13 +26,12 @@ alias g git                 $*
 alias ga g add              $*
 alias gp g push             $*
 alias gs g status           $*
-alias gb g branch           $
-*
+alias gb g branch           $*
 alias gc g commit -m        $*
 alias gca g commit -am      $*
 
-alias gch g checkout        $
-alias gchb gch -b           $
+alias gch g checkout        $*
+alias gchb gch -b           $*
 
 alias gpom gp origin master $*
 alias gphm gp heroku master $*
