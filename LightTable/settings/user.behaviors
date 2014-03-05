@@ -12,7 +12,11 @@
 {:+ {
      ;; The app tag is kind of like global scope. You assign behaviors that affect
      ;; all of Light Table here
-     :app [(:lt.objs.style/set-skin "dark")]
+     :app [
+           (:lt.objs.style/set-skin "dark")
+;;            (:lt.objs.plugins/load-js "mysettings_compiled.js")
+;;            (:lt.objs.plugins/load-keymap "my.keymap")
+           ]
      :editor.file-backed [:lt.objs.editor.file/remove-trailing-whitespace]
      ;; The editor tag is applied to all editors
      :editor [
