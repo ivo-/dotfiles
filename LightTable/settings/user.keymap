@@ -36,7 +36,6 @@
            "alt-j alt-c c" [:clear-console]
            "alt-j alt-c s" [:toggle-console]
 
-           "ctrl-x o"  [:tabset.next] ;; TODO: -> emacs
            "alt-j t n" [:tabset.new]
            "alt-j t f" [:tabset]
            "alt-j t c" [:tabset.close]
@@ -53,13 +52,9 @@
                                   }
      :editor.keys.normal {
                           "ctrl-shift-g" [:clear-inline-results
-                                          :auto-complete.remove ;; TODO: -> emacs
+                                          :auto-complete.remove
                                           :editor.selection.clear
                                           (:emacs.keymap-cmd "Ctrl-G")]
-
-                          "ctrl-g" [:editor.selection.clear
-                                    :auto-complete.remove
-                                    (:emacs.keymap-cmd "Ctrl-G")]
 
                           ;; Override emacs plugin's bindings
                           "ctrl-a"    [:editor.line-start-smart]
@@ -75,11 +70,8 @@
               "ctrl-."         [:editor.jump-to-definition-at-cursor]
               "ctrl-,"         [:editor.unjump]
               "ctrl-shift-d"   [:docs.search.show]
-              "ctrl-h"         [:editor.doc.toggle]       ;; TODO: -> emacs
-              "ctrl-x h"       [:editor.select-all]       ;; TODO: -> emacs
-              "ctrl-x ctrl-e"  [:eval-editor-form]        ;; TODO: -> emacs
+              "ctrl-h"         [:editor.doc.toggle]
               "ctrl-x enter"   [:eval-editor]
-              "ctrl-backspace" [:editor.delete-word-left] ;; TODO: -> emacs
 
               ;; Paredit
               "alt-s"            [:paredit.unwrap.parent]
