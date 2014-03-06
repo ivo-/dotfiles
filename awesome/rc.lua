@@ -397,7 +397,7 @@ awful.rules.rules = {
     -- Set specific applications to map on specific tags.
     { rule = { class = "Emacs" },
       properties = { tag = tags[1][1], switchtotag = true } },
-    { rule = { class = "Google-chrome" },
+    { rule = { class = "Google-chrome-stable" },
       properties = { tag = tags[1][2], switchtotag = true } },
     { rule = { class = "XTerm" },
       properties = { tag = tags[1][3], switchtotag = true } },
