@@ -339,6 +339,7 @@
         (setq cider-auto-select-error-buffer t)
         (setq nrepl-buffer-name-show-port t)
         (setq cider-repl-history-file "~/.emacs.d/nrepl-history")
+        (define-key clojure-mode-map (kbd "C-3") 'cider-eval-last-sexp) ;; piano key
         (define-key cider-repl-mode-map (kbd "C-c C-z") 'delete-window)
         (define-key cider-repl-mode-map (kbd "C-c C-h") 'clojure-cheatsheet))))
   :config
