@@ -7,4 +7,6 @@ if (xrandr | grep "$EXT disconnected"); then
     xrandr --output $IN --auto --output $EXT --off
 else
     xrandr --output $IN --auto --primary --output $EXT --auto --same-as $IN
+    xrandr --output LVDS1 --mode 1280x1024
+    xrandr --output VGA1 --mode 1280x1024
 fi

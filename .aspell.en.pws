@@ -1,4 +1,4 @@
-personal_ws-1.1 en 30 
+personal_ws-1.1 en 32 
 skype
 Clojure
 eval
@@ -7,6 +7,7 @@ uncomment
 middlewares
 EDN
 leiningen
+lazyness
 websockets
 websocket
 customizable
@@ -16,6 +17,7 @@ aspell
 keybindings
 workflow
 runtime
+boardea
 workspace
 ClojureScript
 reducibles

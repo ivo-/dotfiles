@@ -344,7 +344,7 @@
         (define-key cider-repl-mode-map (kbd "C-c C-h") 'clojure-cheatsheet))))
   :config
   (progn
-    (setq clojure-defun-style-default-indent nil)
+    (setq clojure-defun-style-default-indent t)
     (define-key clojure-mode-map (kbd "C-c C-h") 'clojure-cheatsheet)))
 
 (use-package prolog

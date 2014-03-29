@@ -24,7 +24,7 @@
               :lt.objs.editor/line-numbers
               :lt.plugins.emacs/activate-emacs
               (:lt.objs.style/set-theme "twilight")
-              (:lt.objs.style/font-settings "" "15")
+              (:lt.objs.style/font-settings "" "17")
               ]
 
      :editor.javascript [(:lt.objs.editor/tab-settings false 4 4)]

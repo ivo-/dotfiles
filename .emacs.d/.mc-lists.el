@@ -68,6 +68,7 @@
         transpose-words
         undefined
         universal-argument-minus
+        yaml-electric-backspace
         ))
 
 (setq mc/cmds-to-run-once
