@@ -6,6 +6,7 @@
 ;;;   - [ ] Setup smartparens-strict for all prog modes.
 ;;;   - [ ] http://bzg.fr/emacs-strip-tease.html
 ;;;   - [ ] https://github.com/m2ym/popwin-el
+;;;   - [ ] https://github.com/yjwen/org-reveal
 ;;;   - [ ] https://github.com/alexander-yakushev/compliment
 ;;;   - [ ] Move to nth column (fill with spaces)
 
