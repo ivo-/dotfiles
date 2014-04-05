@@ -14,8 +14,8 @@
      ;; all of Light Table here
      :app [
            (:lt.objs.style/set-skin "dark")
-;;            (:lt.objs.plugins/load-js "mysettings_compiled.js")
-;;            (:lt.objs.plugins/load-keymap "my.keymap")
+;;            (:lt.objs.plugins/load-js "settings.js")
+;;            (:lt.objs.plugins/load-keymap "settings.keymap")
            ]
      :editor.file-backed [:lt.objs.editor.file/remove-trailing-whitespace]
      ;; The editor tag is applied to all editors
@@ -24,7 +24,7 @@
               :lt.objs.editor/line-numbers
               :lt.plugins.emacs/activate-emacs
               (:lt.objs.style/set-theme "twilight")
-              (:lt.objs.style/font-settings "" "16")
+              (:lt.objs.style/font-settings "" "14")
               ]
 
      :editor.javascript [(:lt.objs.editor/tab-settings false 4 4)]
