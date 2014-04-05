@@ -82,6 +82,15 @@
               "ctrl-shift-left"  [:paredit.shrink.right]
               "ctrl-shift-right" [:paredit.shrink.left]
 
+              ;; Paredit-plus
+              "alt-{" [:paredit-plus.wrap-curly]
+              "alt-[" [:paredit-plus.wrap-square]
+              "ctrl-shift-9" [:paredit-plus.wrap-round]
+
+              "alt-r" [:paredit-plus.raise-sexp]
+              "alt-shift-s" [:paredit-plus.split-sexp]
+              "ctrl-shift-k" [:paredit-plus.kill]
+
               ;; Powerpack
               "alt-left"    [:lt.plugins.lt-powerpack/smart-backward]
               "alt-right"   [:lt.plugins.lt-powerpack/smart-forward]
@@ -102,4 +111,7 @@
               ;; Custom
               "alt-j space" [(:emacs.keymap-cmd "Alt-Space")]
      }
+
+     :editor.keys.normal.clojure {"backspace" [:paredit-plus.backward-delete]
+                                  "ctrl-d" [:paredit-plus.forward-delete]}
  }}
