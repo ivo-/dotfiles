@@ -76,7 +76,6 @@
               "ctrl-x enter"   [:eval-editor]
 
               ;; Paredit
-              "alt-s"            [:paredit.unwrap.parent]
               "ctrl-right"       [:paredit.grow.right]
               "ctrl-left"        [:paredit.grow.left]
               "ctrl-shift-left"  [:paredit.shrink.right]
@@ -87,7 +86,9 @@
               "alt-[" [:paredit-plus.wrap-square]
               "ctrl-shift-9" [:paredit-plus.wrap-round]
 
+              "alt-s" [:paredit-plus.splice-sexp]
               "alt-r" [:paredit-plus.raise-sexp]
+              "alt-shift-j" [:paredit-plus.join-sexps]
               "alt-shift-s" [:paredit-plus.split-sexp]
               "ctrl-shift-k" [:paredit-plus.kill]
 

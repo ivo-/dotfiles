@@ -150,7 +150,7 @@
               `(
                 ("mp3" . "cvlc")
                 ("wav" . "cvlc")
-                ("pdf" . "google-chrome")
+                ("pdf" . "google-chrome-stable")
                 ))
              (fname (dired-get-file-for-visit))
              (fext (file-name-extension fname))

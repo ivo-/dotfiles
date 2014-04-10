@@ -10,6 +10,7 @@
 ;;;   - [ ] https://github.com/alexander-yakushev/compliment
 ;;;   - [ ] Move to nth column (fill with spaces)
 ;;;   - [ ] https://github.com/Bruce-Connor/fancy-narrow
+;;;   - [ ] https://github.com/mbunkus/mo-git-blame
 
 ;; Set up load path.
 (add-to-list 'load-path user-emacs-directory)

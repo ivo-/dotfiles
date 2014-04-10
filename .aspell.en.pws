@@ -1,8 +1,9 @@
-personal_ws-1.1 en 34 
+personal_ws-1.1 en 36 
 skype
 Clojure
 eval
 Evented
+REPL
 uncomment
 middlewares
 EDN
@@ -14,6 +15,7 @@ customizable
 draggable
 fileds
 emacs
+datomic
 LightTable
 aspell
 keybindings
