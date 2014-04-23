@@ -48,6 +48,7 @@
      google-translate
 
      yari
+     rbenv
      rubocop
 
      lua-mode
@@ -255,6 +256,8 @@
   :bind ("C-c C-f" . projectile-find-file)
   :init (projectile-global-mode))
 
+(use-package rbenv
+  :config (global-rbenv-mode))
 
 (use-package git-gutter
   :init (global-git-gutter-mode +1))
