@@ -47,8 +47,8 @@
      restclient
      google-translate
 
-     rvm
      yari
+     rbenv
      rubocop
 
      lua-mode
@@ -216,10 +216,6 @@
          ("M-j M-w" . golden-ratio))
   :init (golden-ratio-mode 1))
 
-;; TODO: Remove after Despark.
-(use-package rvm
-  :config (rvm-use-default))
-
 (use-package yari
   :config (define-key 'help-command (kbd "R") 'yari))
 
@@ -260,6 +256,8 @@
   :bind ("C-c C-f" . projectile-find-file)
   :init (projectile-global-mode))
 
+(use-package rbenv
+  :config (global-rbenv-mode))
 
 (use-package git-gutter
   :init (global-git-gutter-mode +1))
