@@ -47,7 +47,6 @@
      restclient
      google-translate
 
-     rvm
      yari
      rubocop
 
@@ -215,10 +214,6 @@
   :bind (("M-j w" . golden-ratio)
          ("M-j M-w" . golden-ratio))
   :init (golden-ratio-mode 1))
-
-;; TODO: Remove after Despark.
-(use-package rvm
-  :config (rvm-use-default))
 
 (use-package yari
   :config (define-key 'help-command (kbd "R") 'yari))
