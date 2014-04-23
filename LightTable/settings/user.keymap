@@ -50,7 +50,7 @@
            "ctrl-c ctrl-r" [:behaviors.reload :keymaps.reload]
            }
      :editor.keys.hinting.active {
-                                  "enter" [:auto-complete]
+;;                                   "enter" [:auto-complete]
                                   }
      :editor.keys.normal {
                           "ctrl-shift-g" [:clear-inline-results
@@ -113,6 +113,6 @@
               "alt-j space" [(:emacs.keymap-cmd "Alt-Space")]
      }
 
-     :editor.keys.normal.clojure {"backspace" [:paredit-plus.backward-delete]
-                                  "ctrl-d" [:paredit-plus.forward-delete]}
+;;      :editor.keys.normal.clojure {"backspace" [:paredit-plus.backward-delete]
+;;                                   "ctrl-d" [:paredit-plus.forward-delete]}
  }}

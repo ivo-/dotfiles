@@ -2,6 +2,7 @@
 ;;;
 ;;;   - [ ] Setup erc.
 ;;;   - [ ] Review docs file.
+;;;   - [ ] Tagedit.
 ;;;   - [ ] Setup zsh + multi-term(instead of eshell).
 ;;;   - [ ] Setup smartparens-strict for all prog modes.
 ;;;   - [ ] http://bzg.fr/emacs-strip-tease.html

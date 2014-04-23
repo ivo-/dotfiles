@@ -1,6 +1,6 @@
-personal_ws-1.1 en 36 
+personal_ws-1.1 en 39 
 skype
-Clojure
+clojure
 eval
 Evented
 REPL
@@ -20,12 +20,15 @@ LightTable
 aspell
 keybindings
 workflow
+namespace
 runtime
 boardea
+Mixin
 workspace
 ClojureScript
 reducibles
 localhost
+pacman
 middleware
 deserialized
 github
