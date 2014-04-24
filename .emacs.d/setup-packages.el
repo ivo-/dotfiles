@@ -177,6 +177,7 @@
   :init (add-hook 'ruby-mode-hook 'rubocop-mode)
   :config
   (progn
+    (setq ruby-insert-encoding-magic-comment nil)
     (setq ruby-indent-level 2)
     (setq ruby-deep-indent-paren nil)))
 
