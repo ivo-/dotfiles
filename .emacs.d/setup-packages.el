@@ -290,14 +290,13 @@
          ("\\.markdown$" . markdown-mode)))
 
 (use-package coffee-mode
+  :mode ("\\.coffee\\'" . coffee-mode)
   :init
-  (add-hook 'coffee-mode-hook
-            '(lambda ()
-               ;; CoffeeScript uses two spaces.
-               (custom-set-variables '(coffee-tab-width 2))
-
-               ;; *Messages* spam
-               (setq coffee-debug-mode t))))
+  (progn
+    ;; CoffeeScript uses two spaces.
+    (custom-set-variables '(coffee-tab-width 2))
+    ;; *Messages* spam
+    (setq coffee-debug-mode t)))
 
 (use-package web-mode
   :mode (("\\.phtml\\'" . web-mode)

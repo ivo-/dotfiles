@@ -12,7 +12,6 @@
 ;;;   - [ ] Move to nth column (fill with spaces)
 ;;;   - [ ] https://github.com/Bruce-Connor/fancy-narrow
 ;;;   - [ ] https://github.com/mbunkus/mo-git-blame
-;;;   - [ ] coffee script indentation with 2 spaces
 ;;;   - [ ] clojure auto complete
 ;;;   - [ ] cljs repl
 
