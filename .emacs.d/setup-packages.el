@@ -264,7 +264,9 @@
   :init (global-git-gutter-mode +1))
 
 (use-package scss-mode
-  :config (setq scss-compile-at-save nil))
+  :config (progn
+            (setq scss-compile-at-save nil)
+            (setq css-indent-offset 2)))
 
 (use-package god-mode
   :bind ("M-<return>" . god-local-mode)
