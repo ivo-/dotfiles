@@ -54,6 +54,7 @@
      lua-mode
      php-mode
      web-mode
+     slim-mode
      yaml-mode
      haml-mode
      scss-mode
