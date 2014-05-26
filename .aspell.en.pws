@@ -1,4 +1,4 @@
-personal_ws-1.1 en 39 
+personal_ws-1.1 en 41 
 skype
 clojure
 eval
@@ -17,6 +17,7 @@ fileds
 emacs
 datomic
 LightTable
+Async
 aspell
 keybindings
 workflow
@@ -34,6 +35,7 @@ deserialized
 github
 instarepl
 readme
+boolean
 AUR
 Login
 sudo
