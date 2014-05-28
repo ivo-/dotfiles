@@ -1,15 +1,12 @@
+alias hr . $*
 alias cd cd $* ; hr ; ll
-
 alias ... cd ../..
 alias .... cd ../../..
-
 alias c clear
 alias la ls -a              $*
 alias ll ls -la             $*
 alias ff find-file          $1
-
 alias be bundle exec        $*
-
 alias r be rails            $*
 alias rs r server           $*
 alias rc r console          $*
@@ -18,10 +15,8 @@ alias rgmd rg model         $*
 alias rgmg rg migration     $*
 alias rgs rg scaffold       $*
 alias rgc rg controller     $*
-
 alias rk be rake            $*
 alias rkm rk db:migrate     $*
-
 alias g git                 $*
 alias ga g add              $*
 alias gp g push             $*
@@ -29,17 +24,13 @@ alias gs g status           $*
 alias gb g branch           $*
 alias gc g commit -m        $*
 alias gca g commit -am      $*
-
 alias gch g checkout        $*
 alias gchb gch -b           $*
-
 alias gpom gp origin master $*
 alias gphm gp heroku master $*
-
 alias glp g log --graph --decorate --pretty=oneline --abbrev-commit --all $*
-
 alias .db cd ~/Dropbox
 alias .dw cd ~/Downloads
 alias .sb cd ~/Dropbox/sandbox
-alias .pj cd ~/Dropbox/projects
+alias .pj cd ~/Projects
 alias .mt cd /mnt

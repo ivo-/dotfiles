@@ -10,7 +10,6 @@
 ;;;   - [ ] https://github.com/yjwen/org-reveal
 ;;;   - [ ] https://github.com/alexander-yakushev/compliment
 ;;;   - [ ] Move to nth column (fill with spaces)
-;;;   - [ ] https://github.com/Bruce-Connor/fancy-narrow
 ;;;   - [ ] clojure auto complete
 ;;;   - [ ] cljs repl
 

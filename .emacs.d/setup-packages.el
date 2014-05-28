@@ -39,6 +39,7 @@
 
      zenburn-theme
      twilight-theme
+     fancy-narrow
 
      gist
      magit
@@ -363,6 +364,7 @@
 
 (add-hook 'prog-mode-hook 'add-watchwords)
 (add-hook 'prog-mode-hook 'shorten-lambdas)
+(add-hook 'prog-mode-hook 'fancy-narrow-mode)
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook '(lambda () (idle-highlight-mode t)))
 
