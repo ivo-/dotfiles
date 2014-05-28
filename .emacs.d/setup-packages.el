@@ -244,7 +244,8 @@
          ("M-B" . iy-go-to-char-continue-backward)))
 
 (use-package magit
-  :bind ("C-x g" . magit-status))
+  :bind (("C-x g s" . magit-status)
+         ("C-x g b" . magit-blame-mode)))
 
 (use-package google-translate
   :bind (("M-j t"   . google-translate-at-point)
