@@ -32,5 +32,5 @@ alias glp g log --graph --decorate --pretty=oneline --abbrev-commit --all $*
 alias .db cd ~/Dropbox
 alias .dw cd ~/Downloads
 alias .sb cd ~/Dropbox/sandbox
-alias .pj cd ~/Projects
+alias .pj cd ~/Dropbox/projects
 alias .mt cd /mnt
