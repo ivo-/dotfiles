@@ -19,6 +19,7 @@
    '(
      dash
      smex
+     anzu
      use-package
      ido-ubiquitous
 
@@ -93,6 +94,10 @@
   :config
   (progn (setq-default save-place t)
          (setq save-place-file "~/.emacs.d/places")))
+
+(use-package anzu
+  :config
+  (global-anzu-mode +1))
 
 (use-package ispell
   :config
