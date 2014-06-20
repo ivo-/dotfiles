@@ -265,6 +265,7 @@
   :init (projectile-global-mode))
 
 (use-package rbenv
+  :bind (("M-j n d" . git-gutter:next-diff))
   :config (global-rbenv-mode))
 
 (use-package git-gutter

@@ -86,6 +86,7 @@
         mouse-start-secondary
         paredit-comment-dwim
         picture-move-down
+        slim-electric-backspace
         smex
         text-scale-increase
         ))
