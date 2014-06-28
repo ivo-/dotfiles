@@ -11,6 +11,7 @@
         c-electric-semi&comma
         c-electric-slash
         c-indent-line-or-region
+        coffee-comment-dwim
         coffee-dedent-line-backspace
         coffee-newline-and-indent
         comment-dwim
@@ -86,6 +87,7 @@
         mouse-start-secondary
         paredit-comment-dwim
         picture-move-down
+        slim-electric-backspace
         smex
         text-scale-increase
         ))

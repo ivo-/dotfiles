@@ -19,6 +19,7 @@
    '(
      dash
      smex
+     anzu
      use-package
      ido-ubiquitous
 
@@ -39,6 +40,7 @@
 
      zenburn-theme
      twilight-theme
+     fancy-narrow
 
      gist
      magit
@@ -92,6 +94,10 @@
   :config
   (progn (setq-default save-place t)
          (setq save-place-file "~/.emacs.d/places")))
+
+(use-package anzu
+  :config
+  (global-anzu-mode +1))
 
 (use-package ispell
   :config
@@ -244,7 +250,7 @@
          ("M-B" . iy-go-to-char-continue-backward)))
 
 (use-package magit
-  :bind ("C-x g" . magit-status))
+  :bind (("C-c s" . magit-status)))
 
 (use-package google-translate
   :bind (("M-j t"   . google-translate-at-point)
@@ -259,6 +265,7 @@
   :init (projectile-global-mode))
 
 (use-package rbenv
+  :bind (("M-j n d" . git-gutter:next-diff))
   :config (global-rbenv-mode))
 
 (use-package git-gutter
@@ -362,9 +369,11 @@
 
 (add-hook 'prog-mode-hook 'add-watchwords)
 (add-hook 'prog-mode-hook 'shorten-lambdas)
+(add-hook 'prog-mode-hook 'fancy-narrow-mode)
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook '(lambda () (idle-highlight-mode t)))
 
+(add-hook 'eshell-mode-hook 'paredit-mode)
 (add-hook 'scheme-mode-hook 'paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
