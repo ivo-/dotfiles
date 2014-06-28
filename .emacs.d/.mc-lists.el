@@ -45,6 +45,7 @@
         paredit-close-round
         paredit-close-square
         paredit-doublequote
+        paredit-forward
         paredit-forward-delete
         paredit-forward-kill-word
         paredit-forward-slurp-sexp
