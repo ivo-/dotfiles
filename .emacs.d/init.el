@@ -1,17 +1,13 @@
 ;;; TODO:
 ;;;
-;;;   - [ ] Setup erc.
-;;;   - [ ] Review docs file.
-;;;   - [ ] Tagedit.
-;;;   - [ ] Setup zsh + multi-term(instead of eshell).
+;;;   - [ ] Setup erc
+;;;   - [ ] Review docs file
+;;;   - [ ] Tagedit
+;;;   - [ ] Setup zsh + multi-term(instead of eshell)
 ;;;   - [ ] Setup smartparens-strict for all prog modes.
-;;;   - [ ] http://bzg.fr/emacs-strip-tease.html
-;;;   - [ ] https://github.com/m2ym/popwin-el
 ;;;   - [ ] https://github.com/yjwen/org-reveal
 ;;;   - [ ] https://github.com/alexander-yakushev/compliment
-;;;   - [ ] Move to nth column (fill with spaces)
 ;;;   - [ ] clojure auto complete
-;;;   - [ ] cljs repl
 
 ;; Set up load path.
 (add-to-list 'load-path user-emacs-directory)
