@@ -13,6 +13,7 @@
         c-indent-line-or-region
         coffee-comment-dwim
         coffee-dedent-line-backspace
+        coffee-indent-shift-left
         coffee-newline-and-indent
         comment-dwim
         dired-next-line
