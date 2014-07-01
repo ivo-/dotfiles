@@ -64,7 +64,7 @@
      markdown-mode
 
      cider
-     paredit
+     smartparens
      clojure-mode
      clojure-cheatsheet
 
@@ -288,6 +288,20 @@
 
 (use-package know-your-http-well)
 
+;; Smartparens
+(use-package smartparens-config
+  :init
+  (progn
+    (setq sp-base-key-bindings 'paredit)
+    (setq sp-hybrid-kill-entire-symbol nil)
+
+    (smartparens-global-mode t)
+    (show-smartparens-global-mode t)
+    (sp-use-paredit-bindings)
+
+    (add-hook 'lisp-mode-hook 'smartparens-strict-mode)
+    (add-hook 'emacs-lisp-mode-hook 'smartparens-strict-mode)))
+
 ;; -----------------------------------------------------------------------------
 ;; Major modes
 
@@ -334,22 +348,19 @@
 (use-package clojure-mode
   :mode ("\\.edn$" . clojure-mode)
   :init
-  (progn
-    (add-hook 'clojure-mode-hook 'paredit-mode)
-    (use-package cider
-      :init
-      (progn
-        (add-hook 'cider-repl-mode-hook 'paredit-mode)
-        (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode))
-      :config
-      (progn
-        (setq nrepl-hide-special-buffers t)
-        (setq cider-auto-select-error-buffer t)
-        (setq nrepl-buffer-name-show-port t)
-        (setq cider-repl-history-file "~/.emacs.d/nrepl-history")
-        (define-key clojure-mode-map (kbd "C-3") 'cider-eval-last-sexp) ;; piano key
-        (define-key cider-repl-mode-map (kbd "C-c C-z") 'delete-window)
-        (define-key cider-repl-mode-map (kbd "C-c C-h") 'clojure-cheatsheet))))
+  (use-package cider
+    :init
+    (progn
+      (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode))
+    :config
+    (progn
+      (setq nrepl-hide-special-buffers t)
+      (setq cider-auto-select-error-buffer t)
+      (setq nrepl-buffer-name-show-port t)
+      (setq cider-repl-history-file "~/.emacs.d/nrepl-history")
+      (define-key clojure-mode-map (kbd "C-3") 'cider-eval-last-sexp) ;; piano key
+      (define-key cider-repl-mode-map (kbd "C-c C-z") 'delete-window)
+      (define-key cider-repl-mode-map (kbd "C-c C-h") 'clojure-cheatsheet)))
   :config
   (progn
     (setq clojure-defun-style-default-indent t)
@@ -372,10 +383,6 @@
 (add-hook 'prog-mode-hook 'fancy-narrow-mode)
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook '(lambda () (idle-highlight-mode t)))
-
-(add-hook 'eshell-mode-hook 'paredit-mode)
-(add-hook 'scheme-mode-hook 'paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
 (add-hook 'before-save-hook 'cleanup-buffer-safe)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
