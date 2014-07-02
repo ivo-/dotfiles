@@ -66,6 +66,7 @@
         sgml-slash
         sh-assignment
         smarter-move-beginning-of-line
+        sp--self-insert-command
         tab-to-tab-stop
         text-scale-decrease
         transpose-words
