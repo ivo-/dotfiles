@@ -41,6 +41,7 @@
      zenburn-theme
      twilight-theme
      fancy-narrow
+     htmlize
 
      gist
      magit
