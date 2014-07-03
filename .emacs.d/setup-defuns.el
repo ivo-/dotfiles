@@ -97,8 +97,9 @@
       (-dotimes arg
                 (lambda (n)
                   (goto-char end)
-                  (newline-and-indent)
+                  (newline)
                   (insert region)
+                  (indent-for-tab-command)
                   (setq end (point))))
       (goto-char (+ origin (* (length region) arg) arg)))))
 
