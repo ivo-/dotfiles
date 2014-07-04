@@ -300,6 +300,9 @@
     (show-smartparens-global-mode t)
     (sp-use-paredit-bindings)
 
+    (add-hook 'ruby-mode-hook 'smartparens-strict-mode)
+    (add-hook 'coffee-mode-hook 'smartparens-strict-mode)
+    (add-hook 'js-mode-hook 'smartparens-strict-mode)
     (add-hook 'lisp-mode-hook 'smartparens-strict-mode)
     (add-hook 'emacs-lisp-mode-hook 'smartparens-strict-mode)))
 

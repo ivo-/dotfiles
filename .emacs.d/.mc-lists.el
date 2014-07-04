@@ -67,6 +67,9 @@
         sh-assignment
         smarter-move-beginning-of-line
         sp--self-insert-command
+        sp-backward-delete-char
+        sp-backward-kill-word
+        sp-delete-char
         tab-to-tab-stop
         text-scale-decrease
         transpose-words
