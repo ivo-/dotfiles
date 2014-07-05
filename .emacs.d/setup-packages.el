@@ -358,11 +358,21 @@
       (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode))
     :config
     (progn
+      (defun cider-eval-last-sexp-and-append ()
+        "Evaluate the expression preceding point and append result."
+        (interactive)
+        (let ((last-sexp (cider-last-sexp)))
+          ;; we have to be sure the evaluation won't result in an error
+          (cider-eval-and-get-value last-sexp)
+          (with-current-buffer (current-buffer)
+            (insert ";;=>"))
+          (cider-interactive-eval-print last-sexp)))
       (setq nrepl-hide-special-buffers t)
       (setq cider-auto-select-error-buffer t)
       (setq nrepl-buffer-name-show-port t)
       (setq cider-repl-history-file "~/.emacs.d/nrepl-history")
       (define-key clojure-mode-map (kbd "C-3") 'cider-eval-last-sexp) ;; piano key
+      (define-key cider-repl-mode-map (kbd "C-c E") 'cider-eval-last-sexp-and-append)
       (define-key cider-repl-mode-map (kbd "C-c C-z") 'delete-window)
       (define-key cider-repl-mode-map (kbd "C-c C-h") 'clojure-cheatsheet)))
   :config
