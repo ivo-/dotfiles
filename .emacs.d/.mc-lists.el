@@ -70,6 +70,8 @@
         sp-backward-delete-char
         sp-backward-kill-word
         sp-delete-char
+        sp-kill-hybrid-sexp
+        sp-kill-word
         tab-to-tab-stop
         text-scale-decrease
         transpose-words
