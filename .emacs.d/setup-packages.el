@@ -239,7 +239,7 @@
 
 (use-package expand-region
   :bind (("C-;" . er/expand-region)
-         ("M-SPC" . er/expand-region)))
+         ("M-<return>" . er/expand-region)))
 
 (use-package ace-jump-mode
   :bind (("M-j j"   . ace-jump-mode)
@@ -278,7 +278,7 @@
             (setq css-indent-offset 2)))
 
 (use-package god-mode
-  :bind ("M-<return>" . god-local-mode)
+  :bind ("M-SPC" . god-local-mode)
   :config (progn
             (defun god-mode-update-cursor ()
               (setq cursor-type
