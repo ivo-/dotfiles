@@ -291,6 +291,7 @@
 
 ;; Smartparens
 (use-package smartparens-config
+  :bind ("C-K" . sp-kill-hybrid-sexp)
   :init
   (progn
     (setq sp-base-key-bindings 'paredit)
