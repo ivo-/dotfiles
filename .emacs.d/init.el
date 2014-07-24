@@ -3,7 +3,6 @@
 ;;;   - [ ] Setup erc
 ;;;   - [ ] Review docs file
 ;;;   - [ ] company-mode
-;;;   - [ ] git-timemachine
 
 ;; Set up load path.
 (add-to-list 'load-path user-emacs-directory)

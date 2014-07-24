@@ -33,6 +33,7 @@
      multiple-cursors
 
      git-gutter
+     git-timemachine
      golden-ratio
      dired-details
      idle-highlight-mode
