@@ -39,6 +39,7 @@
      idle-highlight-mode
      volatile-highlights
 
+     moe-theme
      zenburn-theme
      twilight-theme
      fancy-narrow
