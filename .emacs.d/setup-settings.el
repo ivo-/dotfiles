@@ -2,6 +2,7 @@
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'windmove-default-keybindings) (windmove-default-keybindings))
 
 ;; Lines should be 80 chars.
 (setq-default fill-column 80)
