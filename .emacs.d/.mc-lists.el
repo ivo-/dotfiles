@@ -29,6 +29,7 @@
         iy-go-to-char--command
         kill-region
         kill-visual-line
+        markdown-cycle
         markdown-exdent-or-delete
         move-line-down
         move-line-up
