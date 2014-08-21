@@ -73,11 +73,13 @@
         sp-forward-slurp-sexp
         sp-kill-hybrid-sexp
         sp-kill-word
+        sp-splice-sexp
         tab-to-tab-stop
         text-scale-decrease
         transpose-words
         undefined
         universal-argument-minus
+        wdired-previous-line
         yaml-electric-backspace
         ))
 
