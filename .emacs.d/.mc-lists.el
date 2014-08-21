@@ -29,6 +29,7 @@
         iy-go-to-char--command
         kill-region
         kill-visual-line
+        markdown-cycle
         markdown-exdent-or-delete
         move-line-down
         move-line-up
@@ -73,6 +74,7 @@
         sp-forward-slurp-sexp
         sp-kill-hybrid-sexp
         sp-kill-word
+        sp-remove-active-pair-overlay
         sp-splice-sexp
         tab-to-tab-stop
         text-scale-decrease

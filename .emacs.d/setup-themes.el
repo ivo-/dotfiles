@@ -1,3 +1,4 @@
+(require 'moe-theme)
 (load-theme 'zenburn t)
 
 (defun zb ()
@@ -5,6 +6,8 @@
   (disable-theme 'adwaita)
   (disable-theme 'twilight)
   (disable-theme 'deeper-blue)
+  (disable-theme 'moe-light)
+  (disable-theme 'moe-dark)
   (load-theme 'zenburn t))
 
 (defun tw ()
@@ -12,6 +15,8 @@
   (disable-theme 'adwaita)
   (disable-theme 'zenburn)
   (disable-theme 'deeper-blue)
+  (disable-theme 'moe-light)
+  (disable-theme 'moe-dark)
   (load-theme 'twilight t))
 
 (defun aw ()
@@ -19,6 +24,8 @@
   (disable-theme 'zenburn)
   (disable-theme 'twilight)
   (disable-theme 'deeper-blue)
+  (disable-theme 'moe-light)
+  (disable-theme 'moe-dark)
   (load-theme 'adwaita t))
 
 (defun db ()
@@ -26,6 +33,26 @@
   (disable-theme 'adwaita)
   (disable-theme 'zenburn)
   (disable-theme 'twilight)
+  (disable-theme 'moe-light)
+  (disable-theme 'moe-dark)
   (load-theme 'deeper-blue t))
+
+(defun md ()
+  (interactive)
+  (disable-theme 'adwaita)
+  (disable-theme 'zenburn)
+  (disable-theme 'twilight)
+  (disable-theme 'deeper-blue)
+  (disable-theme 'moe-light)
+  (load-theme 'moe-dark t))
+
+(defun ml ()
+  (interactive)
+  (disable-theme 'adwaita)
+  (disable-theme 'zenburn)
+  (disable-theme 'twilight)
+  (disable-theme 'deeper-blue)
+  (disable-theme 'moe-dark)
+  (load-theme 'moe-light t))
 
 (provide 'setup-themes)

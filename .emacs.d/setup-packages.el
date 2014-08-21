@@ -33,11 +33,13 @@
      multiple-cursors
 
      git-gutter
+     git-timemachine
      golden-ratio
      dired-details
      idle-highlight-mode
      volatile-highlights
 
+     moe-theme
      zenburn-theme
      twilight-theme
      fancy-narrow
