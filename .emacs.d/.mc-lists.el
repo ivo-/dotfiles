@@ -82,6 +82,7 @@
         transpose-words
         undefined
         universal-argument-minus
+        wdired-previous-line
         yaml-electric-backspace
         ))
 
