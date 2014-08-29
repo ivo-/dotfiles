@@ -98,7 +98,7 @@
 (setq column-number-mode t)
 
 ;; Make a bigger font-size.
-(set-face-attribute 'default nil :height 150)
+;; (set-face-attribute 'default nil :height 150)
 
 ;; Eshell has troubles with more.
 (setenv "PAGER" (executable-find "cat"))
