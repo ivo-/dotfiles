@@ -18,6 +18,7 @@
         comment-dwim
         dired-next-line
         dired-previous-line
+        dired-toggle-marks
         dired-unmark-backward
         duplicate-current-line-or-region
         end-of-visual-line
