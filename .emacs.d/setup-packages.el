@@ -279,7 +279,7 @@
             (setq css-indent-offset 2)))
 
 (use-package god-mode
-  :bind ("M-SPC" . god-local-mode)
+  :bind ("M-<return>" . god-local-mode)
   :config (progn
             (defun god-mode-update-cursor ()
               (setq cursor-type
