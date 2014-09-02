@@ -240,9 +240,7 @@
   :config (setq smex-save-file (concat user-emacs-directory ".smex-items")))
 
 (use-package expand-region
-  :bind (("C-;" . er/expand-region)
-         ("M-<return>" . er/expand-region)
-         ("C-<return>" . er/expand-region)))
+  :bind ("C-;" . er/expand-region))
 
 (use-package ace-jump-mode
   :bind (("M-j j"   . ace-jump-mode)
