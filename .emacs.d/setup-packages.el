@@ -29,6 +29,7 @@
      god-mode
      iy-go-to-char
      ace-jump-mode
+     ace-jump-buffer
      expand-region
      multiple-cursors
 
@@ -245,6 +246,9 @@
 (use-package ace-jump-mode
   :bind (("M-j j"   . ace-jump-mode)
          ("M-j M-j" . ace-jump-char-mode)))
+
+(use-package ace-jump-buffer
+  :bind ("C-c C-b" . ace-jump-buffer))
 
 (use-package iy-go-to-char
   :bind (("M-Z" . iy-go-to-char)
