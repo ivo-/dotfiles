@@ -37,6 +37,7 @@
      git-timemachine
      golden-ratio
      dired-details
+     browse-kill-ring
      idle-highlight-mode
      volatile-highlights
 
@@ -249,6 +250,10 @@
 
 (use-package ace-jump-buffer
   :bind ("C-c C-b" . ace-jump-buffer))
+
+(use-package browse-kill-ring
+  :bind (("M-j k" . browse-kill-ring)
+         ("M-j M-k" . browse-kill-ring)))
 
 (use-package iy-go-to-char
   :bind (("M-Z" . iy-go-to-char)
