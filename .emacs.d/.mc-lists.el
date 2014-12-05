@@ -5,6 +5,11 @@
 (setq mc/cmds-to-run-for-all
       '(
         abbrev-prefix-mark
+        artist-backward-char
+        artist-forward-char
+        artist-next-line
+        artist-previous-line
+        beginning-of-buffer
         beginning-of-visual-line
         c-electric-delete-forward
         c-electric-lt-gt
@@ -22,6 +27,7 @@
         dired-unmark-backward
         duplicate-current-line-or-region
         end-of-visual-line
+        git-gutter:next-diff
         haml-electric-backspace
         indent-for-tab-command
         isearch-forward-regexp
@@ -63,6 +69,10 @@
         paredit-semicolon
         paredit-splice-sexp
         paredit-wrap-round
+        picture-backward-clear-column
+        picture-clear-column
+        picture-end-of-line
+        picture-self-insert
         prolog-electric-dash
         prolog-electric-dot
         prolog-electric-if-then-else
@@ -84,6 +94,7 @@
         undefined
         universal-argument-minus
         wdired-previous-line
+        web-mode-comment-or-uncomment
         yaml-electric-backspace
         ))
 

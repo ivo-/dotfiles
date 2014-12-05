@@ -25,6 +25,7 @@
 
      projectile
      ack-and-a-half
+     exec-path-from-shell
 
      god-mode
      iy-go-to-char
@@ -200,6 +201,9 @@
 ;; Utilities
 
 (use-package dash)
+
+(use-package exec-path-from-shell
+  :config (exec-path-from-shell-initialize))
 
 (use-package quickrun
   :bind (("M-j b r" . quickrun)
