@@ -5,6 +5,7 @@
 ;;;   - [ ] https://github.com/bodil/emacs.d/commit/10e7836cf51e27ba3e696f5dae7589e441a74ad6
 ;;;   - [ ] https://www.youtube.com/watch?v=XjKtkEMUYGc
 ;;;   - [ ] https://github.com/shime/livedown
+;;;   - [ ] https://github.com/josteink/wsd-mode
 
 ;; Set up load path.
 (add-to-list 'load-path user-emacs-directory)
