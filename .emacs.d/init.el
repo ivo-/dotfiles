@@ -8,7 +8,7 @@
 ;;;   - [ ] https://github.com/josteink/wsd-mode
 
 ;; Set up load path.
-(add-to-list 'load-path user-emacs-directory)
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; Keep emacs custom settings in custom file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
