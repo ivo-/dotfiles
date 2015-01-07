@@ -22,6 +22,7 @@
      anzu
      use-package
      ido-ubiquitous
+     ido-vertical-mode
 
      projectile
      ack-and-a-half
@@ -123,11 +124,15 @@
   (progn
     (use-package ido-ubiquitous
       :init (ido-ubiquitous-mode))
+
     (setq ido-max-prospects 10
           ido-enable-prefix nil
           ido-use-virtual-buffers t
           ido-enable-flex-matching t
-          ido-create-new-buffer 'always)))
+          ido-create-new-buffer 'always)
+
+    (use-package ido-vertical-mode
+      :init (ido-vertical-mode t))))
 
 (use-package re-builder
   :config (define-key reb-mode-map (kbd "C-c C-r") 'reb-query-replace))
