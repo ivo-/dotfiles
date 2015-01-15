@@ -6,9 +6,7 @@
 ;;;   - [ ] https://www.youtube.com/watch?v=XjKtkEMUYGc
 ;;;   - [ ] https://github.com/shime/livedown
 ;;;   - [ ] https://github.com/josteink/wsd-mode
-;;;   - [ ] Eshell colors
 ;;;   - [ ] .ssh
-;;;   - [ ] .bashrc
 ;;;
 
 ;; Set up load path.

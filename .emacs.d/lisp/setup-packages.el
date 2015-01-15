@@ -129,7 +129,8 @@
           ido-enable-prefix nil
           ido-use-virtual-buffers t
           ido-enable-flex-matching t
-          ido-create-new-buffer 'always)
+          ido-create-new-buffer 'always
+          ido-ignore-buffers '("\\*eshell"))
 
     (use-package ido-vertical-mode
       :init (ido-vertical-mode t))))

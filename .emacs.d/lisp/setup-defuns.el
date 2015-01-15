@@ -240,7 +240,7 @@
 (defun toggle-eshell (num)
   (let (eshell-buffer-name register-name)
     (setq register-name :eshell-pre-window-conf)
-    (setq eshell-buffer-name (concat " *eshell-" num "*"))
+    (setq eshell-buffer-name (concat "*eshell-" num "*"))
     (if (string= eshell-buffer-name (buffer-name))
         (progn (jump-to-register register-name)
                (set-register register-name nil))
