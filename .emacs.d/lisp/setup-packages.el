@@ -277,8 +277,8 @@
          ("M-j T"   . google-translate-at-point-reverse)
          ("M-j M-t" . google-translate-at-point)
          ("M-j M-T" . google-translate-at-point-reverse))
-  :config (progn (setq google-translate-default-source-language "en")
-                 (setq google-translate-default-target-language "bg")))
+  :init (progn (setq google-translate-default-source-language "en")
+               (setq google-translate-default-target-language "bg")))
 
 (use-package projectile
   :bind ("C-c C-f" . projectile-find-file)

@@ -3,3 +3,7 @@
         name = ivo-
 [push]
         default = simple
+[github]
+        user = ivo-
+[core]
+        editor = emacs

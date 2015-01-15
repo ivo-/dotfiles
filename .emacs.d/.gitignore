@@ -17,6 +17,7 @@
 /var
 /url
 /server
+notes
 places
 repl-port
 nrepl-history

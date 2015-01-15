@@ -1,0 +1,89 @@
+# ------------------------------------------------------------------------------
+# Basic
+
+alias c='clear'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias ls='ls --color=auto'
+alias ll='ls -la --color=auto'
+
+alias reboot='sudo systemctl reboot'
+alias poweroff='sudo systemctl poweroff'
+
+alias grep='grep --color=auto'
+alias gerp='grep --color=auto'
+
+# ------------------------------------------------------------------------------
+# Emacs
+
+alias e='emacsclient -t'
+alias ec='emacsclient -c'
+alias E='SUDO_EDITOR="emacsclient -t -a emacs" sudoedit'
+
+# ------------------------------------------------------------------------------
+# Ruby
+
+alias be='bundle exec'
+
+alias r='be rails'
+alias rs='r server'
+alias rc='r console'
+alias rg='r generate'
+alias rgmd='rg model'
+alias rgmg='rg migration'
+alias rgs='rg scaffold'
+alias rgc='rg controller'
+
+alias rk='be rake'
+alias rkm='rk db:migrate'
+
+alias fs='be foreman start'
+
+# ------------------------------------------------------------------------------
+# Git
+
+alias g='git'
+alias ga='g add'
+alias gp='g push'
+alias gs='g status'
+alias gb='g branch'
+alias gc='g commit -m'
+alias gca='g commit -am'
+alias gch='g checkout'
+alias glt='g log -n 10'
+alias gsu='g submodule update --init --recursive'
+alias glp='g log --graph --decorate --pretty=oneline --abbrev-commit --all'
+
+# ------------------------------------------------------------------------------
+# Folders
+
+alias .mt='cd /mnt ; ll'
+alias .db='cd ~/Dropbox ; ll'
+alias .dw='cd ~/Downloads ; ll'
+alias .sb='cd ~/Dropbox/sandbox ; ll'
+alias .pj='cd ~/Dropbox/projects ; ll'
+alias .td='cd ~/Dropbox/projects/tradeo ; ll'
+alias .ui='cd ~/Dropbox/projects/tradeo/uiapp ; ll'
+alias .pc='cd ~/Dropbox/projects/tradeo/picard ; ll'
+
+
+# ------------------------------------------------------------------------------
+# System and apps
+
+alias pc='sudo pacman'
+alias pci='sudo pacman -S'
+alias pcrm='sudo pacman -Rs'
+alias pcu='sudo pacman -Syu'
+alias pcr='sudo pacman -Syy'
+
+alias sctl='sudo systemctl'
+alias sctlst='sudo systemctl start'
+alias sctlsp='sudo systemctl stop'
+alias sctlss='sudo systemctl status'
+
+alias disk='df -h'
+alias pics='sxiv -r'
+alias sound='alsamixer'
