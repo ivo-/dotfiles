@@ -46,7 +46,7 @@ end
 beautiful.init("/home/ivo-/.config/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm" -- TODO: terminator
+terminal = "terminator"
 editor = os.getenv("EDITOR") or "emacsclient -c"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -399,7 +399,7 @@ awful.rules.rules = {
       properties = { tag = tags[1][1], switchtotag = true } },
     { rule = { class = "Google-chrome-stable" },
       properties = { tag = tags[1][2], switchtotag = true } },
-    { rule = { class = "XTerm" },
+    { rule = { class = "Terminator" },
       properties = { tag = tags[1][3], switchtotag = true } },
     { rule = { class = "Skype" },
       properties = { tag = tags[1][4], switchtotag = true } },

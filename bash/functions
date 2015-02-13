@@ -65,7 +65,13 @@ makezip() { zip -r "${1%%/}.zip" "$1" ; }
 
 h ()
 {
-    more ~/dotfiles/bash/.ref
+    more ~/dotfiles/bash/ref.org
+}
+
+# Show my simple ref-card
+ref ()
+{
+    echo `cat bash/ref.org`
 }
 
 export -f h show-mon-brightness extract makezip trackpad-toggle wifi-toggle backlight-up backlight-down

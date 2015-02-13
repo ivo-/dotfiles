@@ -4,12 +4,6 @@ export EDITOR="emacsclient -t"
 source ~/bash/functions
 source ~/bash/alias
 
-# Show my simple ref-card
-ref ()
-{
-    echo `cat bash/ref`
-}
-
 # If not running interactively, that's enough
 [[ $- != *i* ]] && return
 

@@ -1,4 +1,4 @@
-personal_ws-1.1 en 45 
+personal_ws-1.1 en 53 
 skype
 contributive
 clojure
@@ -9,19 +9,24 @@ uncomment
 middlewares
 EDN
 leiningen
+const
 lazyness
 websockets
 websocket
+Nginx
 customizable
 draggable
 fileds
 emacs
 datomic
 LightTable
+balanar
+async
 Async
 aspell
 keybindings
 workflow
+Refactoring
 namespace
 runtime
 boardea
@@ -30,10 +35,12 @@ Mixin
 workspace
 ClojureScript
 reducibles
+requrie
 localhost
 pacman
 middleware
 redis
+json
 deserialized
 github
 instarepl
@@ -43,4 +50,5 @@ picard
 AUR
 Login
 sudo
+updatable
 whitespaces
