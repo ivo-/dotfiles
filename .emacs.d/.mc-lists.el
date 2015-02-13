@@ -26,6 +26,7 @@
         dired-toggle-marks
         dired-unmark-backward
         duplicate-current-line-or-region
+        electric-newline-and-maybe-indent
         end-of-visual-line
         git-gutter:next-diff
         haml-electric-backspace
@@ -83,6 +84,7 @@
         sp-backward-delete-char
         sp-backward-kill-word
         sp-delete-char
+        sp-forward-sexp
         sp-forward-slurp-sexp
         sp-kill-hybrid-sexp
         sp-kill-word

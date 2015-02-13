@@ -21,6 +21,7 @@
      smex
      anzu
      use-package
+     flx-ido
      ido-ubiquitous
      ido-vertical-mode
 
@@ -35,7 +36,9 @@
      expand-region
      multiple-cursors
 
+     symon
      git-gutter
+     indent-guide
      git-timemachine
      golden-ratio
      dired-details
@@ -55,6 +58,8 @@
      quickrun
      restclient
      google-translate
+
+     flycheck
 
      yari
      rbenv
@@ -123,14 +128,21 @@
   :config
   (progn
     (use-package ido-ubiquitous
-      :init (ido-ubiquitous-mode))
+      :init (ido-ubiquitous-mode +1))
 
     (setq ido-max-prospects 10
           ido-enable-prefix nil
           ido-use-virtual-buffers t
           ido-enable-flex-matching t
-          ido-create-new-buffer 'always
-          ido-ignore-buffers '("\\*eshell"))
+          ido-create-new-buffer 'always)
+
+    (add-to-list 'ido-ignore-buffers "\\*eshell")
+
+    (use-package flx-ido
+      :init (ido-ubiquitous-mode +1)
+      :config (progn
+                (flx-ido-mode +1)
+                (setq ido-use-faces nil)))
 
     (use-package ido-vertical-mode
       :init (ido-vertical-mode t))))
@@ -239,6 +251,12 @@
          ("M-j M-w" . golden-ratio))
   :init (golden-ratio-mode 1))
 
+(use-package symon
+  :init (symon-mode))
+
+(use-package flycheck
+  :init (global-flycheck-mode +1))
+
 (use-package yari
   :config (define-key 'help-command (kbd "R") 'yari))
 
@@ -291,6 +309,9 @@
 
 (use-package git-gutter
   :init (global-git-gutter-mode +1))
+
+(use-package indent-guide
+  :init (indent-guide-mode +1))
 
 (use-package scss-mode
   :config (progn
@@ -416,6 +437,7 @@
 (add-hook 'prog-mode-hook 'fancy-narrow-mode)
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook '(lambda () (idle-highlight-mode t)))
+(add-hook 'prog-mode-hook 'flycheck-mode)
 
 (add-hook 'before-save-hook 'cleanup-buffer-safe)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)

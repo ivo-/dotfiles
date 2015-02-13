@@ -7,7 +7,8 @@
 ;;;   - [ ] https://github.com/shime/livedown
 ;;;   - [ ] https://github.com/josteink/wsd-mode
 ;;;   - [ ] .ssh
-;;;
+;;;   - [ ] https://github.com/andreafabrizi/Dropbox-Uploader
+;;;   - [ ] https://github.com/bodil/ohai-emacs/blob/master/ohai/ohai-lib.el
 
 ;; Set up load path.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
