@@ -1,14 +1,20 @@
-;;; TODO:
+x;;; TODO:
 ;;;
 ;;;   - [ ] Setup erc
 ;;;   - [ ] Review docs file
-;;;   - [ ] https://github.com/bodil/emacs.d/commit/10e7836cf51e27ba3e696f5dae7589e441a74ad6
-;;;   - [ ] https://www.youtube.com/watch?v=XjKtkEMUYGc
-;;;   - [ ] https://github.com/shime/livedown
-;;;   - [ ] https://github.com/josteink/wsd-mode
+;;;   - [ ] Reveal:   https://github.com/bodil/emacs.d/commit/10e7836cf51e27ba3e696f5dae7589e441a74ad6
+;;;   - [ ] Diagrams: https://github.com/josteink/wsd-mode
 ;;;   - [ ] .ssh
-;;;   - [ ] https://github.com/andreafabrizi/Dropbox-Uploader
 ;;;   - [ ] https://github.com/bodil/ohai-emacs/blob/master/ohai/ohai-lib.el
+;;;   - [ ] HTMLIZE resume
+;;;   - [ ] https://github.com/jorgenschaefer/elpy
+;;;   - [ ] https://github.com/gabrielelanaro/emacs-for-python
+;;;   - [ ] https://github.com/proofit404/anaconda-mode
+;;;   - [ ] Tern
+;;;   - [ ] Jump to symbol
+;;;   - [ ] https://github.com/magnars/yesql-ghosts
+;;;   - [ ] Flyspell prog mode
+;;;   - [ ] Autocomplete mode
 
 ;; Set up load path.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))

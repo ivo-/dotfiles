@@ -444,4 +444,19 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
+;; =============================================================================
+;; Hide some minor modes
+
+(require 'diminish)
+
+(diminish 'git-gutter-mode)
+(diminish 'golden-ratio-mode)
+(diminish 'anzu-mode)
+(diminish 'global-whitespace-mode)
+(diminish 'volatile-highlights-mode)
+(diminish 'subword-mode)
+(diminish 'visual-line-mode)
+(diminish 'fancy-narrow-mode)
+(diminish 'auto-fill-function)
+
 (provide 'setup-packages)
