@@ -301,6 +301,7 @@
 
 (use-package projectile
   :bind ("C-c C-f" . projectile-find-file)
+  :bind ("C-c C-d" . projectile-find-dir)
   :init (projectile-global-mode))
 
 (use-package rbenv
