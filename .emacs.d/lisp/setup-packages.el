@@ -21,7 +21,6 @@
      smex
      anzu
      use-package
-     flx-ido
      ido-ubiquitous
      ido-vertical-mode
 
@@ -65,6 +64,9 @@
      rbenv
      rubocop
 
+     tern
+     js2-mode
+
      lua-mode
      php-mode
      web-mode
@@ -73,6 +75,7 @@
      haml-mode
      scss-mode
      coffee-mode
+     sourcemap
      markdown-mode
 
      cider
@@ -137,12 +140,6 @@
           ido-create-new-buffer 'always)
 
     (add-to-list 'ido-ignore-buffers "\\*eshell")
-
-    (use-package flx-ido
-      :init (ido-ubiquitous-mode +1)
-      :config (progn
-                (flx-ido-mode +1)
-                (setq ido-use-faces nil)))
 
     (use-package ido-vertical-mode
       :init (ido-vertical-mode t))))
@@ -300,8 +297,8 @@
                (setq google-translate-default-target-language "bg")))
 
 (use-package projectile
-  :bind ("C-c C-f" . projectile-find-file)
-  :bind ("C-c C-d" . projectile-find-dir)
+  :bind (("C-c C-f" . projectile-find-file)
+         ("C-c C-d" . projectile-find-dir))
   :init (projectile-global-mode))
 
 (use-package rbenv
@@ -349,8 +346,8 @@
 ;; -----------------------------------------------------------------------------
 ;; Major modes
 
-(use-package yaml-mode
-  :mode ("\\.yml$" . yaml-mode))
+(use-package js2-mode
+  :mode ("\\.js\\'" . js2-mode))
 
 (use-package markdown-mode
   :mode (("\\.md$" . markdown-mode)
@@ -363,8 +360,17 @@
   (progn
     ;; CoffeeScript uses two spaces.
     (custom-set-variables '(coffee-tab-width 2))
+
     ;; *Messages* spam
-    (setq coffee-debug-mode t)))
+    (setq coffee-debug-mode t)
+
+    (setq coffee-args-compile '("-c" "-m")) ;; generating sourcemap
+
+    ;; If you want to remove sourcemap file after jumping corresponding point
+    (defun my/coffee-after-compile-hook (props)
+      (sourcemap-goto-corresponding-point props)
+      (delete-file (plist-get props :sourcemap)))
+    (add-hook 'coffee-after-compile-hook 'my/coffee-after-compile-hook)))
 
 (use-package web-mode
   :mode (("\\.phtml\\'" . web-mode)
@@ -439,11 +445,15 @@
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook '(lambda () (idle-highlight-mode t)))
 (add-hook 'prog-mode-hook 'flycheck-mode)
+(add-hook 'prog-mode-hook 'indent-guide-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 (add-hook 'before-save-hook 'cleanup-buffer-safe)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
+
+(add-hook 'js2-mode-hook 'tern-mode)
 
 ;; =============================================================================
 ;; Hide some minor modes
@@ -457,7 +467,7 @@
 (diminish 'volatile-highlights-mode)
 (diminish 'subword-mode)
 (diminish 'visual-line-mode)
-(diminish 'fancy-narrow-mode)
 (diminish 'auto-fill-function)
+(diminish 'indent-guide-mode)
 
 (provide 'setup-packages)

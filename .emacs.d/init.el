@@ -1,4 +1,4 @@
-x;;; TODO:
+;;; TODO:
 ;;;
 ;;;   - [ ] Setup erc
 ;;;   - [ ] Review docs file
@@ -10,11 +10,10 @@ x;;; TODO:
 ;;;   - [ ] https://github.com/jorgenschaefer/elpy
 ;;;   - [ ] https://github.com/gabrielelanaro/emacs-for-python
 ;;;   - [ ] https://github.com/proofit404/anaconda-mode
-;;;   - [ ] Tern
-;;;   - [ ] Jump to symbol
 ;;;   - [ ] https://github.com/magnars/yesql-ghosts
-;;;   - [ ] Flyspell prog mode
 ;;;   - [ ] Autocomplete mode
+;;;   - [ ] Remember C-x TAB
+;;;   - [ ] https://github.com/skeeto/skewer-mode
 
 ;; Set up load path.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
