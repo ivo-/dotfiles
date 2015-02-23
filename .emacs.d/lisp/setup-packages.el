@@ -281,7 +281,7 @@
          ("M-j M-j" . ace-jump-char-mode)))
 
 (use-package ace-jump-buffer
-  :bind ("C-c C-b" . ace-jump-buffer))
+  :bind ("M-j b l" . ace-jump-buffer))
 
 (use-package browse-kill-ring
   :bind (("M-j k" . browse-kill-ring)
