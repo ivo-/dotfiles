@@ -12,8 +12,11 @@
 ;;;   - [ ] https://github.com/proofit404/anaconda-mode
 ;;;   - [ ] https://github.com/magnars/yesql-ghosts
 ;;;   - [ ] Autocomplete mode
-;;;   - [ ] Remember C-x TAB
+;;;   - [ ] Remember C-x TAB, C-c C-f, C-c C-d
 ;;;   - [ ] https://github.com/skeeto/skewer-mode
+;;;   - [ ] https://github.com/clojure-emacs/clj-refactor.el
+;;;   - [ ] https://github.com/clojure-emacs/squiggly-clojure
+;;;   - [ ] https://github.com/daimrod/highlight-sexp
 
 ;; Set up load path.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))

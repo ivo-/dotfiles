@@ -36,6 +36,7 @@
      multiple-cursors
 
      symon
+     guide-key
      git-gutter
      indent-guide
      git-timemachine
@@ -250,6 +251,12 @@
 
 (use-package symon
   :init (symon-mode))
+
+(use-package guide-key
+  :config (progn (setq guide-key/guide-key-sequence t)
+                 (setq guide-key/recursive-key-sequence-flag t)
+                 (setq guide-key/popup-window-position 'right))
+  :init (guide-key-mode 1))
 
 (use-package flycheck
   :init (global-flycheck-mode +1))
