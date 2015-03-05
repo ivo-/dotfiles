@@ -1,22 +1,17 @@
 ;;; TODO:
 ;;;
+;;;   - [ ] .ssh
 ;;;   - [ ] Setup erc
 ;;;   - [ ] Review docs file
 ;;;   - [ ] Reveal:   https://github.com/bodil/emacs.d/commit/10e7836cf51e27ba3e696f5dae7589e441a74ad6
 ;;;   - [ ] Diagrams: https://github.com/josteink/wsd-mode
-;;;   - [ ] .ssh
-;;;   - [ ] https://github.com/bodil/ohai-emacs/blob/master/ohai/ohai-lib.el
-;;;   - [ ] HTMLIZE resume
-;;;   - [ ] https://github.com/jorgenschaefer/elpy
-;;;   - [ ] https://github.com/gabrielelanaro/emacs-for-python
-;;;   - [ ] https://github.com/proofit404/anaconda-mode
-;;;   - [ ] https://github.com/magnars/yesql-ghosts
 ;;;   - [ ] Autocomplete mode
 ;;;   - [ ] Remember C-x TAB, C-c C-f, C-c C-d
 ;;;   - [ ] https://github.com/skeeto/skewer-mode
+;;;   - [ ] https://github.com/magnars/yesql-ghosts
 ;;;   - [ ] https://github.com/clojure-emacs/clj-refactor.el
 ;;;   - [ ] https://github.com/clojure-emacs/squiggly-clojure
-;;;   - [ ] https://github.com/daimrod/highlight-sexp
+;;;   - [ ] Javascript unbind M-j, flyspell unbind C-;
 
 ;; Set up load path.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))

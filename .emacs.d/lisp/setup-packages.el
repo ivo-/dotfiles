@@ -65,6 +65,8 @@
      rbenv
      rubocop
 
+     anaconda-mode
+
      tern
      js2-mode
 
@@ -461,6 +463,7 @@
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
 (add-hook 'js2-mode-hook 'tern-mode)
+(add-hook 'python-mode-hook 'anaconda-mode)
 
 ;; =============================================================================
 ;; Hide some minor modes
@@ -476,5 +479,10 @@
 (diminish 'visual-line-mode)
 (diminish 'auto-fill-function)
 (diminish 'indent-guide-mode)
+
+;; =============================================================================
+;;
+
+(define-key inferior-python-mode-map (kbd "C-l") 'eshell/clear)
 
 (provide 'setup-packages)
