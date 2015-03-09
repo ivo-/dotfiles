@@ -1,4 +1,4 @@
-personal_ws-1.1 en 55 
+personal_ws-1.1 en 57 
 boardea
 Login
 Refactoring
@@ -12,8 +12,10 @@ ClojureScript
 Mixin
 middleware
 namespace
+stringify
 workspace
 param
+Postgres
 github
 fileds
 AUR

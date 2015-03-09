@@ -11,7 +11,6 @@
 ;;;   - [ ] https://github.com/magnars/yesql-ghosts
 ;;;   - [ ] https://github.com/clojure-emacs/clj-refactor.el
 ;;;   - [ ] https://github.com/clojure-emacs/squiggly-clojure
-;;;   - [ ] Javascript unbind M-j, flyspell unbind C-;
 
 ;; Set up load path.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))

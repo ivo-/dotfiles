@@ -121,6 +121,7 @@
   :config
   (progn
     (when (executable-find ispell-program-name)
+      (define-key flyspell-mode-map (kbd "C-;") nil)
       (add-hook 'text-mode-hook 'turn-on-flyspell))))
 
 (use-package ido
@@ -356,7 +357,10 @@
 ;; Major modes
 
 (use-package js2-mode
-  :mode ("\\.js\\'" . js2-mode))
+  :mode ("\\.js\\'" . js2-mode)
+  :init
+  (progn
+    (define-key js2-mode-map (kbd "M-j") nil)))
 
 (use-package markdown-mode
   :mode (("\\.md$" . markdown-mode)
@@ -445,6 +449,9 @@
     (define-key prolog-mode-map (kbd "C-c M-z") 'run-prolog)
     (define-key prolog-mode-map (kbd "C-c M-z") 'prolog-consult-file)))
 
+(use-package python
+  :config (define-key inferior-python-mode-map (kbd "C-l") 'eshell/clear))
+
 ;; =============================================================================
 ;; Hooks
 
@@ -479,10 +486,5 @@
 (diminish 'visual-line-mode)
 (diminish 'auto-fill-function)
 (diminish 'indent-guide-mode)
-
-;; =============================================================================
-;;
-
-(define-key inferior-python-mode-map (kbd "C-l") 'eshell/clear)
 
 (provide 'setup-packages)
