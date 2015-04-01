@@ -90,8 +90,10 @@
         sp-kill-word
         sp-remove-active-pair-overlay
         sp-splice-sexp
+        sp-splice-sexp-killing-around
         tab-to-tab-stop
         text-scale-decrease
+        toggle-eshell-1
         transpose-words
         undefined
         universal-argument-minus

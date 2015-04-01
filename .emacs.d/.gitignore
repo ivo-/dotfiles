@@ -22,3 +22,4 @@ places
 repl-port
 nrepl-history
 projectile-bookmarks.eld
+projectile.cache

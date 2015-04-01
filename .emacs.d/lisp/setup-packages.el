@@ -25,7 +25,6 @@
      ido-vertical-mode
 
      projectile
-     ack-and-a-half
      exec-path-from-shell
 
      god-mode
@@ -47,6 +46,7 @@
      volatile-highlights
 
      moe-theme
+     monokai-theme
      zenburn-theme
      twilight-theme
      fancy-narrow
@@ -121,8 +121,12 @@
   :config
   (progn
     (when (executable-find ispell-program-name)
-      (define-key flyspell-mode-map (kbd "C-;") nil)
       (add-hook 'text-mode-hook 'turn-on-flyspell))))
+
+(use-package flyspell
+  :config
+  (progn
+    (define-key flyspell-mode-map (kbd "C-;") nil)))
 
 (use-package ido
   :init
@@ -358,7 +362,7 @@
 
 (use-package js2-mode
   :mode ("\\.js\\'" . js2-mode)
-  :init
+  :config
   (progn
     (define-key js2-mode-map (kbd "M-j") nil)))
 
@@ -432,6 +436,7 @@
       (setq nrepl-buffer-name-show-port t)
       (setq cider-repl-history-file "~/.emacs.d/nrepl-history")
       (define-key clojure-mode-map (kbd "C-3") 'cider-eval-last-sexp) ;; piano key
+      (define-key cider-mode-map (kbd "C-c C-f") nil)
       (define-key cider-repl-mode-map (kbd "C-c E") 'cider-eval-last-sexp-and-append)
       (define-key cider-repl-mode-map (kbd "C-c C-z") 'delete-window)
       (define-key cider-repl-mode-map (kbd "C-c C-h") 'clojure-cheatsheet)))
