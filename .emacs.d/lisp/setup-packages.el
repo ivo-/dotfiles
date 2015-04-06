@@ -42,8 +42,8 @@
      golden-ratio
      dired-details
      browse-kill-ring
-     idle-highlight-mode
      volatile-highlights
+     idle-highlight-mode
 
      moe-theme
      monokai-theme
@@ -248,8 +248,8 @@
          ("M-j a" . mc/mark-all-like-this))
   :config (add-to-list 'mc/unsupported-minor-modes 'flyspell-mode))
 
-(use-package volatile-highlights
-  :init (volatile-highlights-mode t))
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
 
 (use-package golden-ratio
   :bind (("M-j w" . golden-ratio)
