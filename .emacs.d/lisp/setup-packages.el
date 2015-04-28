@@ -70,6 +70,7 @@
      tern
      js2-mode
 
+     go-mode
      lua-mode
      php-mode
      web-mode
@@ -469,13 +470,21 @@
 (add-hook 'prog-mode-hook 'indent-guide-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
-(add-hook 'before-save-hook 'cleanup-buffer-safe)
+(add-hook 'before-save-hook (lambda ()
+                              (when (not (eq major-mode 'go-mode))
+                                (call-interactively 'cleanup-buffer-safe))))
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
 (add-hook 'js2-mode-hook 'tern-mode)
 (add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'go-mode-hook (lambda ()
+                          (let ((goimports (executable-find "goimports")))
+                            (when goimports
+                              (setq gofmt-command goimports)))
+                          (set (make-local-variable 'whitespace-style) nil)
+                          (add-hook 'before-save-hook 'gofmt-before-save nil t)))
 
 ;; =============================================================================
 ;; Hide some minor modes

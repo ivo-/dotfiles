@@ -21,6 +21,7 @@
         coffee-indent-shift-left
         coffee-newline-and-indent
         comment-dwim
+        create-buffer
         dired-next-line
         dired-previous-line
         dired-toggle-marks
