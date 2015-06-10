@@ -30,6 +30,7 @@
         electric-newline-and-maybe-indent
         end-of-visual-line
         git-gutter:next-diff
+        go-mode-insert-and-indent
         haml-electric-backspace
         indent-for-tab-command
         isearch-forward-regexp

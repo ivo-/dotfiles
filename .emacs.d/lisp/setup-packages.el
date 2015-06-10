@@ -34,7 +34,6 @@
      expand-region
      multiple-cursors
 
-     symon
      guide-key
      git-gutter
      indent-guide
@@ -256,9 +255,6 @@
   :bind (("M-j w" . golden-ratio)
          ("M-j M-w" . golden-ratio))
   :init (golden-ratio-mode 1))
-
-(use-package symon
-  :init (symon-mode))
 
 (use-package guide-key
   :config (progn (setq guide-key/guide-key-sequence t)
