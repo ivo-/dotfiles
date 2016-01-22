@@ -118,4 +118,7 @@
                                          try-complete-lisp-symbol-partially
                                          try-complete-lisp-symbol))
 
+;; Fix indentation in js-mode.
+(setq js-indent-level 2)
+
 (provide 'setup-settings)
