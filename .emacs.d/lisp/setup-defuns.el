@@ -89,12 +89,12 @@
     (setq end (line-end-position))
     (let ((region (buffer-substring-no-properties beg end)))
       (-dotimes arg
-                (lambda (n)
-                  (goto-char end)
-                  (newline)
-                  (insert region)
-                  (indent-for-tab-command)
-                  (setq end (point))))
+        (lambda (n)
+          (goto-char end)
+          (newline)
+          (insert region)
+          (indent-for-tab-command)
+          (setq end (point))))
       (goto-char (+ origin (* (length region) arg) arg)))))
 
 (defun copy-file-name-to-clipboard ()
