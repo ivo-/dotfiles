@@ -26,5 +26,8 @@ emacs --daemon --with-x-toolkit=lucid &
 # Hide cursor when idle.
 unclutter &
 
+# Start redshift.
+redshift-gtk &
+
 # Start awesome.
 exec awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
