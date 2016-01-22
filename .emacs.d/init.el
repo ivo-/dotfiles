@@ -1,17 +1,13 @@
-;;; TODO:
-;;;
-;;;   - [ ] .ssh
-;;;   - [ ] Setup erc
-;;;   - [ ] Review docs file
-;;;   - [ ] Autocomplete mode
-;;;   - [ ] Remember C-x TAB, C-c C-f, C-c C-d
-;;;   - [ ] https://github.com/skeeto/skewer-mode
-;;;   - [ ] company-mode
-;;;   - [ ] cleanup
-;;;   - [ ] exec ssh-agent bash; ssh-add ~/.ssh/tradeo_rsa
-;;;   - [ ] https://github.com/eschulte/epresent
-;;;   - [ ] https://github.com/Malabarba/aggressive-indent-mode
-;;;
+;; TODO:
+;;
+;;   - [ ] cleanup
+;;   - [ ] review docs file
+;;   - [ ] company-mode
+;;   - [ ] https://github.com/skeeto/skewer-mode
+;;   - [ ] https://github.com/ch11ng/exwm/wiki
+;;   - [ ] http://paralambda.org/2012/07/02/using-gnu-emacs-as-a-terminal-emulator/
+;;   - [ ] http://rawsyntax.com/blog/learn-emacs-zsh-and-multi-term/
+;;
 
 ;; Set up load path.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
