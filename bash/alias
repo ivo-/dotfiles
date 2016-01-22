@@ -8,7 +8,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 alias ls='ls --color=auto'
-alias ll='ls -la --color=auto'
+alias ll='ls -lah --color=auto'
 
 alias reboot='sudo systemctl reboot'
 alias poweroff='sudo systemctl poweroff'
