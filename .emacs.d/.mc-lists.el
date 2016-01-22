@@ -28,6 +28,7 @@
         dired-unmark-backward
         duplicate-current-line-or-region
         electric-newline-and-maybe-indent
+        end-of-buffer
         end-of-visual-line
         git-gutter:next-diff
         go-mode-insert-and-indent
@@ -102,6 +103,7 @@
         wdired-previous-line
         web-mode-comment-or-uncomment
         yaml-electric-backspace
+        yaml-electric-dash-and-dot
         ))
 
 (setq mc/cmds-to-run-once
