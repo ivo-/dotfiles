@@ -77,6 +77,7 @@
      yaml-mode
      haml-mode
      scss-mode
+     less-css-mode
      coffee-mode
      sourcemap
      markdown-mode
@@ -358,10 +359,14 @@
 ;; Major modes
 
 (use-package js2-mode
-  :mode ("\\.js\\'" . js2-mode)
+  :mode ("\\.jsx?\\'" . js2-mode)
   :config
   (progn
-    (define-key js2-mode-map (kbd "M-j") nil)))
+    (define-key js2-mode-map (kbd "M-j") nil)
+    (custom-set-variables
+     '(js2-basic-offset 2)
+     '(js2-strict-missing-semi-warning nil)
+     '(js2-missing-semi-one-line-override t))))
 
 (use-package markdown-mode
   :mode (("\\.md$" . markdown-mode)
