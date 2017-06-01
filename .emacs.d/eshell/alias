@@ -1,36 +1,39 @@
-alias hr . $*
-alias cd cd $* ; hr ; ll
-alias ... cd ../..
-alias .... cd ../../..
-alias c clear
-alias la ls -a              $*
-alias ll ls -la             $*
-alias ff find-file          $1
-alias be bundle exec        $*
-alias r be rails            $*
-alias rs r server           $*
-alias rc r console          $*
-alias rg r generate         $*
-alias rgmd rg model         $*
-alias rgmg rg migration     $*
-alias rgs rg scaffold       $*
-alias rgc rg controller     $*
-alias rk be rake            $*
-alias rkm rk db:migrate     $*
-alias g git                 $*
-alias ga g add              $*
-alias gp g push             $*
-alias gs g status           $*
-alias gb g branch           $*
-alias gc g commit -m        $*
-alias gca g commit -am      $*
-alias gch g checkout        $*
-alias gchb gch -b           $*
-alias gpom gp origin master $*
-alias gphm gp heroku master $*
-alias glp g log --graph --decorate --pretty=oneline --abbrev-commit --all $*
-alias .db cd ~/Dropbox
-alias .dw cd ~/Downloads
-alias .sb cd ~/Dropbox/sandbox
-alias .pj cd ~/Dropbox/projects
+alias гс c $*
+alias ц гс $*
+alias cs c $*
 alias .mt cd /mnt
+alias .pj cd ~/Projects
+alias .sb cd ~/Dropbox/sandbox
+alias .dw cd ~/Downloads
+alias .db cd ~/Dropbox
+alias glp g log --graph --decorate --pretty=oneline --abbrev-commit --all $*
+alias gphm gp heroku master $*
+alias gpom gp origin master $*
+alias gchb gch -b           $*
+alias gch g checkout        $*
+alias gca g commit -am      $*
+alias gc g commit -m        $*
+alias gb g branch           $*
+alias gs g status           $*
+alias gp g push             $*
+alias ga g add              $*
+alias g git                 $*
+alias rkm rk db:migrate     $*
+alias rk be rake            $*
+alias rgc rg controller     $*
+alias rgs rg scaffold       $*
+alias rgmg rg migration     $*
+alias rgmd rg model         $*
+alias rg r generate         $*
+alias rc r console          $*
+alias rs r server           $*
+alias r be rails            $*
+alias be bundle exec        $*
+alias ff find-file          $1
+alias ll ls -la             $*
+alias la ls -a              $*
+alias c clear
+alias .... cd ../../..
+alias ... cd ../..
+alias cd cd $* ; hr ; ll
+alias hr . $*

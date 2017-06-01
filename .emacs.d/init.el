@@ -1,13 +1,17 @@
 ;; TODO:
 ;;
 ;;   - [ ] cleanup
-;;   - [ ] review docs file
+;;   - [ ] react-mode
+;;   - [ ] review docs filex
 ;;   - [ ] company-mode
-;;   - [ ] https://github.com/skeeto/skewer-mode
-;;   - [ ] https://github.com/ch11ng/exwm/wiki
-;;   - [ ] http://paralambda.org/2012/07/02/using-gnu-emacs-as-a-terminal-emulator/
-;;   - [ ] http://rawsyntax.com/blog/learn-emacs-zsh-and-multi-term/
 ;;
+
+;; - [ ] Review and push dotfiles
+;; - [ ] Clone yoda / add to cloud with projects
+;; - [ ] Download from dropbox
+;; - [ ] Validations
+;; - [ ] Clojure Pusher
+;; - [ ] Go exercises
 
 ;; Set up load path.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))

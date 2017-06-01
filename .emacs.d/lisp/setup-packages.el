@@ -121,6 +121,7 @@
 (use-package ispell
   :config
   (progn
+    (setq-default ispell-program-name "aspell")
     (when (executable-find ispell-program-name)
       (add-hook 'text-mode-hook 'turn-on-flyspell))))
 
@@ -279,7 +280,8 @@
   :config (setq smex-save-file (concat user-emacs-directory ".smex-items")))
 
 (use-package expand-region
-  :bind ("C-;" . er/expand-region))
+  :bind (("C-;" . er/expand-region)
+         ("C-'" . er/expand-region)))
 
 (use-package ace-jump-mode
   :bind (("M-j j"   . ace-jump-mode)
@@ -365,8 +367,10 @@
     (define-key js2-mode-map (kbd "M-j") nil)
     (custom-set-variables
      '(js2-basic-offset 2)
+     '(js2-indent-switch-body t)
      '(js2-strict-missing-semi-warning nil)
-     '(js2-missing-semi-one-line-override t))))
+     '(js2-missing-semi-one-line-override t)
+     '(js2-strict-trailing-comma-warning nil))))
 
 (use-package markdown-mode
   :mode (("\\.md$" . markdown-mode)

@@ -121,4 +121,9 @@
 ;; Fix indentation in js-mode.
 (setq js-indent-level 2)
 
+;; Swap super and meta on OSX
+(when (memq window-system '(mac ns))
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'super))
+
 (provide 'setup-settings)
