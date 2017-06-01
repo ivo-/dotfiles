@@ -6,6 +6,7 @@ alias .pj cd ~/Projects
 alias .sb cd ~/Dropbox/sandbox
 alias .dw cd ~/Downloads
 alias .db cd ~/Dropbox
+alias .ic cd ~/Library/Mobile\ Documents/com~apple~CloudDocs
 alias glp g log --graph --decorate --pretty=oneline --abbrev-commit --all $*
 alias gphm gp heroku master $*
 alias gpom gp origin master $*

@@ -6,9 +6,6 @@
 ;;   - [ ] company-mode
 ;;
 
-;; - [ ] Review and push dotfiles
-;; - [ ] Clone yoda / add to cloud with projects
-;; - [ ] Download from dropbox
 ;; - [ ] Validations
 ;; - [ ] Clojure Pusher
 ;; - [ ] Go exercises
