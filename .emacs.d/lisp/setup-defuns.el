@@ -13,7 +13,8 @@
 (defun eshell/clear ()
   (interactive)
   (let ((inhibit-read-only t))
-    (erase-buffer)))
+    (erase-buffer)
+    (eshell-send-input)))
 
 (defun rename-buffer-file ()
   (interactive)
