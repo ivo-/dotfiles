@@ -12,9 +12,8 @@
 
 (defun eshell/clear ()
   (interactive)
-  (let ((inhibit-read-only t))
-    (erase-buffer)
-    (eshell-send-input)))
+  (let ((eshell-buffer-maximum-lines 0))
+    (eshell-truncate-buffer)))
 
 (defun rename-buffer-file ()
   (interactive)
