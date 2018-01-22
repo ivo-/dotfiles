@@ -20,6 +20,7 @@
      dash
      smex
      anzu
+     diminish
      use-package
      ido-ubiquitous
      ido-vertical-mode
