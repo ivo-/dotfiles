@@ -3,7 +3,6 @@
 
 (global-set-key (kbd "M-/") 'hippie-expand)
 
-(global-set-key (kbd "C-x C-i") 'imenu)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Regexp search by default.
@@ -59,6 +58,8 @@
 
 (global-set-key (kbd "M-j b n") 'create-buffer)
 (global-set-key (kbd "M-j b i") 'cleanup-buffer)
+
+(global-set-key (kbd "M-j i") 'imenu)
 
 (global-set-key (kbd "M-j `") 'hide-eshell)
 (global-set-key (kbd "M-j 1") 'toggle-eshell-1)
