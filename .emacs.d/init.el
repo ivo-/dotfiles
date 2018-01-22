@@ -1,14 +1,20 @@
 ;; TODO:
 ;;
-;;   - [ ] cleanup
-;;   - [ ] react-mode
 ;;   - [ ] review docs filex
-;;   - [ ] company-mode
+;;   - [ ] cleanup
 ;;
+;; Remainders:
+;;
+;;   M-j i => imenu
+;;   C-;   => expand region
+;;
+;; Packages:
+;;
+;;   - [ ] flow, prettier
+;;   - [ ] company-mode, yasnippet
+;;   - [ ] https://github.com/abo-abo/swiper
 
-;; - [ ] Validations
-;; - [ ] Clojure Pusher
-;; - [ ] Go exercises
+(package-initialize)
 
 ;; Set up load path.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
