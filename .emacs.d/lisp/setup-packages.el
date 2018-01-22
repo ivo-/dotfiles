@@ -28,21 +28,31 @@
      projectile
      exec-path-from-shell
 
-     god-mode
+     ;; Jump to char in the same row
      iy-go-to-char
+
+     god-mode
      ace-jump-mode
-     ace-jump-buffer
      expand-region
      multiple-cursors
 
+     ;; Show available keybindings on inactivity
      guide-key
      git-gutter
+
+     ;; Show vertical indentation lines
      indent-guide
+
+     ;; Go trough file git history.
      git-timemachine
+
      golden-ratio
      dired-details
      browse-kill-ring
      volatile-highlights
+
+     ;; Sets timer that highlights all occurrences in the buffer of the word
+     ;; under the point
      idle-highlight-mode
 
      moe-theme
@@ -67,8 +77,8 @@
 
      anaconda-mode
 
-     tern
      js2-mode
+     rjsx-mode ;; better jsx support
 
      go-mode
      lua-mode
@@ -80,7 +90,6 @@
      scss-mode
      less-css-mode
      coffee-mode
-     sourcemap
      markdown-mode
 
      cider
@@ -266,7 +275,10 @@
   :init (guide-key-mode 1))
 
 (use-package flycheck
-  :init (global-flycheck-mode +1))
+  :init (global-flycheck-mode +1)
+  :bind (("M-j b c" . flycheck-buffer))
+  :config (progn
+            (setq flycheck-display-errors-delay 0.2)))
 
 (use-package yari
   :config (define-key 'help-command (kbd "R") 'yari))
@@ -287,9 +299,6 @@
 (use-package ace-jump-mode
   :bind (("M-j j"   . ace-jump-mode)
          ("M-j M-j" . ace-jump-char-mode)))
-
-(use-package ace-jump-buffer
-  :bind ("M-j b l" . ace-jump-buffer))
 
 (use-package browse-kill-ring
   :bind (("M-j k" . browse-kill-ring)
@@ -362,7 +371,7 @@
 ;; Major modes
 
 (use-package js2-mode
-  :mode ("\\.jsx?\\'" . js2-mode)
+  :mode ("\\.jsx?\\'" . rjsx-mode)
   :config
   (progn
     (define-key js2-mode-map (kbd "M-j") nil)
@@ -472,9 +481,10 @@
 (add-hook 'prog-mode-hook 'fancy-narrow-mode)
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)
 (add-hook 'prog-mode-hook '(lambda () (idle-highlight-mode t)))
-(add-hook 'prog-mode-hook 'flycheck-mode)
 (add-hook 'prog-mode-hook 'indent-guide-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 (add-hook 'before-save-hook (lambda ()
                               (when (not (eq major-mode 'go-mode))
@@ -483,7 +493,6 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
-(add-hook 'js2-mode-hook 'tern-mode)
 (add-hook 'python-mode-hook 'anaconda-mode)
 (add-hook 'go-mode-hook (lambda ()
                           (let ((goimports (executable-find "goimports")))
