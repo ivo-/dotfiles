@@ -79,6 +79,7 @@
 
      js2-mode
      rjsx-mode ;; better jsx support
+     prettier-js
 
      go-mode
      lua-mode
@@ -381,7 +382,8 @@
      '(js2-indent-switch-body t)
      '(js2-strict-missing-semi-warning nil)
      '(js2-missing-semi-one-line-override t)
-     '(js2-strict-trailing-comma-warning nil))))
+     '(js2-strict-trailing-comma-warning nil)))
+  :init (add-hook 'js2-mode-hook 'prettier-js-mode))
 
 (use-package markdown-mode
   :mode (("\\.md$" . markdown-mode)
