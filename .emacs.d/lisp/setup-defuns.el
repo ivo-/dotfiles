@@ -10,6 +10,7 @@
    nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|NOTE\\|REFACTOR\\|NOCOMMIT\\|OPTIMIZE\\)"
           1 font-lock-warning-face t))))
 
+;;;###autoload
 (defun eshell/clear ()
   (interactive)
   (let ((eshell-buffer-maximum-lines 0))

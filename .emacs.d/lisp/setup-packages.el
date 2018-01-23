@@ -277,8 +277,9 @@
 (use-package flycheck
   :init (global-flycheck-mode +1)
   :bind (("M-j b c" . flycheck-buffer))
-  :config (progn
-            (setq flycheck-display-errors-delay 0.2)))
+  :config
+  (progn
+    (setq flycheck-display-errors-delay 0.2)))
 
 (use-package yari
   :config (define-key 'help-command (kbd "R") 'yari))
@@ -500,6 +501,24 @@
                               (setq gofmt-command goimports)))
                           (set (make-local-variable 'whitespace-style) nil)
                           (add-hook 'before-save-hook 'gofmt-before-save nil t)))
+
+(defun use-js-executables-from-node-modules ()
+  "Set executables of JS checkers from local node modules."
+  (interactive)
+  (-when-let* ((file-name (buffer-file-name))
+               (root (locate-dominating-file file-name "node_modules"))
+               (module-directory (expand-file-name "node_modules" root)))
+    (pcase-dolist (`(,checker . ,module) '((javascript-jshint . "jshint")
+                                           (javascript-eslint . "eslint")
+                                           (javascript-jscs   . "jscs")))
+      (let ((package-directory (expand-file-name module module-directory))
+            (executable-var (flycheck-checker-executable-variable checker)))
+        (when (file-directory-p package-directory)
+          (set (make-local-variable executable-var)
+               (expand-file-name (concat "bin/" module ".js")
+                                 package-directory)))))))
+
+(add-hook 'flycheck-mode-hook 'use-js-executables-from-node-modules)
 
 ;; =============================================================================
 ;; Hide some minor modes
