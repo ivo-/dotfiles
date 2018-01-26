@@ -80,6 +80,7 @@
         prolog-electric-dash
         prolog-electric-dot
         prolog-electric-if-then-else
+        rjsx-delete-creates-full-tag
         rjsx-electric-gt
         sgml-slash
         sh-assignment

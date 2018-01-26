@@ -10,7 +10,6 @@
    nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|NOTE\\|REFACTOR\\|NOCOMMIT\\|OPTIMIZE\\)"
           1 font-lock-warning-face t))))
 
-;;;###autoload
 (defun eshell/clear ()
   (interactive)
   (let ((eshell-buffer-maximum-lines 0))
@@ -51,8 +50,8 @@
 
 (defun cleanup-buffer-safe ()
   "Perform a bunch of safe operations on the whitespace content of a buffer.
-   Does not indent buffer, because it is used for a before-save-hook, and that
-   might be bad."
+Does not indent buffer, because it is used for a 'before-save-hook', and that
+might be bad."
   (interactive)
   (untabify (point-min) (point-max))
   (delete-trailing-whitespace)
@@ -60,7 +59,7 @@
 
 (defun cleanup-buffer ()
   "Perform a bunch of operations on the whitespace content of a buffer.
-   Including indent-buffer, which should not be called automatically on save."
+Including indent-buffer, which should not be called automatically on save."
   (interactive)
   (cleanup-buffer-safe)
   (indent-region (point-min) (point-max)))
@@ -78,8 +77,8 @@
 
 (defun duplicate-current-line-or-region (arg)
   "Duplicates the current line or region ARG times.
-   If there's no region, the current line will be duplicated. However, if
-   there's a region, all lines that region covers will be duplicated."
+If there's no region, the current line will be duplicated.  However, if
+there's a region, all lines that region covers will be duplicated."
   (interactive "p")
   (let (beg end (origin (point)))
     (if (and mark-active (> (point) (mark)))
@@ -109,8 +108,8 @@
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
 (defun open-with ()
-  "Simple function that allows us to open the underlying
-   file of a buffer in an external program."
+  "Simple function that allow us to open the underlying
+file of a buffer in an external program."
   (interactive)
   (when buffer-file-name
     (shell-command (concat
