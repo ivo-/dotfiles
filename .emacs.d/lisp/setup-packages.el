@@ -17,6 +17,7 @@
 (defun init-install-packages ()
   (packages-install
    '(
+     ag
      dash
      smex
      anzu
@@ -377,6 +378,7 @@
   :config
   (progn
     (define-key js2-mode-map (kbd "M-j") nil)
+    (define-key js2-mode-map (kbd "C-c C-f") nil)
     (custom-set-variables
      '(js2-basic-offset 2)
      '(js2-indent-switch-body t)
