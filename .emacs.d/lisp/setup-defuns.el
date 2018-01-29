@@ -231,6 +231,19 @@ file of a buffer in an external program."
              (join-line))))
         (t (call-interactively 'join-line))))
 
+(defun mydired-sort ()
+  "Sort dired listings with directories first."
+  (save-excursion
+    (let (buffer-read-only)
+      (forward-line 2) ;; beyond dir. header
+      (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
+    (set-buffer-modified-p nil)))
+
+(defadvice dired-readin
+    (after dired-after-updating-hook first () activate)
+  "Sort dired listings with directories first before adding mark."
+  (mydired-sort))
+
 (defun hide-eshell ()
   (interactive)
   (let (register-name)
