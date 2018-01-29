@@ -38,3 +38,4 @@ alias .... cd ../../..
 alias ... cd ../..
 alias cd cd $* ; hr ; ll
 alias hr . $*
+alias merge-yl git checkout origin/master -- yarn.lock && yarn install && git add yarn.lock
