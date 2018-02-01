@@ -373,6 +373,12 @@
 ;; -----------------------------------------------------------------------------
 ;; Major modes
 
+(defun js/prettier-file ()
+  "Execute prettier for current file."
+  (interactive)
+  (shell-command (concat "yarn prettier " (buffer-file-name)) t)
+  (revert-buffer :ignore-auto :noconfirm))
+
 (use-package js2-mode
   :mode ("\\.jsx?\\'" . rjsx-mode)
   :config
