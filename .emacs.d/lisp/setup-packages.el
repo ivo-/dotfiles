@@ -376,7 +376,7 @@
 (defun js/prettier-file ()
   "Execute prettier for current file."
   (interactive)
-  (shell-command (concat "yarn prettier " (buffer-file-name)))
+  (shell-command (concat "prettier  --write --single-quote --trailing-comma es5 --jsx-bracket-same-line" (buffer-file-name)))
   (revert-buffer :ignore-auto :noconfirm))
 
 (use-package js2-mode
@@ -390,7 +390,11 @@
      '(js2-indent-switch-body t)
      '(js2-strict-missing-semi-warning nil)
      '(js2-missing-semi-one-line-override t)
-     '(js2-strict-trailing-comma-warning nil)))
+     '(js2-strict-trailing-comma-warning nil))
+    (setq prettier-js-args '(
+      "--single-quote"
+      "--trailing-comma" "es5"
+      "--jsx-bracket-same-line")))
   :init (add-hook 'js2-mode-hook 'prettier-js-mode))
 
 (use-package markdown-mode
