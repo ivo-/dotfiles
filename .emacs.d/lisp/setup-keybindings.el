@@ -42,7 +42,7 @@
 (global-set-key (kbd "M-j M-s") 'ispell-word)
 
 (global-set-key (kbd "M-j q") 'generalized-shell-command)
-(global-set-key (kbd "M-j M-q") 'generalized-shell-command)
+(global-set-key (kbd "M-j M-q") 'shell-command-file)
 
 (global-set-key (kbd "M-j e") 'eval-and-replace)
 (global-set-key (kbd "M-j M-e") 'eval-and-replace)
