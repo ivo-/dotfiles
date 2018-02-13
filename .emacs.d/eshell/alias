@@ -17,6 +17,7 @@ alias gc g commit -m        $*
 alias gb g branch           $*
 alias gs g status           $*
 alias gp g push             $*
+alias gpf g push --force    $*
 alias ga g add              $*
 alias g git                 $*
 alias rkm rk db:migrate     $*

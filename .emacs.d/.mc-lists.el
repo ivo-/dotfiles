@@ -30,6 +30,7 @@
         electric-newline-and-maybe-indent
         end-of-buffer
         end-of-visual-line
+        eshell-bol
         git-gutter:next-diff
         go-mode-insert-and-indent
         haml-electric-backspace
@@ -92,6 +93,7 @@
         sp-forward-sexp
         sp-forward-slurp-sexp
         sp-kill-hybrid-sexp
+        sp-kill-region
         sp-kill-word
         sp-remove-active-pair-overlay
         sp-splice-sexp
@@ -117,6 +119,7 @@
         isearch-delete-char
         isearch-other-control-char
         ispell-word
+        markdown-outdent-or-delete
         mouse-buffer-menu
         mouse-drag-secondary
         mouse-start-secondary

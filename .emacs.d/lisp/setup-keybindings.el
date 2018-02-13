@@ -35,12 +35,6 @@
 (global-set-key (kbd "M-j SPC") 'just-one-space)
 (global-set-key (kbd "M-j M-SPC") 'delete-blank-lines)
 
-(global-set-key (kbd "M-j r") 'replace-string)
-(global-set-key (kbd "M-j M-r") 'replace-string)
-
-(global-set-key (kbd "M-j s") 'ispell-word)
-(global-set-key (kbd "M-j M-s") 'ispell-word)
-
 (global-set-key (kbd "M-j q") 'generalized-shell-command)
 (global-set-key (kbd "M-j M-q") 'shell-command-file)
 
@@ -58,8 +52,6 @@
 
 (global-set-key (kbd "M-j b n") 'create-buffer)
 (global-set-key (kbd "M-j b i") 'cleanup-buffer)
-
-(global-set-key (kbd "M-j i") 'imenu)
 
 (global-set-key (kbd "M-j `") 'hide-eshell)
 (global-set-key (kbd "M-j 1") 'toggle-eshell-1)
