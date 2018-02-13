@@ -92,4 +92,7 @@
                                          try-complete-lisp-symbol-partially
                                          try-complete-lisp-symbol))
 
+;; Eshell has troubles with more.
+(setenv "PAGER" (executable-find "cat"))
+
 (provide 'setup-settings)

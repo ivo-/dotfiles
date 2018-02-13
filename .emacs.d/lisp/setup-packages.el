@@ -164,7 +164,7 @@ is already narrowed."
   :ensure t
   :bind (("M-j b c" . flycheck-buffer))
   :config
-  (add-hook 'after-init-hook #'global-flycheck-mode)
+  (global-flycheck-mode)
   (setq flycheck-display-errors-delay 0.2)
   (defun use-js-executables-from-node-modules ()
     "Set executables of JS checkers from local node modules."
@@ -187,8 +187,7 @@ is already narrowed."
 (use-package scss-mode
   :ensure t
   :config
-  (setq scss-compile-at-save nil)
-  (setq css-indent-offset 2))
+  (setq scss-compile-at-save nil))
 
 (use-package markdown-mode
   :ensure t
@@ -239,20 +238,10 @@ is already narrowed."
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 4)
-  (setq web-mode-disable-autocompletion t)
   (local-set-key (kbd "RET") 'newline-and-indent))
 
-(use-package clojure-mode
-  :ensure t
-  :mode ("\\.edn$" . clojure-mode)
-  :config
-  (setq clojure-defun-style-default-indent t))
-
-(use-package clojure-cheatsheet
-  :ensure t
-  :config
-  (define-key clojure-mode-map (kbd "C-c C-h") 'clojure-cheatsheet))
-
+(use-package clojure-mode :ensure t)
+(use-package clojure-cheatsheet :ensure t)
 (use-package cider
   :ensure t
   :init
@@ -420,22 +409,6 @@ is already narrowed."
   :config
   (define-key reb-mode-map (kbd "C-c C-r") 'reb-query-replace))
 
-(use-package dired
-  :config
-  ;; dired - reuse current buffer by pressing 'a'
-  (put 'dired-find-alternate-file 'disabled nil)
-
-  ;; always delete and copy recursively
-  (setq dired-recursive-deletes 'always)
-  (setq dired-recursive-copies 'always)
-
-  ;; if there is a dired buffer displayed in the next window, use its
-  ;; current subdir, instead of the current subdir of this dired buffer
-  (setq dired-dwim-target t)
-
-  ;; enable some really cool extensions like C-x C-j(dired-jump)
-  )
-
 (require 'dired-x)
 (use-package dired
   :bind (("M-j d"   . dired-jump)
@@ -453,7 +426,6 @@ is already narrowed."
   (put 'dired-find-alternate-file 'disabled nil)
 
   (define-key dired-mode-map (kbd "<S-return>") 'dired-find-file)
-  (define-key dired-mode-map (kbd "<return>") 'dired-smart-open-file)
   (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file ".."))))
 
 ;; (use-package dash :ensure t)
