@@ -212,6 +212,7 @@ is already narrowed."
 (use-package rjsx-mode
   :ensure t
   :mode ("\\.jsx?\\'" . rjsx-mode)
+  :init (electric-indent-mode -1)
   :config
   (define-key js2-mode-map (kbd "M-j") nil)
   (define-key js2-mode-map (kbd "C-c C-f") nil)
@@ -312,6 +313,7 @@ is already narrowed."
   :config
   (global-company-mode)
   (add-to-list 'company-backends 'company-tern)
+  (global-set-key (kbd "<C-tab>") 'company-complete)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
 
