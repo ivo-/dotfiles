@@ -302,7 +302,9 @@ is already narrowed."
 (use-package company
   :ensure t
   :config
-  (global-company-mode))
+  (global-company-mode)
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous))
 
 (use-package imenu-anywhere
   :ensure t
