@@ -299,10 +299,18 @@ is already narrowed."
   :config
   (load-theme 'zenburn t))
 
+(use-package tern
+  :ensure t
+  :config
+  (setq tern-command (append tern-command '("--no-port-file"))))
+
+(use-package company-tern :ensure t)
+
 (use-package company
   :ensure t
   :config
   (global-company-mode)
+  (add-to-list 'company-backends 'company-tern)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
 
