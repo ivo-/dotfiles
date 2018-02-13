@@ -306,12 +306,13 @@ is already narrowed."
   :config
   (setq tern-command (append tern-command '("--no-port-file"))))
 
+(use-package company-flx :ensure t)
 (use-package company-tern :ensure t)
-
 (use-package company
   :ensure t
   :config
   (global-company-mode)
+  (company-flx-mode +1)
   (add-to-list 'company-backends 'company-tern)
   (global-set-key (kbd "<C-tab>") 'company-complete)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
