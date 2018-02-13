@@ -314,6 +314,8 @@ is already narrowed."
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
+  (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
+  (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
   (global-set-key (kbd "C-c C-r") 'ivy-resume))
 
 (use-package counsel
