@@ -272,11 +272,12 @@ is already narrowed."
     (define-key prolog-mode-map (kbd "C-c M-z") 'run-prolog)
     (define-key prolog-mode-map (kbd "C-c M-z") 'prolog-consult-file)))
 
-(use-package smartparens :ensure t)
-(use-package smartparens-config
+(use-package smartparens
+   :ensure t
   ;; :ensure t
   :bind ("C-K" . sp-kill-hybrid-sexp)
   :config
+  (require 'smartparens-config)
   (setq sp-base-key-bindings 'paredit)
   (setq sp-hybrid-kill-entire-symbol nil)
 
@@ -438,6 +439,7 @@ is already narrowed."
   (put 'dired-find-alternate-file 'disabled nil)
 
   (define-key dired-mode-map (kbd "<S-return>") 'dired-find-file)
+  (define-key dired-mode-map (kbd "<return>") 'dired-find-alternate-file)
   (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file ".."))))
 
 ;; (use-package dash :ensure t)
