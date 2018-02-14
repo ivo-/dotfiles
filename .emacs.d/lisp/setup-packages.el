@@ -136,7 +136,7 @@
          ("M-j T"   . google-translate-at-point-reverse)
          ("M-j M-t" . google-translate-at-point)
          ("M-j M-T" . google-translate-at-point-reverse))
-  :config
+  :init
   (setq google-translate-default-source-language "en")
   (setq google-translate-default-target-language "bg"))
 
@@ -221,7 +221,19 @@ is already narrowed."
    '(js2-indent-switch-body t)
    '(js2-strict-missing-semi-warning t)
    '(js2-missing-semi-one-line-override t)
-   '(js2-strict-trailing-comma-warning t)))
+   '(js2-strict-trailing-comma-warning nil)))
+
+(use-package indium
+  :ensure t
+  :config
+  (define-key indium-interaction-mode-map "\C-c\M-j" 'indium-run-node)
+  (define-key indium-interaction-mode-map "\C-c\M-r" 'indium-restart-node)
+  (define-key indium-interaction-mode-map "\C-c\M-c" 'indium-connect-to-nodejs)
+  (define-key indium-interaction-mode-map "\C-c\M-k" 'indium-eval-buffer)
+  (define-key indium-repl-mode-map "\C-l" 'indium-repl-clear-output)
+
+  (dolist (hook '(js2-mode-hook js-mode-hook))
+    (add-hook hook 'indium-interaction-mode)))
 
 (use-package web-mode
   :ensure t
@@ -445,7 +457,10 @@ is already narrowed."
   (define-key dired-mode-map (kbd "<return>") 'dired-find-alternate-file)
   (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file ".."))))
 
-;; (use-package dash :ensure t)
+(use-package em-term
+  :config
+  (add-to-list 'eshell-visual-commands "emacs")
+  (add-to-list 'eshell-visual-commands "htop"))
 
 (add-hook 'prog-mode-hook 'add-watchwords)
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)

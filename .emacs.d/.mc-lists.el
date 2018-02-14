@@ -22,9 +22,11 @@
         coffee-newline-and-indent
         comment-dwim
         create-buffer
+        dired-do-delete
         dired-next-line
         dired-previous-line
         dired-toggle-marks
+        dired-undo
         dired-unmark-backward
         duplicate-current-line-or-region
         electric-newline-and-maybe-indent
@@ -104,6 +106,7 @@
         transpose-words
         undefined
         universal-argument-minus
+        wdired-finish-edit
         wdired-previous-line
         web-mode-comment-or-uncomment
         yaml-electric-backspace
