@@ -53,6 +53,8 @@
 (global-set-key (kbd "M-j b n") 'create-buffer)
 (global-set-key (kbd "M-j b i") 'cleanup-buffer)
 
+(global-set-key (kbd "M-j RET") 'switch-to-previous-buffer)
+
 (global-set-key (kbd "M-j `") 'hide-eshell)
 (global-set-key (kbd "M-j 1") 'toggle-eshell-1)
 (global-set-key (kbd "M-j 2") 'toggle-eshell-2)

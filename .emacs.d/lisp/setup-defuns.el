@@ -282,4 +282,10 @@ file of a buffer in an external program."
   "Sort dired listings with directories first before adding mark."
   (mydired-sort))
 
+(defun switch-to-previous-buffer ()
+  "Switch to previously open buffer.
+Repeated invocations toggle between the two most recently open buffers."
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+
 (provide 'setup-defuns)
