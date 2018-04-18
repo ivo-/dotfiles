@@ -209,6 +209,7 @@ is already narrowed."
           "--trailing-comma" "es5"
           "--jsx-bracket-same-line")))
 
+(use-package dumb-jump :ensure t)
 (use-package rjsx-mode
   :ensure t
   :mode ("\\.jsx?\\'" . rjsx-mode)
@@ -216,10 +217,13 @@ is already narrowed."
   :config
   (define-key js2-mode-map (kbd "M-j") nil)
   (define-key js2-mode-map (kbd "C-c C-f") nil)
+  (define-key js2-mode-map (kbd "M-.") 'dumb-jump-go)
   (custom-set-variables
+   '(js2-global-externs '("module" "require" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON"))
    '(js2-basic-offset 2)
    '(js2-indent-switch-body t)
    '(js2-strict-missing-semi-warning t)
+   '(js2-indent-on-enter-key nil)
    '(js2-missing-semi-one-line-override t)
    '(js2-strict-trailing-comma-warning nil)))
 
@@ -313,6 +317,9 @@ is already narrowed."
   :config
   (load-theme 'zenburn t))
 
+(use-package kaolin-themes :ensure t)
+(use-package spacemacs-theme :ensure t)
+
 (use-package tern
   :ensure t
   :config
@@ -343,6 +350,8 @@ is already narrowed."
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
+  (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+  (setq ivy-virtual-abbreviate 'full)
   (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
   (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
   (global-set-key (kbd "C-c C-r") 'ivy-resume))
@@ -357,8 +366,15 @@ is already narrowed."
   (global-set-key (kbd "M-j h l") 'counsel-find-library)
   (global-set-key (kbd "C-c C-f") 'counsel-git)
   (global-set-key (kbd "M-j g f") 'counsel-git)
-  (global-set-key (kbd "M-j g g") 'counsel-ag)
+  (global-set-key (kbd "M-j g g") 'counsel-git-grep)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+
+(setq projectile-keymap-prefix (kbd "M-j p"))
+(use-package projectile
+  :ensure t
+  :config
+  (setq projectile-completion-system 'ivy)
+  (projectile-mode +1))
 
 (use-package diminish
   :ensure t

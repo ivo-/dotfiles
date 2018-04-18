@@ -15,4 +15,12 @@
   (interactive)
   (load-theme 'deeper-blue t))
 
+(defun kd ()
+  (interactive)
+  (load-theme 'kaolin-dark t))
+
+(defun st ()
+  (interactive)
+  (load-theme 'spacemacs-dark t))
+
 (provide 'setup-themes)

@@ -21,6 +21,7 @@
         coffee-indent-shift-left
         coffee-newline-and-indent
         comment-dwim
+        counsel-M-x
         create-buffer
         dired-do-delete
         dired-next-line
@@ -41,6 +42,7 @@
         isearch-printing-char
         iy-go-to-char
         iy-go-to-char--command
+        iy-go-to-char-quit
         kill-region
         kill-sentence
         kill-visual-line
@@ -106,6 +108,8 @@
         transpose-words
         undefined
         universal-argument-minus
+        wdired-capitalize-word
+        wdired-downcase-word
         wdired-finish-edit
         wdired-previous-line
         web-mode-comment-or-uncomment
@@ -116,6 +120,7 @@
 (setq mc/cmds-to-run-once
       '(
         about-emacs
+        dired-jump
         god-local-mode
         god-mode
         god-mode-meta
