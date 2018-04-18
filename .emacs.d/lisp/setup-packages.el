@@ -20,6 +20,7 @@
 
 (use-package ag :ensure t)                 ; Ag interface
 (use-package htmlize :ensure t)            ; HTML-ize buffer code
+(use-package dumb-jump :ensure t)          ; Dumb jump to definition
 (use-package git-timemachine :ensure t)    ; Go trough file git history.
 (use-package rainbow-delimiters :ensure t) ; Use different colors for parentheses
 
@@ -45,8 +46,8 @@
 ;; Show git diff in edited files
 (use-package git-gutter
   :ensure t
-  :bind (("M-j n d" . git-gutter:next-hunk))
-  :config (global-git-gutter-mode +1))
+  :bind (("M-j n d" . git-gutter:next-hunk)))
+(global-git-gutter-mode +1) ; For whatever reason it doesn't work in :config
 
 ;; Easy navigation without modifier keys
 (use-package god-mode
@@ -164,7 +165,6 @@ is already narrowed."
   :ensure t
   :bind (("M-j b c" . flycheck-buffer))
   :config
-  (global-flycheck-mode)
   (setq flycheck-display-errors-delay 0.2)
   (defun use-js-executables-from-node-modules ()
     "Set executables of JS checkers from local node modules."
@@ -182,6 +182,7 @@ is already narrowed."
                  (expand-file-name (concat "bin/" module ".js")
                                    package-directory)))))))
   (add-hook 'flycheck-mode-hook 'use-js-executables-from-node-modules))
+(global-flycheck-mode) ; For whatever reason it doesn't work in :config
 
 (use-package yaml-mode :ensure t)
 (use-package scss-mode
@@ -200,6 +201,12 @@ is already narrowed."
   :config (global-rbenv-mode))
 
 (use-package js2-mode :ensure t)
+(use-package add-node-modules-path
+  :ensure t
+  :config
+  (dolist (hook '(js2-mode-hook js-mode-hook))
+    (add-hook hook #'add-node-modules-path)))
+
 (use-package prettier-js
   :ensure t
   :config
@@ -209,7 +216,6 @@ is already narrowed."
           "--trailing-comma" "es5"
           "--jsx-bracket-same-line")))
 
-(use-package dumb-jump :ensure t)
 (use-package rjsx-mode
   :ensure t
   :mode ("\\.jsx?\\'" . rjsx-mode)
@@ -312,13 +318,12 @@ is already narrowed."
   :config
   (setq avy-background t))
 
+(use-package kaolin-themes :ensure t)
+(use-package spacemacs-theme :ensure t)
 (use-package zenburn-theme
   :ensure t
   :config
   (load-theme 'zenburn t))
-
-(use-package kaolin-themes :ensure t)
-(use-package spacemacs-theme :ensure t)
 
 (use-package tern
   :ensure t
@@ -480,6 +485,14 @@ is already narrowed."
   :config
   (add-to-list 'eshell-visual-commands "emacs")
   (add-to-list 'eshell-visual-commands "htop"))
+
+(use-package eshell
+  :config
+  (defun eshell/clear ()
+    "Clear eshell buffer."
+    (interactive)
+    (let ((eshell-buffer-maximum-lines 0))
+      (eshell-truncate-buffer))))
 
 (add-hook 'prog-mode-hook 'add-watchwords)
 (add-hook 'prog-mode-hook 'turn-on-auto-fill)

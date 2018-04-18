@@ -4,12 +4,6 @@
    nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|NOTE\\|REFACTOR\\|NOCOMMIT\\|OPTIMIZE\\)"
           1 font-lock-warning-face t))))
 
-(defun eshell/clear ()
-  "Clear eshell buffer."
-  (interactive)
-  (let ((eshell-buffer-maximum-lines 0))
-    (eshell-truncate-buffer)))
-
 (defun create-buffer nil
   "Create empty buffer."
   (interactive)

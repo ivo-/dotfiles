@@ -1,19 +1,22 @@
 ;; TODO:
 ;;
 ;;   - [ ] symlinks script for files in dotfiles
-;;   - [ ] https://github.com/codesuki/add-node-modules-path
-;;   - [ ] https://github.com/redguardtoo/js-comint
 ;;   - [ ] exwm with, arch/debian? https://technomancy.us/184
+;;   - [ ] https://github.com/rlister/org-present
+;;   - [ ] https://github.com/kunalb/poet
+;;   - [ ] https://github.com/codesuki/add-node-modules-path
+;;   - [ ] enable eslint
+
 ;;
 ;; Remainders:
 ;;
 ;;   M-j i        => imenu
 ;;   M-j c        => focus on defn
 ;;   M-j g g      => git grep
+;;   M-.          => jump-to-definition
+;;   M-,          => jump-back
 ;;   C-<Return>   => expand region
-;;
-;; https://github.com/GoogleChrome/puppeteer ->
-;;   login to your accounts and show some data: epay, gmail, pocket
+;;   M-j RET      => switch to previous buffer
 
 (package-initialize)
 
