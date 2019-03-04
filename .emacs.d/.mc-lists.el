@@ -35,6 +35,7 @@
         end-of-visual-line
         eshell-bol
         git-gutter:next-diff
+        git-gutter:next-hunk
         go-mode-insert-and-indent
         haml-electric-backspace
         indent-for-tab-command
@@ -56,9 +57,11 @@
         org-delete-char
         org-end-of-line
         org-force-self-insert
+        org-insert-heading-respect-content
         org-kill-line
         org-return-indent
         org-self-insert-command
+        org-shiftright
         org-yank
         orgtbl-self-insert-command
         paredit-backslash
@@ -87,6 +90,7 @@
         prolog-electric-if-then-else
         rjsx-delete-creates-full-tag
         rjsx-electric-gt
+        rjsx-electric-lt
         sgml-slash
         sh-assignment
         smarter-move-beginning-of-line
@@ -105,12 +109,14 @@
         tab-to-tab-stop
         text-scale-decrease
         toggle-eshell-1
+        toggle-input-method
         transpose-words
         undefined
         universal-argument-minus
         wdired-capitalize-word
         wdired-downcase-word
         wdired-finish-edit
+        wdired-next-line
         wdired-previous-line
         web-mode-comment-or-uncomment
         yaml-electric-backspace

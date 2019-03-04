@@ -495,9 +495,9 @@ is already narrowed."
       (eshell-truncate-buffer))))
 
 (add-hook 'prog-mode-hook 'add-watchwords)
-(add-hook 'prog-mode-hook 'turn-on-auto-fill)
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'org-mode-hook 'turn-on-auto-fill)
+;; (add-hook 'prog-mode-hook 'turn-on-auto-fill)
+;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
+;; (add-hook 'org-mode-hook 'turn-on-auto-fill)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 (provide 'setup-packages)
