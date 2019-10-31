@@ -1,11 +1,97 @@
 (require 'cl)
 (require 'package)
 
+;;; =============================================================================
+;;; Settings
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+;; Free personal key bindings space.
+(global-unset-key (kbd "M-j"))
+
+;; Remove all distractions.
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+(fset 'yes-or-no-p 'y-or-n-p)                ; enable y/n answers
+
+(setq-default fill-column 80)                ; Lines should be 80 chars.
+(setq-default indent-tabs-mode nil)          ; Don't use tabs in indentation.
+
+(setq echo-keystrokes 0.1)                   ; Show faster incomplete commands while typing them.
+(setq gc-cons-threshold 50000000)            ; Reduce GC frequency
+(setq inhibit-startup-screen t)              ; Disable startup screen
+(setq large-file-warning-threshold 100000000); Warn when opening files bigger than 100MB
+(setq load-prefer-newer t)                   ; Always load newest byte code
+(setq require-final-newline t)               ; Newline at end of file
+(setq ring-bell-function 'ignore)            ; Disable the bell ring
+(setq save-interprogram-paste-before-kill t) ; Save selection from external programs in kill ring.
+(setq select-enable-clipboard t)             ; Allow pasting selection outside of Emacs.
+(setq tab-always-indent 'complete)           ; Smart tab behavior - indent or complete
+
+;; Eshell has troubles with more.
+(setenv "PAGER" (executable-find "cat"))
+
+(blink-cursor-mode -1)      ; Disable cursor blinking
+(column-number-mode t)      ; Show current column
+(delete-selection-mode t)   ; Delete selection when start writing.
+(global-auto-revert-mode t) ; Auto revert file if it is changed on the disk.
+(global-hl-line-mode +1)    ; Highlight the current line
+(global-subword-mode 1)     ; Navigate trough camel cased words.
+(global-visual-line-mode t) ; Operate on visual lines instead of logical lines.
+(line-number-mode t)        ; Show current line
+(size-indication-mode t)    ; Always display file size, line and column numbers.
+(tooltip-mode -1)           ; Display help text in the echo area.
+(electric-indent-mode +1)   ; Automatically re-indentation on some commands.
+
+;; Always use UTF-8.
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
+
+;; Swap super and meta on OSX
+(when (memq window-system '(mac ns))
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'super))
+
+;; Create the savefile dir if it doesn't exist
+(defconst my-savefile-dir (expand-file-name "savefile" user-emacs-directory))
+(unless (file-exists-p my-savefile-dir)
+  (make-directory my-savefile-dir))
+
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+
+;; hippie expand is dabbrev expand on steroids
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev
+                                         try-expand-dabbrev-all-buffers
+                                         try-expand-dabbrev-from-kill
+                                         try-complete-file-name-partially
+                                         try-complete-file-name
+                                         try-expand-all-abbrevs
+                                         try-expand-list
+                                         try-expand-line
+                                         try-complete-lisp-symbol-partially
+                                         try-complete-lisp-symbol))
+
+;;; =============================================================================
+;;; Packages
+
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 ;; keep the installed packages in .emacs.d
 (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
 (package-initialize)
+
 ;; update the package metadata is the local cache is missing
 (unless package-archive-contents
   (package-refresh-contents))
@@ -16,19 +102,14 @@
 (require 'use-package)
 (setq use-package-verbose t)
 
-;; =============================================================================
-
 (use-package ag :ensure t)                 ; Ag interface
 (use-package htmlize :ensure t)            ; HTML-ize buffer code
 (use-package dumb-jump :ensure t)          ; Dumb jump to definition
-(use-package git-timemachine :ensure t)    ; Go trough file git history.
 (use-package rainbow-delimiters :ensure t) ; Use different colors for parentheses
-
-;; Better search and replace
-(use-package anzu
+(use-package rainbow-mode
   :ensure t
   :config
-  (global-anzu-mode))
+  (add-hook 'prog-mode-hook #'rainbow-mode))
 
 ;; Show vertical indentation lines
 (use-package indent-guide
@@ -43,20 +124,20 @@
   :config
   (which-key-mode +1))
 
-;; Show git diff in edited files
-(use-package git-gutter
+(use-package hl-todo
   :ensure t
-  :bind (("M-j n d" . git-gutter:next-hunk)))
-(global-git-gutter-mode +1) ; For whatever reason it doesn't work in :config
-
-;; Easy navigation without modifier keys
-(use-package god-mode
-  :ensure t
-  :bind ("M-<return>" . god-local-mode)
   :config
-  (defun god-mode-update-cursor () (setq cursor-type (if (or god-local-mode buffer-read-only) 'hbar 'box)))
-  (add-hook 'god-mode-enabled-hook 'god-mode-update-cursor)
-  (add-hook 'god-mode-disabled-hook 'god-mode-update-cursor))
+  (setq hl-todo-highlight-punctuation ":")
+  (global-hl-todo-mode))
+
+;; Show git diff in edited files
+(use-package diff-hl
+  :ensure t
+  :bind (("M-j n d" . diff-hl-next-hunk))
+  :config
+  (global-diff-hl-mode +1)
+  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
 ;; Automatically resize windows
 (use-package golden-ratio
@@ -87,9 +168,7 @@
 ;; Jump to char in the same row
 (use-package iy-go-to-char
   :ensure t
-  :bind (("M-Z" . iy-go-to-char)
-         ("M-F" . iy-go-to-char-continue)
-         ("M-B" . iy-go-to-char-continue-backward)))
+  :bind (("M-Z" . iy-go-to-char)))
 
 ;; Save buffer when they loose focus
 (use-package super-save
@@ -108,7 +187,8 @@
   :ensure t
   :bind (("C-;" . er/expand-region)
          ("C-'" . er/expand-region)
-         ("C-<return>" . er/expand-region)))
+         ("C-<return>" . er/expand-region)
+         ("M-<return>" . er/expand-region)))
 
 (use-package multiple-cursors
   :ensure t
@@ -122,14 +202,17 @@
          ("M-j a" . mc/mark-all-like-this))
   :config (add-to-list 'mc/unsupported-minor-modes 'flyspell-mode))
 
+(use-package crux
+  :ensure t
+  :bind (("M-j f d" . crux-delete-file-and-buffer)
+         ("M-j f r" . crux-rename-buffer-and-file)
+         ("M-j e" . crux-eval-and-replace)
+         ("M-j M-e" . crux-eval-and-replace)
+         ("M-K" . crux-kill-whole-line)))
+
 (use-package magit
   :ensure t
   :bind (("C-c s" . magit-status)))
-
-(use-package quickrun
-  :ensure t
-  :bind (("M-j b r" . quickrun)
-         ("M-j b R" . quickrun-shell)))
 
 (use-package google-translate
   :ensure t
@@ -141,70 +224,25 @@
   (setq google-translate-default-source-language "en")
   (setq google-translate-default-target-language "bg"))
 
-(use-package fancy-narrow
-  :ensure t
-  :bind ("M-j c" . fancy-narrow-or-widen-dwim)
-  :config
-  (defun fancy-narrow-or-widen-dwim (p)
-    "Widen if buffer is narrowed, narrow-dwim otherwise.
-Dwim means: region, org-src-block, org-subtree, or
-defun, whichever applies first.  Narrowing to
-org-src-block actually calls `org-edit-src-code'.
-
-With prefix P, don't widen, just narrow even if buffer
-is already narrowed."
-    (interactive "P")
-    (declare (interactive-only))
-    (cond ((and (fancy-narrow-active-p) (not p)) (fancy-widen))
-          ((region-active-p)
-           (fancy-narrow-to-region (region-beginning)
-                                   (region-end)))
-          (t (fancy-narrow-to-defun)))))
-
 (use-package flycheck
   :ensure t
-  :bind (("M-j b c" . flycheck-buffer))
-  :config
-  (setq flycheck-display-errors-delay 0.2)
-  (defun use-js-executables-from-node-modules ()
-    "Set executables of JS checkers from local node modules."
-    (interactive)
-    (-when-let* ((file-name (buffer-file-name))
-                 (root (locate-dominating-file file-name "node_modules"))
-                 (module-directory (expand-file-name "node_modules" root)))
-      (pcase-dolist (`(,checker . ,module) '((javascript-jshint . "jshint")
-                                             (javascript-eslint . "eslint")
-                                             (javascript-jscs   . "jscs")))
-        (let ((package-directory (expand-file-name module module-directory))
-              (executable-var (flycheck-checker-executable-variable checker)))
-          (when (file-directory-p package-directory)
-            (set (make-local-variable executable-var)
-                 (expand-file-name (concat "bin/" module ".js")
-                                   package-directory)))))))
-  (add-hook 'flycheck-mode-hook 'use-js-executables-from-node-modules))
+  :bind (("M-j b c" . flycheck-buffer)
+         ("M-j n e" . flycheck-next-error)))
 (global-flycheck-mode) ; For whatever reason it doesn't work in :config
 
-(use-package yaml-mode :ensure t)
-(use-package scss-mode
+(use-package flycheck-color-mode-line
   :ensure t
   :config
-  (setq scss-compile-at-save nil))
-
-(use-package markdown-mode
-  :ensure t
-  :mode (("\\.md$" . markdown-mode)
-         ("\\.mkd$" . markdown-mode)
-         ("\\.markdown$" . markdown-mode)))
-
-(use-package rbenv
-  :ensure t
-  :config (global-rbenv-mode))
+  (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
 
 (use-package js2-mode :ensure t)
+(use-package yaml-mode :ensure t)
+(use-package scss-mode :ensure t)
+(use-package markdown-mode :ensure t :mode (("\\.md$" . markdown-mode)))
 (use-package add-node-modules-path
   :ensure t
   :config
-  (dolist (hook '(js2-mode-hook js-mode-hook))
+  (dolist (hook '(js2-mode-hook js-mode-hook typescript-mode-hook))
     (add-hook hook #'add-node-modules-path)))
 
 (use-package prettier-js
@@ -212,9 +250,12 @@ is already narrowed."
   :config
   (setq prettier-js-args
         '(
-          "--single-quote"
-          "--trailing-comma" "es5"
-          "--jsx-bracket-same-line")))
+          ;; "--single-quote"
+          ;; "--trailing-comma" "es5"
+          ;; "--jsx-bracket-same-line"
+          ))
+  (dolist (hook '(js2-mode-hook js-mode-hook))
+    (add-hook hook 'prettier-js-mode)))
 
 (use-package rjsx-mode
   :ensure t
@@ -225,7 +266,6 @@ is already narrowed."
   (define-key js2-mode-map (kbd "C-c C-f") nil)
   (define-key js2-mode-map (kbd "M-.") 'dumb-jump-go)
   (custom-set-variables
-   '(js2-global-externs '("module" "require" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON"))
    '(js2-basic-offset 2)
    '(js2-indent-switch-body t)
    '(js2-strict-missing-semi-warning t)
@@ -233,17 +273,23 @@ is already narrowed."
    '(js2-missing-semi-one-line-override t)
    '(js2-strict-trailing-comma-warning nil)))
 
-(use-package indium
+(use-package typescript-mode
+  :ensure t
+  :init (electric-indent-mode -1)
+  :mode (("\\.ts\\'" . typescript-mode)
+         ("\\.tsx\\'" . typescript-mode)))
+
+(use-package tide
   :ensure t
   :config
-  (define-key indium-interaction-mode-map "\C-c\M-j" 'indium-run-node)
-  (define-key indium-interaction-mode-map "\C-c\M-r" 'indium-restart-node)
-  (define-key indium-interaction-mode-map "\C-c\M-c" 'indium-connect-to-nodejs)
-  (define-key indium-interaction-mode-map "\C-c\M-k" 'indium-eval-buffer)
-  (define-key indium-repl-mode-map "\C-l" 'indium-repl-clear-output)
-
-  (dolist (hook '(js2-mode-hook js-mode-hook))
-    (add-hook hook 'indium-interaction-mode)))
+  (defun setup-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1))
+  ;; formats the buffer before saving
+  (add-hook 'before-save-hook 'tide-format-before-save)
+  (add-hook 'typescript-mode-hook #'setup-tide-mode))
 
 (use-package web-mode
   :ensure t
@@ -264,7 +310,6 @@ is already narrowed."
   (local-set-key (kbd "RET") 'newline-and-indent))
 
 (use-package clojure-mode :ensure t)
-(use-package clojure-cheatsheet :ensure t)
 (use-package cider
   :ensure t
   :init
@@ -286,15 +331,6 @@ is already narrowed."
   (define-key cider-repl-mode-map (kbd "C-c C-z") 'delete-window)
   (define-key cider-repl-mode-map (kbd "C-c C-h") 'clojure-cheatsheet))
 
-(use-package prolog
-  :mode ("\\.pl$" . prolog-mode)
-  :config
-  (progn
-    (setq prolog-system 'swi)
-    (define-key prolog-mode-map (kbd "C-c M-j") 'run-prolog)
-    (define-key prolog-mode-map (kbd "C-c M-z") 'run-prolog)
-    (define-key prolog-mode-map (kbd "C-c M-z") 'prolog-consult-file)))
-
 (use-package smartparens
    :ensure t
   ;; :ensure t
@@ -311,43 +347,37 @@ is already narrowed."
   (add-hook 'lisp-mode-hook 'smartparens-strict-mode)
   (add-hook 'emacs-lisp-mode-hook 'smartparens-strict-mode))
 
-(use-package avy
-  :ensure t
-  :bind (("M-j j" . avy-goto-word-or-subword-1)
-         ("M-j M-j" . avy-goto-char))
-  :config
-  (setq avy-background t))
-
-(use-package kaolin-themes :ensure t)
-(use-package spacemacs-theme :ensure t)
 (use-package zenburn-theme
   :ensure t
   :config
+  (defadvice load-theme (before theme-dont-propagate activate)
+    (mapcar #'disable-theme custom-enabled-themes))
+  (defun zb ()
+    (interactive)
+    (load-theme 'zenburn t))
+
+  (defun aw ()
+    (interactive)
+    (load-theme 'adwaita t))
+
+  (defun db ()
+    (interactive)
+    (load-theme 'deeper-blue t))
   (load-theme 'zenburn t))
 
-(use-package tern
-  :ensure t
-  :config
-  (setq tern-command (append tern-command '("--no-port-file"))))
-
 (use-package company-flx :ensure t)
-(use-package company-tern :ensure t)
 (use-package company
   :ensure t
   :config
-  (global-company-mode)
-  (company-flx-mode +1)
-  (add-to-list 'company-backends 'company-tern)
-  (setq company-idle-delay 0.5)
+  (setq company-idle-delay 0.2)
+  (setq company-show-numbers t)
   (setq company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2)
-  (global-set-key (kbd "<C-tab>") 'company-complete)
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous))
-
-(use-package imenu-anywhere
-  :ensure t
-  :bind (("M-j i" . imenu-anywhere)))
+  (setq company-tooltip-align-annotations t)
+  ;; invert the navigation direction if the the completion popup-isearch-match
+  ;; is displayed on top (happens near the bottom of windows)
+  (setq company-tooltip-flip-when-above t)
+  (global-company-mode))
 
 (use-package ivy
   :ensure t
@@ -361,6 +391,11 @@ is already narrowed."
   (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
   (global-set-key (kbd "C-c C-r") 'ivy-resume))
 
+(use-package swiper
+  :ensure t
+  :config
+  (global-set-key "\C-s" 'swiper))
+
 (use-package counsel
   :ensure t
   :config
@@ -372,28 +407,17 @@ is already narrowed."
   (global-set-key (kbd "C-c C-f") 'counsel-git)
   (global-set-key (kbd "M-j g f") 'counsel-git)
   (global-set-key (kbd "M-j g g") 'counsel-git-grep)
+  (global-set-key (kbd "M-j g a") 'counsel-ag)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
 
 (setq projectile-keymap-prefix (kbd "M-j p"))
 (use-package projectile
   :ensure t
-  :config
+  :init
   (setq projectile-completion-system 'ivy)
+  :config
   (projectile-mode +1))
 
-(use-package diminish
-  :ensure t
-  :init
-  (progn
-    (diminish 'git-gutter-mode)
-    (diminish 'golden-ratio-mode)
-    (diminish 'anzu-mode)
-    (diminish 'global-whitespace-mode)
-    (diminish 'volatile-highlights-mode)
-    (diminish 'subword-mode)
-    (diminish 'visual-line-mode)
-    (diminish 'auto-fill-function)
-    (diminish 'indent-guide-mode)))
 
 ;; =============================================================================
 ;; Build-in
@@ -407,10 +431,6 @@ is already narrowed."
   (setq whitespace-line-column 80) ;; limit line length
   (setq whitespace-style '(face tabs empty trailing lines-tail)))
 
-(use-package paren
-  :config
-  (show-paren-mode +1))
-
 (use-package uniquify
   :config
   (setq uniquify-buffer-name-style 'forward)
@@ -421,7 +441,6 @@ is already narrowed."
   (setq uniquify-ignore-buffers-re "^\\*"))
 
  ; Save point position.
-(require 'saveplace)
 (use-package saveplace
   :config
   (unless (file-exists-p "~/.emacs.d/places")
@@ -439,29 +458,17 @@ is already narrowed."
         recentf-auto-cleanup 'never)
   (recentf-mode +1))
 
-(use-package windmove
-  :config
-  ;; use shift + arrow keys to switch between visible buffers
-  (windmove-default-keybindings))
-
+;; On the fly spellcheck.
 (use-package flyspell
   :config
-  (define-key flyspell-mode-map (kbd "C-;") nil))
-
-(use-package ispell
-  :bind (("M-j s"   . 'ispell-word)
-         ("M-j M-s" . 'ispell-word))
-  :config
+  (define-key flyspell-mode-map (kbd "C-;") nil)
+  (global-set-key (kbd "M-j s") 'ispell-word)
+  (global-set-key (kbd "M-j M-s") 'ispell-word)
   (setq-default ispell-program-name "aspell")
   (when (executable-find ispell-program-name)
     (add-hook 'text-mode-hook #'flyspell-mode)
     (add-hook 'prog-mode-hook #'flyspell-prog-mode)))
 
-(use-package re-builder
-  :config
-  (define-key reb-mode-map (kbd "C-c C-r") 'reb-query-replace))
-
-(require 'dired-x)
 (use-package dired
   :bind (("M-j d"   . dired-jump)
          ("M-j M-d" . dired-jump))
@@ -479,12 +486,22 @@ is already narrowed."
 
   (define-key dired-mode-map (kbd "<S-return>") 'dired-find-file)
   (define-key dired-mode-map (kbd "<return>") 'dired-find-alternate-file)
-  (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file ".."))))
+  (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))
 
-(use-package em-term
-  :config
-  (add-to-list 'eshell-visual-commands "emacs")
-  (add-to-list 'eshell-visual-commands "htop"))
+  (defun mydired-sort ()
+    "Sort dired listings with directories first."
+    (save-excursion
+      (let (buffer-read-only)
+        (forward-line 2) ;; beyond dir. header
+        (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
+      (set-buffer-modified-p nil)))
+
+  (defadvice dired-readin
+      (after dired-after-updating-hook first () activate)
+    "Sort dired listings with directories first before adding mark."
+    (mydired-sort))
+
+  (require 'dired-x))
 
 (use-package eshell
   :config
@@ -494,10 +511,15 @@ is already narrowed."
     (let ((eshell-buffer-maximum-lines 0))
       (eshell-truncate-buffer))))
 
-(add-hook 'prog-mode-hook 'add-watchwords)
-;; (add-hook 'prog-mode-hook 'turn-on-auto-fill)
-;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
-;; (add-hook 'org-mode-hook 'turn-on-auto-fill)
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(use-package em-term
+  :config
+  (add-to-list 'eshell-visual-commands "emacs")
+  (add-to-list 'eshell-visual-commands "htop"))
+
+(use-package paren :config (show-paren-mode +1))
+(use-package windmove :config (windmove-default-keybindings))
+(use-package org-mode :config (add-hook 'org-mode-hook 'turn-on-auto-fill))
+(use-package text-mode :config (add-hook 'text-mode-hook 'turn-on-auto-fill))
+(use-package shell-mode :config (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on))
 
 (provide 'setup-packages)

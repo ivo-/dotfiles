@@ -1,44 +1,8 @@
-(defun add-watchwords ()
-  "Change color of some important words."
-  (font-lock-add-keywords
-   nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|NOTE\\|REFACTOR\\|NOCOMMIT\\|OPTIMIZE\\)"
-          1 font-lock-warning-face t))))
-
 (defun create-buffer nil
   "Create empty buffer."
   (interactive)
   (switch-to-buffer (get-buffer-create
                      (read-shell-command "Buffer name: "))))
-
-(defun rename-buffer-file ()
-  "Rename current file and buffer."
-  (interactive)
-  (let ((name (buffer-name))
-        (filename (buffer-file-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (error "Buffer '%s' is not visiting a file!" name)
-      (let ((new-name (read-file-name "New name: " filename)))
-        (if (get-buffer new-name)
-            (error "A buffer named '%s' already exists!" new-name)
-          (rename-file filename new-name 1)
-          (rename-buffer new-name)
-          (set-visited-file-name new-name)
-          (set-buffer-modified-p nil)
-          (message "File '%s' successfully renamed to '%s'"
-                   name (file-name-nondirectory new-name)))))))
-
-(defun delete-buffer-file ()
-  "Delete current file and buffer."
-  (interactive)
-  (let ((filename (buffer-file-name))
-        (buffer (current-buffer))
-        (name (buffer-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (ido-kill-buffer)
-      (when (yes-or-no-p "Are you sure you want to remove this file? ")
-        (delete-file filename)
-        (kill-buffer buffer)
-        (message "File '%s' successfully removed" filename)))))
 
 (defun cleanup-buffer-safe ()
   "Perform a bunch of safe operations on the whitespace content of a buffer.
@@ -101,28 +65,6 @@ there's a region, all lines that region covers will be duplicated."
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
-(defun open-with ()
-  "Simple function that allow us to open the underlying
-file of a buffer in an external program."
-  (interactive)
-  (when buffer-file-name
-    (shell-command (concat
-                    (if (eq system-type 'darwin)
-                        "open"
-                      (read-shell-command "Open current file with: "))
-                    " "
-                    buffer-file-name))))
-
-(defun google ()
-  "Googles a query or region if any."
-  (interactive)
-  (browse-url
-   (concat
-    "http://www.google.com/search?ie=utf-8&oe=utf-8&q="
-    (url-hexify-string (if mark-active
-                           (buffer-substring (region-beginning) (region-end))
-                         (read-string "Google: "))))))
-
 (defun insert-date ()
   "Insert data at point."
   (interactive)
@@ -151,22 +93,6 @@ file of a buffer in an external program."
     (when (= orig-point (point))
       (move-beginning-of-line 1))))
 
-(defun make-buffer-uninteresting ()
-  "Rename the current buffer to begin with a space."
-  (interactive)
-  (unless (string-match-p "^ " (buffer-name))
-    (rename-buffer (concat " " (buffer-name)))))
-
-(defun eval-and-replace ()
-  "Replace the preceding sexp with its value."
-  (interactive)
-  (backward-kill-sexp)
-  (condition-case nil
-      (prin1 (eval (read (current-kill 0)))
-             (current-buffer))
-    (error (message "Invalid expression")
-           (insert (current-kill 0)))))
-
 (defun sudo-edit (&optional arg)
   "Edit current file as sudo."
   (interactive "P")
@@ -185,15 +111,6 @@ file of a buffer in an external program."
     (kill-this-buffer)
     (select-window current)
     (delete-other-windows)))
-
-(defun reb-query-replace (to-string)
-  "Replace re-builder matches wtih string."
-  (interactive
-   (progn (barf-if-buffer-read-only)
-          (list (query-replace-read-to (reb-target-binding reb-regexp)
-                                       "Query replace"  t))))
-  (with-current-buffer reb-target-buffer
-    (query-replace-regexp (reb-target-binding reb-regexp) to-string)))
 
 (defun generalized-shell-command (command arg)
   "Unifies `shell-command' and `shell-command-on-region'. If no region is
@@ -226,7 +143,6 @@ file of a buffer in an external program."
                      current-prefix-arg))
   (shell-command (concat command " " (buffer-file-name)) t))
 
-
 (defun join-line-or-lines-in-region ()
   (interactive)
   (cond ((region-active-p)
@@ -236,6 +152,12 @@ file of a buffer in an external program."
              (join-line))))
         (t (call-interactively 'join-line))))
 
+(defun switch-to-previous-buffer ()
+  "Switch to previously open buffer.
+Repeated invocations toggle between the two most recently open buffers."
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+
 (defun hide-eshell ()
   (interactive)
   (let (register-name)
@@ -243,43 +165,26 @@ file of a buffer in an external program."
     (set-register register-name nil)))
 
 (defun toggle-eshell (num)
-  (let (eshell-buffer-name register-name)
-    (setq register-name :eshell-pre-window-conf)
-    (setq eshell-buffer-name (concat "*eshell-" num "*"))
-    (if (string= eshell-buffer-name (buffer-name))
+  (let ((eshell-buffer-name (concat "*eshell-" num "*"))
+        (register-name :eshell-pre-window-conf))
+    (if (string= (concat " " eshell-buffer-name) (buffer-name))
+        ;;
         (progn (jump-to-register register-name)
                (set-register register-name nil))
+
+      ;;
       (when (eq nil (get-register register-name))
         (window-configuration-to-register register-name))
-      (if (not (eq nil (get-buffer eshell-buffer-name)))
-          (switch-to-buffer eshell-buffer-name)
+
+      (if (not (eq nil (get-buffer (concat " " eshell-buffer-name))))
+          (switch-to-buffer (get-buffer (concat " " eshell-buffer-name)))
         (call-interactively 'eshell)
-        (rename-buffer eshell-buffer-name))
+        (rename-buffer (concat " " eshell-buffer-name)))
       (delete-other-windows))))
 
 (defun toggle-eshell-1 () (interactive) (toggle-eshell "1"))
 (defun toggle-eshell-2 () (interactive) (toggle-eshell "2"))
 (defun toggle-eshell-3 () (interactive) (toggle-eshell "3"))
 (defun toggle-eshell-4 () (interactive) (toggle-eshell "4"))
-
-;; TODO: move to packages
-(defun mydired-sort ()
-  "Sort dired listings with directories first."
-  (save-excursion
-    (let (buffer-read-only)
-      (forward-line 2) ;; beyond dir. header
-      (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
-    (set-buffer-modified-p nil)))
-
-(defadvice dired-readin
-    (after dired-after-updating-hook first () activate)
-  "Sort dired listings with directories first before adding mark."
-  (mydired-sort))
-
-(defun switch-to-previous-buffer ()
-  "Switch to previously open buffer.
-Repeated invocations toggle between the two most recently open buffers."
-  (interactive)
-  (switch-to-buffer (other-buffer (current-buffer) 1)))
 
 (provide 'setup-defuns)
