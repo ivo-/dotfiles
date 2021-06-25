@@ -1,3 +1,4 @@
+;;
 ;;;
 ;; Remainders:
 ;;
@@ -11,6 +12,7 @@
 ;; Set up load path.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+;; fasfasfasf
 (require 'setup-packages)
 (require 'setup-defuns)
 (require 'setup-keybindings)

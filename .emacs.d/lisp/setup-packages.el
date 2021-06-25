@@ -103,7 +103,6 @@
 (setq use-package-verbose t)
 
 (use-package ag :ensure t)                 ; Ag interface
-(use-package htmlize :ensure t)            ; HTML-ize buffer code
 (use-package dumb-jump :ensure t)          ; Dumb jump to definition
 (use-package rainbow-delimiters :ensure t) ; Use different colors for parentheses
 (use-package rainbow-mode
@@ -134,10 +133,10 @@
 (use-package diff-hl
   :ensure t
   :bind (("M-j n d" . diff-hl-next-hunk))
-  :config
-  (global-diff-hl-mode +1)
+  :init
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
+(global-diff-hl-mode +1)
 
 ;; Automatically resize windows
 (use-package golden-ratio
@@ -146,6 +145,7 @@
          ("M-j M-w" . golden-ratio))
   :init (golden-ratio-mode 1))
 
+;; Brings visual feedback to some operations
 (use-package volatile-highlights
   :ensure t
   :config
@@ -176,6 +176,7 @@
   :config
   (super-save-mode +1))
 
+;; Load PATH from the user's shell
 (use-package exec-path-from-shell
   :ensure t
   :config
@@ -235,10 +236,11 @@
   :config
   (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
 
-(use-package js2-mode :ensure t)
 (use-package yaml-mode :ensure t)
 (use-package scss-mode :ensure t)
 (use-package markdown-mode :ensure t :mode (("\\.md$" . markdown-mode)))
+
+(use-package js2-mode :ensure t)
 (use-package add-node-modules-path
   :ensure t
   :config
@@ -332,8 +334,7 @@
   (define-key cider-repl-mode-map (kbd "C-c C-h") 'clojure-cheatsheet))
 
 (use-package smartparens
-   :ensure t
-  ;; :ensure t
+  :ensure t
   :bind ("C-K" . sp-kill-hybrid-sexp)
   :config
   (require 'smartparens-config)
@@ -369,7 +370,7 @@
 (use-package company
   :ensure t
   :config
-  (setq company-idle-delay 0.2)
+  (setq company-idle-delay 0.3)
   (setq company-show-numbers t)
   (setq company-tooltip-limit 10)
   (setq company-minimum-prefix-length 2)
