@@ -17,6 +17,9 @@
 /var
 /url
 /server
+/games
+/image-dired
+/transient
 notes
 places
 repl-port
@@ -24,3 +27,9 @@ nrepl-history
 projectile-bookmarks.eld
 projectile.cache
 network-security.data
+ido.last
+recentf
+smex-items
+.DS_Store
+.lsp-session*
+./transient/history.el

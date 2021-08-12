@@ -1,18 +1,17 @@
-;;
-;;;
 ;; Remainders:
 ;;
 ;;   M-.          => jump-to-definition
 ;;   M-,          => jump-back
 ;;   C-<Return>   => expand region
 ;;   M-j RET      => switch to previous buffer
+;;
+;;  - [ ] https://github.com/BlueFlo0d/xwwp/tree/xwwp-ace-dev
 
 (package-initialize)
 
-;; Set up load path.
+;; Set up load path
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-;; fasfasfasf
 (require 'setup-packages)
 (require 'setup-defuns)
 (require 'setup-keybindings)
@@ -22,3 +21,5 @@
 
 ;; Don't need the *scratch* buffer.
 (kill-buffer "*scratch*")
+
+(setenv "TERM" "xterm-256color")

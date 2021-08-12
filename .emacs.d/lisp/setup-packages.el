@@ -32,9 +32,6 @@
 (setq select-enable-clipboard t)             ; Allow pasting selection outside of Emacs.
 (setq tab-always-indent 'complete)           ; Smart tab behavior - indent or complete
 
-;; Eshell has troubles with more.
-(setenv "PAGER" (executable-find "cat"))
-
 (blink-cursor-mode -1)      ; Disable cursor blinking
 (column-number-mode t)      ; Show current column
 (delete-selection-mode t)   ; Delete selection when start writing.
@@ -53,7 +50,6 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-
 ;; Swap super and meta on OSX
 (when (memq window-system '(mac ns))
   (setq mac-command-modifier 'meta)
@@ -69,7 +65,6 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
-
 
 ;; hippie expand is dabbrev expand on steroids
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
@@ -102,9 +97,10 @@
 (require 'use-package)
 (setq use-package-verbose t)
 
-(use-package ag :ensure t)                 ; Ag interface
-(use-package dumb-jump :ensure t)          ; Dumb jump to definition
-(use-package rainbow-delimiters :ensure t) ; Use different colors for parentheses
+;; Dumb jump to definition
+(use-package dumb-jump :ensure t)
+
+;; Highlight colours
 (use-package rainbow-mode
   :ensure t
   :config
@@ -123,6 +119,7 @@
   :config
   (which-key-mode +1))
 
+;; Highlight TODO:
 (use-package hl-todo
   :ensure t
   :config
@@ -133,19 +130,19 @@
 (use-package diff-hl
   :ensure t
   :bind (("M-j n d" . diff-hl-next-hunk))
-  :init
+  :config
+  (global-diff-hl-mode +1)
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
-(global-diff-hl-mode +1)
 
 ;; Automatically resize windows
 (use-package golden-ratio
   :ensure t
   :bind (("M-j w" . golden-ratio)
          ("M-j M-w" . golden-ratio))
-  :init (golden-ratio-mode 1))
+  :config (golden-ratio-mode 1))
 
-;; Brings visual feedback to some operations
+;; Highlight some operations
 (use-package volatile-highlights
   :ensure t
   :config
@@ -158,17 +155,10 @@
   :config
   (add-hook 'prog-mode-hook '(lambda () (idle-highlight-mode t))))
 
-;; Hide some annoying file details in dired
-(use-package dired-details
-  :ensure t
-  :config
-  (setq-default dired-details-hidden-string "--- ")
-  (dired-details-install))
-
 ;; Jump to char in the same row
-(use-package iy-go-to-char
+(use-package jump-char
   :ensure t
-  :bind (("M-Z" . iy-go-to-char)))
+  :bind (("M-Z" . jump-char-forward)))
 
 ;; Save buffer when they loose focus
 (use-package super-save
@@ -176,12 +166,12 @@
   :config
   (super-save-mode +1))
 
-;; Load PATH from the user's shell
 (use-package exec-path-from-shell
   :ensure t
   :config
   (when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize)))
+    (exec-path-from-shell-initialize)
+    (exec-path-from-shell-copy-env "GOPATH")))
 
 ;; Expand selection
 (use-package expand-region
@@ -209,7 +199,14 @@
          ("M-j f r" . crux-rename-buffer-and-file)
          ("M-j e" . crux-eval-and-replace)
          ("M-j M-e" . crux-eval-and-replace)
-         ("M-K" . crux-kill-whole-line)))
+         ("M-K" . crux-kill-whole-line)
+         ("C-a" . crux-move-beginning-of-line)
+         ("M-j b i" . crux-cleanup-buffer-or-region)
+         ("M-L" . crux-duplicate-current-line-or-region)
+         ("M-j f e" . crux-sudo-edit)
+         ("C-S-o" . crux-kill-other-buffers)
+         ("M-j l" . crux-top-join-line)
+         ("M-j M-l" . crux-top-join-line)))
 
 (use-package magit
   :ensure t
@@ -236,107 +233,10 @@
   :config
   (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
 
-(use-package yaml-mode :ensure t)
-(use-package scss-mode :ensure t)
-(use-package markdown-mode :ensure t :mode (("\\.md$" . markdown-mode)))
-
-(use-package js2-mode :ensure t)
-(use-package add-node-modules-path
-  :ensure t
-  :config
-  (dolist (hook '(js2-mode-hook js-mode-hook typescript-mode-hook))
-    (add-hook hook #'add-node-modules-path)))
-
-(use-package prettier-js
-  :ensure t
-  :config
-  (setq prettier-js-args
-        '(
-          ;; "--single-quote"
-          ;; "--trailing-comma" "es5"
-          ;; "--jsx-bracket-same-line"
-          ))
-  (dolist (hook '(js2-mode-hook js-mode-hook))
-    (add-hook hook 'prettier-js-mode)))
-
-(use-package rjsx-mode
-  :ensure t
-  :mode ("\\.jsx?\\'" . rjsx-mode)
-  :init (electric-indent-mode -1)
-  :config
-  (define-key js2-mode-map (kbd "M-j") nil)
-  (define-key js2-mode-map (kbd "C-c C-f") nil)
-  (define-key js2-mode-map (kbd "M-.") 'dumb-jump-go)
-  (custom-set-variables
-   '(js2-basic-offset 2)
-   '(js2-indent-switch-body t)
-   '(js2-strict-missing-semi-warning t)
-   '(js2-indent-on-enter-key nil)
-   '(js2-missing-semi-one-line-override t)
-   '(js2-strict-trailing-comma-warning nil)))
-
-(use-package typescript-mode
-  :ensure t
-  :init (electric-indent-mode -1)
-  :mode (("\\.ts\\'" . typescript-mode)
-         ("\\.tsx\\'" . typescript-mode)))
-
-(use-package tide
-  :ensure t
-  :config
-  (defun setup-tide-mode ()
-    (interactive)
-    (tide-setup)
-    (eldoc-mode +1)
-    (tide-hl-identifier-mode +1))
-  ;; formats the buffer before saving
-  (add-hook 'before-save-hook 'tide-format-before-save)
-  (add-hook 'typescript-mode-hook #'setup-tide-mode))
-
-(use-package web-mode
-  :ensure t
-  :mode (("\\.phtml\\'" . web-mode)
-         ("\\.tpl\\.php\\'" . web-mode)
-         ("\\.blade\\.php\\'" . web-mode)
-         ("\\.jsp\\'" . web-mode)
-         ("\\.eco\\'" . web-mode)
-         ("\\.as[cp]x\\'" . web-mode)
-         ("\\.erb\\'" . web-mode)
-         ("\\.html?\\'" . web-mode)
-         ("/\\(views\\|html\\|theme\\|templates\\)/.*\\.php\\'" . web-mode))
-  :init (whitespace-mode -1)
-  :config
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 4)
-  (local-set-key (kbd "RET") 'newline-and-indent))
-
-(use-package clojure-mode :ensure t)
-(use-package cider
-  :ensure t
-  :init
-  :config
-  (defun cider-eval-last-sexp-and-append ()
-    "Evaluate the expression preceding point and append result."
-    (interactive)
-    (let ((last-sexp (cider-last-sexp)))
-      ;; we have to be sure the evaluation won't result in an error
-      (cider-eval-and-get-value last-sexp)
-      (with-current-buffer (current-buffer)
-        (insert ";;=>"))
-      (cider-interactive-eval-print last-sexp)))
-  (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-  (setq nrepl-hide-special-buffers t)
-  (setq cider-auto-select-error-buffer t)
-  (setq nrepl-buffer-name-show-port t)
-  (define-key cider-mode-map (kbd "C-c C-f") nil)
-  (define-key cider-repl-mode-map (kbd "C-c C-z") 'delete-window)
-  (define-key cider-repl-mode-map (kbd "C-c C-h") 'clojure-cheatsheet))
-
 (use-package smartparens
   :ensure t
   :bind ("C-K" . sp-kill-hybrid-sexp)
-  :config
+  :init
   (require 'smartparens-config)
   (setq sp-base-key-bindings 'paredit)
   (setq sp-hybrid-kill-entire-symbol nil)
@@ -344,6 +244,8 @@
   (smartparens-global-mode t)
   (show-smartparens-global-mode t)
   (sp-use-paredit-bindings)
+
+  (define-key smartparens-mode-map (kbd "M-j") nil)
 
   (add-hook 'lisp-mode-hook 'smartparens-strict-mode)
   (add-hook 'emacs-lisp-mode-hook 'smartparens-strict-mode))
@@ -370,10 +272,15 @@
 (use-package company
   :ensure t
   :config
-  (setq company-idle-delay 0.3)
+  ;; Optionally enable completion-as-you-type behavior.
+  ;; (setq company-idle-delay 0)
+  ;; (setq company-minimum-prefix-length 1)
+
+  (setq company-idle-delay 0.2)
+  (setq company-minimum-prefix-length 2)
+
   (setq company-show-numbers t)
   (setq company-tooltip-limit 10)
-  (setq company-minimum-prefix-length 2)
   (setq company-tooltip-align-annotations t)
   ;; invert the navigation direction if the the completion popup-isearch-match
   ;; is displayed on top (happens near the bottom of windows)
@@ -386,7 +293,9 @@
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
-  (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+  (setq ivy-re-builders-alist
+      '((swiper . ivy--regex-plus)
+        (t      . ivy--regex-fuzzy)))
   (setq ivy-virtual-abbreviate 'full)
   (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
   (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
@@ -397,6 +306,7 @@
   :config
   (global-set-key "\C-s" 'swiper))
 
+(use-package smex :ensure t)
 (use-package counsel
   :ensure t
   :config
@@ -409,16 +319,262 @@
   (global-set-key (kbd "M-j g f") 'counsel-git)
   (global-set-key (kbd "M-j g g") 'counsel-git-grep)
   (global-set-key (kbd "M-j g a") 'counsel-ag)
-  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+  (global-set-key (kbd "M-j RET") 'counsel-imenu)
+  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+  (setcdr (assoc 'counsel-M-x ivy-initial-inputs-alist) ""))
 
-(setq projectile-keymap-prefix (kbd "M-j p"))
 (use-package projectile
   :ensure t
   :init
+  (setq projectile-keymap-prefix (kbd "M-j p"))
   (setq projectile-completion-system 'ivy)
   :config
   (projectile-mode +1))
 
+(use-package ibuffer
+  :bind (("C-x C-b" . ibuffer)))
+
+(use-package ibuffer-projectile
+  :ensure t
+  :config
+  (add-hook 'ibuffer-hook
+    (lambda ()
+      (ibuffer-projectile-set-filter-groups)
+      (unless (eq ibuffer-sorting-mode 'alphabetic)
+        (ibuffer-do-sort-by-alphabetic)))))
+
+(use-package yaml-mode :ensure t)
+(use-package scss-mode :ensure t)
+(use-package dockerfile-mode :ensure t)
+(use-package markdown-mode :ensure t :mode (("\\.md$" . markdown-mode)))
+(use-package restclient :ensure t)
+
+;; =============================================================================
+;; JavaScript
+
+(use-package js2-mode :ensure t)
+(use-package add-node-modules-path
+  :ensure t
+  :config
+  (dolist (hook '(js2-mode-hook js-mode-hook typescript-mode-hook))
+    (add-hook hook #'add-node-modules-path)))
+
+(use-package prettier-js
+  :ensure t
+  :config
+  (setq prettier-js-args
+        '(
+          ;; "--single-quote"
+          ;; "--trailing-comma" "es5"
+          ;; "--jsx-bracket-same-line"
+          ))
+  (dolist (hook '(js2-mode-hook typescript-mode-hook))
+    (add-hook hook 'prettier-js-mode)))
+
+(use-package rjsx-mode
+  :ensure t
+  :mode ("\\.jsx?\\'" . rjsx-mode)
+  :init (electric-indent-mode -1)
+  :config
+  (define-key js2-mode-map (kbd "M-j") nil)
+  (define-key js2-mode-map (kbd "C-c C-f") nil)
+  (define-key js2-mode-map (kbd "M-.") 'dumb-jump-go)
+  (custom-set-variables
+   '(js2-basic-offset 2)
+   '(js2-indent-switch-body t)
+   '(js2-strict-missing-semi-warning t)
+   '(js2-indent-on-enter-key nil)
+   '(js2-missing-semi-one-line-override t)
+   '(js2-strict-trailing-comma-warning nil)))
+
+(use-package web-mode
+  :ensure t
+  :mode (("\\.erb\\'" . web-mode)
+         ("\\.html?\\'" . web-mode))
+  :init (whitespace-mode -1)
+  :config
+  (setq web-mode-markup-indent-offset 4)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 4)
+  (local-set-key (kbd "RET") 'newline-and-indent))
+
+;; =============================================================================
+;; TypeScript
+
+(use-package typescript-mode
+  :ensure t
+  :bind (:map typescript-mode-map
+              ("C-c C-d" . tide-documentation-at-point)
+              ("C-c r" . tide-rename-symbol)
+              ("C-c C-r" . tide-rename-symbol)
+              ("C-c f r" . tide-references)
+              ("C-c f e" . tide-error-at-point)
+              ("C-c f i" . tide-jump-to-implementation)
+              ("C-c a d" . tide-jsdoc-template))
+  :init (electric-indent-mode -1)
+  :mode (("\\.tsx?\\'" . typescript-mode))
+  :config (flycheck-add-mode 'typescript-tslint))
+
+(use-package tide
+  :ensure t
+  :config
+  (defun setup-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1))
+  ;; formats the buffer before saving
+  ;; (add-hook 'before-save-hook 'tide-format-before-save)
+  (add-hook 'typescript-mode-hook #'setup-tide-mode))
+
+;; =============================================================================
+;; Golang
+;;
+;; TODO: add debugging lsp-dap
+;;
+;; Setup $PATH:
+;;
+;;   export GOPATH=/Users/$USER/go
+;;   export PATH=$GOPATH/bin:$PATH
+;;
+;; Required tools:
+;;
+;;   - go get golang.org/x/tools/gopls@latest
+;;   - go get -u golang.org/x/tools/cmd/goimports
+;;   - go get -u github.com/cweill/gotests/...
+;;   - go get -u github.com/davidrjenni/reftools/cmd/fillstruct
+;;   - go get -u github.com/fatih/gomodifytags
+;;   - go get -u github.com/josharian/impl
+;;   - brew install golangci/tap/golangci-lint
+;;
+;; Commands:
+;;
+;;   - `ginkgo bootstrap`
+;;   - `ginkgo generate <pack>`
+;;
+
+(use-package yasnippet :ensure t
+  :init
+  (yas-minor-mode)
+  (add-to-list 'yas-snippet-dirs "../snippets/go-mode/")
+  (yas-reload-all)
+
+  (define-key yas-minor-mode-map (kbd "<tab>") nil)
+  (define-key yas-minor-mode-map (kbd "TAB") nil)
+  (define-key yas-minor-mode-map (kbd "<C-tab>") yas-maybe-expand))
+
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp lsp-deferred)
+  :hook ((go-mode . lsp-deferred)
+         ;; https://github.com/rcjsuen/dockerfile-language-server-nodejs
+         (dockerfile-mode . lsp-deferred))
+  :init
+  (setq lsp-keymap-prefix "<C-return>")
+
+  :config
+  (dolist (dir '(
+                 "[/\\\\]vendor"
+                 ))
+    (push dir lsp-file-watch-ignored))
+  (add-hook 'lsp-after-initialize-hook '(lambda()
+                                          ;; (flycheck-add-next-checker 'lsp 'golangci-lint t)
+                                          )))
+
+;; Optional - provides fancier overlays.
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+
+;; company-lsp integrates company mode completion with lsp-mode.
+;; completion-at-point also works out of the box but doesn't support snippets.
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp)
+
+(use-package gotest :ensure t)
+(use-package go-tag :ensure t)
+(use-package go-impl :ensure t)
+(use-package go-gen-test :ensure t)
+(use-package go-fill-struct :ensure t)
+(use-package go-playground :ensure t)
+(use-package flycheck-golangci-lint
+  :ensure t
+  :init
+  (add-hook 'go-mode-hook 'flycheck-golangci-lint-setup)
+  (flycheck-golangci-lint-setup))
+
+(use-package go-mode
+  :ensure t
+  :config
+  (add-hook 'go-mode-hook
+            '(lambda ()
+               ;; ;; Prefer goimports than gofmt
+               (let ((goimports (executable-find "goimports")))
+                 (when goimports
+                   (setq gofmt-command goimports)))
+
+               ;; Enable snippets
+               (yas-minor-mode)
+
+               ;; Gofmt on save
+               (add-hook 'before-save-hook 'gofmt-before-save nil t)
+
+               ;; Ignore go test -c output files
+               (add-to-list 'completion-ignored-extensions ".test")
+
+               ;; stop whitespace being highlighted
+               (whitespace-toggle-options '(tabs))
+
+               ;; Company mode settings
+               (set (make-local-variable 'company-backends) '(company-lsp))
+
+               ;; TODO: This sucks if it happens automatically.
+               ;; (local-set-key (kbd "C-c C-g") #'go-gen-test-dwim)
+
+               (let ((map go-mode-map))
+                 ;; Navigation
+                 ;;
+                 ;;   C-c C-f -> goto commands
+                 (define-key map (kbd "C-c f") nil)
+                 (define-key map (kbd "C-c f d") 'lsp-ui-peek-find-definitions)
+                 (define-key map (kbd "C-c f r") 'lsp-ui-peek-find-references)
+                 (define-key map (kbd "C-c f i") 'lsp-ui-peek-find-implementation)
+                 (define-key map (kbd "C-c f s") 'lsp-ui-peek-find-workspace-symbol)
+
+                 ;;   M-. / M-, -> xref support
+                 ;;
+                 (define-key map (kbd "M-j RET") 'lsp-ui-imenu)
+
+                 ;; Run
+                 (define-key map (kbd "C-c b") 'go-run)
+
+                 ;; Refactoring
+                 (define-key map (kbd "C-c r") 'lsp-rename)
+                 (define-key map (kbd "C-c C-r") 'lsp-rename)
+
+                 ;; Add import
+                 (define-key map (kbd "C-c a") nil)
+
+                 (define-key map (kbd "C-c C-a") nil)
+                 (define-key map (kbd "C-c a i") 'go-import-add)
+                 (define-key map (kbd "C-c a t") 'go-tag-add)
+                 (define-key map (kbd "C-c a T") 'go-tag-remove)
+                 (define-key map (kbd "C-c a s") 'go-fill-struct)
+
+                 ;; Show/Hide
+                 (define-key map (kbd "C-c h") 'origami-toggle-node)
+                 (define-key map (kbd "C-c C-h") 'origami-toggle-all-nodes)
+
+                 ;; Playground
+                 (define-key map (kbd "C-c p r") 'go-play-region)
+                 (define-key map (kbd "C-c p b") 'go-play-buffer)
+
+                 ;; Testing
+                 (define-key map (kbd "C-c t") 'go-test-current-file)
+                 (define-key map (kbd "C-c .") 'go-test-current-test)
+                 (define-key map (kbd "C-c C-t") 'go-test-current-project))
+               )))
 
 ;; =============================================================================
 ;; Build-in
@@ -441,7 +597,7 @@
   ;; don't muck with special buffers
   (setq uniquify-ignore-buffers-re "^\\*"))
 
- ; Save point position.
+;; Save point position.
 (use-package saveplace
   :config
   (unless (file-exists-p "~/.emacs.d/places")
@@ -504,23 +660,42 @@
 
   (require 'dired-x))
 
+;; TOOD: https://github.com/atomontage/xterm-color
+;; (use-package xterm-color :ensure t)
 (use-package eshell
   :config
+  (progn
+    (eval-after-load 'esh-opt
+      '(progn
+         (require 'em-prompt)
+         (require 'em-term)
+         (require 'em-cmpl)
+         (setenv "PAGER" "cat")
+
+         (add-to-list 'eshell-visual-commands "ssh")
+         (add-to-list 'eshell-visual-commands "htop")
+         (add-to-list 'eshell-visual-commands "top")
+         (add-to-list 'eshell-visual-commands "tail")
+         (add-to-list 'eshell-visual-commands "docker-compose")
+
+         (add-to-list 'eshell-command-completions-alist
+                      '("gunzip" "gz\\'"))
+         (add-to-list 'eshell-command-completions-alist
+                      '("tar" "\\(\\.tar|\\.tgz\\|\\.tar\\.gz\\)\\'")))))
+
+  (add-hook 'eshell-mode-hook (lambda () (define-key eshell-mode-map (kbd "M-r") #'counsel-esh-history)))
+  (add-hook 'eshell-before-prompt-hook (lambda () (setenv "TERM" "xterm-256color")))
+
   (defun eshell/clear ()
     "Clear eshell buffer."
     (interactive)
     (let ((eshell-buffer-maximum-lines 0))
       (eshell-truncate-buffer))))
 
-(use-package em-term
-  :config
-  (add-to-list 'eshell-visual-commands "emacs")
-  (add-to-list 'eshell-visual-commands "htop"))
-
 (use-package paren :config (show-paren-mode +1))
 (use-package windmove :config (windmove-default-keybindings))
-(use-package org-mode :config (add-hook 'org-mode-hook 'turn-on-auto-fill))
 (use-package text-mode :config (add-hook 'text-mode-hook 'turn-on-auto-fill))
-(use-package shell-mode :config (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on))
+
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
 
 (provide 'setup-packages)

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: go
+# key: go
+# contributor : @ivo-
+# --
+go func (){
+	$0
+}()

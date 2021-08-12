@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: gw
+# key: type
+# contributor : @ivo-
+# --
+fmt.Fprint(GinkgoWriter, "==================================================")
+fmt.Fprintf(GinkgoWriter, "response: %s", res)
+fmt.Fprint(GinkgoWriter, "==================================================")

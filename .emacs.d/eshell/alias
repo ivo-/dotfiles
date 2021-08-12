@@ -1,37 +1,23 @@
+alias d dired $1
+alias gds magit-diff-staged
+alias gd magit-diff-unstaged
+alias emacs find-file $1
+alias ff find-file $1
+alias e find-file $1
 alias гс c $*
 alias ц гс $*
 alias cs c $*
-alias .mt cd /mnt
 alias .pj cd ~/Projects
-alias .sb cd ~/Dropbox/sandbox
 alias .dw cd ~/Downloads
-alias .db cd ~/Dropbox
 alias .ic cd ~/Library/Mobile\ Documents/com~apple~CloudDocs
 alias glp g log --graph --decorate --pretty=oneline --abbrev-commit --all $*
-alias gphm gp heroku master $*
-alias gpom gp origin master $*
-alias gchb gch -b           $*
 alias gch g checkout        $*
 alias gca g commit -am      $*
 alias gc g commit -m        $*
 alias gb g branch           $*
 alias gs g status           $*
-alias gp g push             $*
-alias gpf g push --force    $*
 alias ga g add              $*
 alias g git                 $*
-alias rkm rk db:migrate     $*
-alias rk be rake            $*
-alias rgc rg controller     $*
-alias rgs rg scaffold       $*
-alias rgmg rg migration     $*
-alias rgmd rg model         $*
-alias rg r generate         $*
-alias rc r console          $*
-alias rs r server           $*
-alias r be rails            $*
-alias be bundle exec        $*
-alias ff find-file          $1
 alias ll ls -la             $*
 alias la ls -a              $*
 alias c clear
@@ -40,3 +26,4 @@ alias ... cd ../..
 alias cd cd $* ; hr ; ll
 alias hr . $*
 alias merge-yl git checkout origin/master -- yarn.lock && yarn install && git add yarn.lock
+alias ee find-file-other-window $1

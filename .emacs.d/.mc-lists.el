@@ -22,7 +22,9 @@
         comment-dwim
         counsel-M-x
         create-buffer
+        crux-duplicate-current-line-or-region
         crux-kill-whole-line
+        crux-move-beginning-of-line
         dired-do-delete
         dired-next-line
         dired-previous-line
@@ -38,17 +40,26 @@
         git-gutter:next-hunk
         go-mode-insert-and-indent
         haml-electric-backspace
+        hs-hide-block
+        hs-show-all
+        hs-toggle-hiding
         indent-for-tab-command
+        isearch-abort
         isearch-forward-regexp
         isearch-printing-char
         iy-go-to-char
         iy-go-to-char--command
         iy-go-to-char-quit
+        jump-char-forward
+        jump-char-process-char
         kill-region
         kill-sentence
         kill-visual-line
+        lsp-signature-activate
         markdown-cycle
         markdown-exdent-or-delete
+        markdown-next-link
+        markdown-previous-link
         move-line-down
         move-line-up
         org-beginning-of-line
@@ -64,6 +75,7 @@
         org-shiftright
         org-yank
         orgtbl-self-insert-command
+        origami-toggle-node
         paredit-backslash
         paredit-close-round
         paredit-close-square
@@ -97,6 +109,7 @@
         sp--self-insert-command
         sp-backward-delete-char
         sp-backward-kill-word
+        sp-backward-sexp
         sp-delete-char
         sp-forward-sexp
         sp-forward-slurp-sexp
@@ -106,12 +119,12 @@
         sp-remove-active-pair-overlay
         sp-splice-sexp
         sp-splice-sexp-killing-around
+        sp-up-sexp
         tab-to-tab-stop
         text-scale-decrease
         toggle-eshell-1
         toggle-input-method
         transpose-words
-        typescript-insert-and-autoconvert-to-template
         undefined
         universal-argument-minus
         wdired-capitalize-word
@@ -128,6 +141,7 @@
       '(
         about-emacs
         dired-jump
+        go-gen-test-dwim
         god-local-mode
         god-mode
         god-mode-meta
@@ -137,7 +151,6 @@
         markdown-outdent-or-delete
         mouse-buffer-menu
         mouse-drag-secondary
-        mouse-set-region
         mouse-start-secondary
         paredit-comment-dwim
         picture-move-down
