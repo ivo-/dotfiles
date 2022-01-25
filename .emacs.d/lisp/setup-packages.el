@@ -413,13 +413,14 @@
               ("C-c a d" . tide-jsdoc-template))
   :init (electric-indent-mode -1)
   :mode (("\\.tsx?\\'" . typescript-mode))
-  :config (flycheck-add-mode 'typescript-tslint))
+  :config (flycheck-add-mode 'typescript-tslint 't))
 
 (use-package tide
   :ensure t
   :config
   (defun setup-tide-mode ()
     (interactive)
+    (setq tide-always-show-documentation t)
     (tide-setup)
     (eldoc-mode +1)
     (tide-hl-identifier-mode +1))
@@ -488,9 +489,9 @@
 
 ;; company-lsp integrates company mode completion with lsp-mode.
 ;; completion-at-point also works out of the box but doesn't support snippets.
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp)
+;; (use-package company-lsp
+;;   :ensure t
+;;   :commands company-lsp)
 
 (use-package gotest :ensure t)
 (use-package go-tag :ensure t)
@@ -515,10 +516,15 @@
                    (setq gofmt-command goimports)))
 
                ;; Enable snippets
-               (yas-minor-mode)
+               ;; (yas-minor-mode)
 
                ;; Gofmt on save
-               (add-hook 'before-save-hook 'gofmt-before-save nil t)
+               ;; (add-hook 'before-save-hook #'gofmt-before-save)
+               (add-hook 'before-save-hook #'lsp-format-buffer t t)
+               (add-hook 'before-save-hook #'lsp-organize-imports t t)
+
+               (setq lsp-enable-indentation nil)
+               (setq indent-region-function nil)
 
                ;; Ignore go test -c output files
                (add-to-list 'completion-ignored-extensions ".test")
@@ -527,7 +533,8 @@
                (whitespace-toggle-options '(tabs))
 
                ;; Company mode settings
-               (set (make-local-variable 'company-backends) '(company-lsp))
+               ;; TODO:
+               ;; (set (make-local-variable 'company-backends) '(company-lsp))
 
                ;; TODO: This sucks if it happens automatically.
                ;; (local-set-key (kbd "C-c C-g") #'go-gen-test-dwim)

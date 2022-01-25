@@ -2,3 +2,5 @@ bash/ref.org
 ido.last
 recentf
 smex-items
+.emacs.d/.cache/
+.DS_Store
