@@ -36,6 +36,7 @@
         end-of-buffer
         end-of-visual-line
         eshell-bol
+        flycheck-next-error
         git-gutter:next-diff
         git-gutter:next-hunk
         go-mode-insert-and-indent
@@ -56,6 +57,7 @@
         kill-sentence
         kill-visual-line
         lsp-signature-activate
+        lsp-ui-doc--handle-mouse-movement
         markdown-cycle
         markdown-exdent-or-delete
         markdown-next-link
@@ -152,6 +154,7 @@
         mouse-buffer-menu
         mouse-drag-secondary
         mouse-start-secondary
+        org-return-and-maybe-indent
         paredit-comment-dwim
         picture-move-down
         slim-electric-backspace

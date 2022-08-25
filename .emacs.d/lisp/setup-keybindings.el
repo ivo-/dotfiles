@@ -1,3 +1,6 @@
+;; NOTE: Comment for non-UK keyboards
+(global-set-key (kbd "s-3") '(lambda () (interactive) (insert "#")))
+
 (global-set-key (kbd "M-/") 'hippie-expand)
 
 (global-set-key (kbd "M-e") 'forward-paragraph)

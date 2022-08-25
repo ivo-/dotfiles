@@ -5,7 +5,8 @@
 ;;   C-<Return>   => expand region
 ;;   M-j RET      => switch to previous buffer
 ;;
-;;  - [ ] https://github.com/BlueFlo0d/xwwp/tree/xwwp-ace-dev
+;;  - [ ] Use spectrum https://github.com/bbatsov/emacs.d/commit/e5065681e68151732791c2fc5f41bbaf969af1e8
+;;  - [ ] https://github.com/josharian/impl
 
 (package-initialize)
 
@@ -21,5 +22,3 @@
 
 ;; Don't need the *scratch* buffer.
 (kill-buffer "*scratch*")
-
-(setenv "TERM" "xterm-256color")

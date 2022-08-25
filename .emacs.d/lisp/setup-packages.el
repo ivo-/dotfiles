@@ -331,6 +331,7 @@
   :config
   (projectile-mode +1))
 
+(use-package rg :ensure t)
 (use-package ibuffer
   :bind (("C-x C-b" . ibuffer)))
 
@@ -583,6 +584,14 @@
                  (define-key map (kbd "C-c C-t") 'go-test-current-project))
                )))
 
+(use-package eshell-syntax-highlighting
+  :after eshell-mode
+  :ensure t ;; Install if not already installed.
+  :config
+  ;; Enable in all Eshell buffers.
+  (eshell-syntax-highlighting-global-mode +1))
+
+
 ;; =============================================================================
 ;; Build-in
 
@@ -691,7 +700,7 @@
                       '("tar" "\\(\\.tar|\\.tgz\\|\\.tar\\.gz\\)\\'")))))
 
   (add-hook 'eshell-mode-hook (lambda () (define-key eshell-mode-map (kbd "M-r") #'counsel-esh-history)))
-  (add-hook 'eshell-before-prompt-hook (lambda () (setenv "TERM" "xterm-256color")))
+  ;; (add-hook 'eshell-before-prompt-hook (lambda () (setenv "TERM" "xterm-256color")))
 
   (defun eshell/clear ()
     "Clear eshell buffer."
