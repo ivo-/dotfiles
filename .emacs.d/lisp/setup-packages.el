@@ -700,7 +700,7 @@
                       '("tar" "\\(\\.tar|\\.tgz\\|\\.tar\\.gz\\)\\'")))))
 
   (add-hook 'eshell-mode-hook (lambda () (define-key eshell-mode-map (kbd "M-r") #'counsel-esh-history)))
-  ;; (add-hook 'eshell-before-prompt-hook (lambda () (setenv "TERM" "xterm-256color")))
+  (add-hook 'eshell-before-prompt-hook (lambda () (setenv "TERM" "xterm-256color")))
 
   (defun eshell/clear ()
     "Clear eshell buffer."
