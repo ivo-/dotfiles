@@ -7,6 +7,8 @@
 ;;
 ;;  - [ ] Use spectrum https://github.com/bbatsov/emacs.d/commit/e5065681e68151732791c2fc5f41bbaf969af1e8
 ;;  - [ ] https://github.com/josharian/impl
+;;  - [ ] https://github.com/jscheid/prettier.el
+;;  - [ ] https://github.com/jcs-elpa/auto-rename-tag
 
 (package-initialize)
 

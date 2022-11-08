@@ -285,6 +285,21 @@
   ;; invert the navigation direction if the the completion popup-isearch-match
   ;; is displayed on top (happens near the bottom of windows)
   (setq company-tooltip-flip-when-above t)
+
+  (defun my-tab ()
+    (interactive)
+    (or (copilot-accept-completion)
+        (company-indent-or-complete-common nil)))
+
+                                        ; modify company-mode behaviors
+                                        ; disable inline previews
+  (delq 'company-preview-if-just-one-frontend company-frontends)
+                                        ; enable tab completion
+  (define-key company-mode-map (kbd "<tab>") 'my-tab)
+  (define-key company-mode-map (kbd "TAB") 'my-tab)
+  (define-key company-active-map (kbd "<tab>") 'my-tab)
+  (define-key company-active-map (kbd "TAB") 'my-tab)
+
   (global-company-mode))
 
 (use-package ivy
@@ -350,6 +365,16 @@
 (use-package markdown-mode :ensure t :mode (("\\.md$" . markdown-mode)))
 (use-package restclient :ensure t)
 
+(use-package dash :ensure t)
+(use-package s :ensure t)
+(use-package editorconfig :ensure t)
+(add-to-list 'load-path (expand-file-name "lisp/copilot.el" user-emacs-directory))
+(require 'copilot)
+(add-hook 'prog-mode-hook 'copilot-mode)
+
+(add-to-list 'load-path (expand-file-name "lisp/emacs-prisma-mode" user-emacs-directory))
+(require 'prisma-mode)
+
 ;; =============================================================================
 ;; JavaScript
 
@@ -414,7 +439,10 @@
               ("C-c a d" . tide-jsdoc-template))
   :init (electric-indent-mode -1)
   :mode (("\\.tsx?\\'" . typescript-mode))
-  :config (flycheck-add-mode 'typescript-tslint 't))
+  :config
+  (flycheck-add-mode 'typescript-tslint 't)
+  (flycheck-add-next-checker 'typescript-tide 'javascript-eslint)
+  )
 
 (use-package tide
   :ensure t
